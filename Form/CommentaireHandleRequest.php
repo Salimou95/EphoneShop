@@ -18,7 +18,7 @@ class CommentaireHandleRequest extends BaseHandleRequest
     public function handleInsertForm(Commentaire $commentaire)
     {   
       
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($POST['envoiecommentaire'])){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['envoiecommentaire'])){
 
 
             extract($_POST);
@@ -32,7 +32,6 @@ class CommentaireHandleRequest extends BaseHandleRequest
             
 
             if (empty($errors)) {
-                
                 $commentaire->setCommentaire($commentaire);
                 $commentaire->setNote($note);
 

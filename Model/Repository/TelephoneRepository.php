@@ -12,16 +12,16 @@ class TelephoneRepository extends BaseRepository{
             $requete = $this->dbConnection->prepare("INSERT INTO `telephone` (`fk_marque`,`fk_utilisateur`, `prix`, `modele`, `couleur`, `systemeexploitation`, `ram`,`memoire`,`paysfabrication`,`description`, `quantite`, `image`) VALUES (:fk_marque, :fk_utilisateur, :prix, :modele, :couleur, :systemeexploitation,:ram,:memoire,:paysfabrication, :description, :quantite,:image)");
             
             $requete->bindValue(':fk_marque', $telephone->getFk_marque());
-            $requete->bindValue(':fk_utilisateur', $telephone->getFk_utilisateur());
-            $requete->bindValue(':prix', $telephone->getPrix());
+            $requete->bindValue(':fk_utilisateur', $telephone->getFk_utilisateur(),  \PDO::PARAM_INT);
+            $requete->bindValue(':prix', $telephone->getPrix(),  \PDO::PARAM_INT);
             $requete->bindValue(':modele', $telephone->getModele());
             $requete->bindValue(':couleur', $telephone->getCouleur());
             $requete->bindValue(':systemeexploitation', $telephone->getSystemeexploitation());
-            $requete->bindValue(':ram', $telephone->getRam());
-            $requete->bindValue(':memoire', $telephone->getMemoire());
+            $requete->bindValue(':ram', $telephone->getRam(),  \PDO::PARAM_INT);
+            $requete->bindValue(':memoire', $telephone->getMemoire(),  \PDO::PARAM_INT);
             $requete->bindValue(':paysfabrication', $telephone->getPaysfabrication());
             $requete->bindValue(':description', $telephone->getDescription());
-            $requete->bindValue(':quantite', $telephone->getQuantite());
+            $requete->bindValue(':quantite', $telephone->getQuantite(),  \PDO::PARAM_INT);
             $requete->bindValue(':image', $telephone->getImage());
 
             $requete->execute();

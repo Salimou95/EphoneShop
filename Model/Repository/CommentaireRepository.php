@@ -13,9 +13,9 @@ class CommentaireRepository extends BaseRepository{
             $resultat = $this->dbConnection->prepare("INSERT INTO `commentaire` (`commentaire`, `note`, `fk_Utilisateur`, `fk_Telephone`,`created_at`) VALUES (:commentaire, :note, :fk_Utilisateur, :fk_Telephone, NOW())");
         
             $resultat->bindValue(":commentaire", $commentaire->getCommentaire());
-            $resultat->bindValue(":note", $commentaire->getNote());
-            $resultat->bindValue(":fk_Utilisateur",$commentaire->getFk_utilisateur());
-            $resultat->bindValue(":fk_Telephone", $id);
+            $resultat->bindValue(":note", $commentaire->getNote(),  \PDO::PARAM_INT);
+            $resultat->bindValue(":fk_Utilisateur",$commentaire->getFk_utilisateur(),  \PDO::PARAM_INT);
+            $resultat->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);
             $resultat->execute();
         }catch(PDOException $e) {
             die("Erreur lors de l'insertion : " . $e->getMessage());

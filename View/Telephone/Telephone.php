@@ -1,3 +1,5 @@
+<?php require "View/errors_form.html.php";?>
+
 <main>
     <?php var_dump($commentaire) ?>
     <section>
