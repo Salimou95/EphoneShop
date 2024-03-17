@@ -26,13 +26,13 @@ class CommentaireHandleRequest extends BaseHandleRequest
             if(empty($note)){
                 $errors[] = "Veuillez donner une note";
             }
-            if($note <0 && $note > 5){
+            if($note <0 || $note > 5){
                 $errors[] = "Veuillez donner une note entre 0 et 5";
             }
             
 
             if (empty($errors)) {
-                $commentaire->setCommentaire($commentaire);
+                $commentaire->setAvis($avis);
                 $commentaire->setNote($note);
 
                 return $this;

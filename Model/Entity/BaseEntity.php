@@ -27,15 +27,63 @@ abstract class BaseEntity
         return strToLower($table);
     }
 
-    public function getId()
+    /**
+     * Get the value of created_at
+     */ 
+    public function getCreated_at()
     {
-        return $this->id;
+        return $this->created_at;
     }
 
-    public function setId($id)
+    /**
+     * Set the value of created_at
+     *
+     * @return  self
+     */ 
+    public function setCreated_at($created_at)
     {
-        $this->id = $id;
+        $this->created_at = $created_at;
+
+        return $this;
     }
 
-    
+    /**
+     * Get the value of updated_at
+     */ 
+    public function getUpdated_at()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set the value of updated_at
+     *
+     * @return  self
+     */ 
+    public function setUpdated_at($updated_at)
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of is_deleted
+     */ 
+    public function getIs_deleted()
+    {
+        return $this->is_deleted;
+    }
+
+    /**
+     * Set the value of is_deleted
+     *
+     * @return  self
+     */ 
+    public function setIs_deleted($is_deleted)
+    {
+        $this->is_deleted = $is_deleted;
+
+        return $this;
+    }
 }

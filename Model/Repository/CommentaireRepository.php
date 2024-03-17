@@ -10,9 +10,9 @@ class CommentaireRepository extends BaseRepository{
     public function addCommentaire(Commentaire $commentaire, $id){
         try{
             $commentaire->setFk_utilisateur($_SESSION["user"]->getIdUtilisateur());
-            $resultat = $this->dbConnection->prepare("INSERT INTO `commentaire` (`commentaire`, `note`, `fk_Utilisateur`, `fk_Telephone`,`created_at`) VALUES (:commentaire, :note, :fk_Utilisateur, :fk_Telephone, NOW())");
+            $resultat = $this->dbConnection->prepare("INSERT INTO `commentaire` (`avis`, `note`, `fk_Utilisateur`, `fk_Telephone`,`created_at`) VALUES (:avis, :note, :fk_Utilisateur, :fk_Telephone, NOW())");
         
-            $resultat->bindValue(":commentaire", $commentaire->getCommentaire());
+            $resultat->bindValue(":avis", $commentaire->getAvis());
             $resultat->bindValue(":note", $commentaire->getNote(),  \PDO::PARAM_INT);
             $resultat->bindValue(":fk_Utilisateur",$commentaire->getFk_utilisateur(),  \PDO::PARAM_INT);
             $resultat->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);

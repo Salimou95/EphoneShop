@@ -5,7 +5,7 @@ namespace Model\Entity;
 class Commentaire extends BaseEntity{
 
     private $idCommentaire;
-    private $commentaire;
+    private $avis;
     private $note;
     private $fk_Utilisateur;
     private $fk_Telephone;
@@ -34,25 +34,7 @@ class Commentaire extends BaseEntity{
         return $this;
     }
 
-    /**
-     * Get the value of commentaire
-     */ 
-    public function getCommentaire()
-    {
-        return $this->commentaire;
-    }
-
-    /**
-     * Set the value of commentaire
-     *
-     * @return  self
-     */ 
-    public function setCommentaire($commentaire)
-    {
-        $this->commentaire = $commentaire;
-
-        return $this;
-    }
+    
 
     /**
      * Get the value of note
@@ -110,6 +92,26 @@ class Commentaire extends BaseEntity{
     public function setFk_Telephone($fk_Telephone)
     {
         $this->fk_Telephone = $fk_Telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of avis
+     */ 
+    public function getAvis()
+    {
+        return $this->avis;
+    }
+
+    /**
+     * Set the value of avis
+     *
+     * @return  self
+     */ 
+    public function setAvis($avis)
+    {
+        $this->avis = $avis;
 
         return $this;
     }

@@ -46,7 +46,7 @@
         <div>
             <form method="post">
                 <!-- <input type="button" value="Ajouter au panier"> -->
-                <input type="text" name="commentaire">
+                <input type="text" name="avis">
                 <input type="number" name="note">
                 <input type="submit" name="envoiecommentaire" value="Ajouter un commentaire">
 
