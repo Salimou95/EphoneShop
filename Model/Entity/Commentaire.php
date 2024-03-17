@@ -2,6 +2,7 @@
 
 namespace Model\Entity;
 
+use Model\Entity\Utilisateur;
 class Commentaire extends BaseEntity{
 
     private $idCommentaire;
@@ -9,10 +10,6 @@ class Commentaire extends BaseEntity{
     private $note;
     private $fk_Utilisateur;
     private $fk_Telephone;
-
-    
-   
-
 
     /**
      * Get the value of idCommentaire

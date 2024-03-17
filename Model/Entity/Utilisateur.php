@@ -2,6 +2,7 @@
 
 namespace Model\Entity;
 
+
 class Utilisateur extends BaseEntity{
 
     private $idUtilisateur;

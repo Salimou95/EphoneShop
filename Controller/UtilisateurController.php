@@ -38,7 +38,7 @@ class UtilisateurController extends BaseController
             $this->form->handleInsertForm($utilisateur);
             if ($this->form->isSubmitted() && $this->form->isValid()) {
                 
-                $this->utilisateurRepository->addCommentaire($utilisateur);
+                $this->utilisateurRepository->registrationUser($utilisateur);
                 return redirection(addLink("Utilisateur","connexion"));
             }
             $errors = $this->form->getEerrorsForm();

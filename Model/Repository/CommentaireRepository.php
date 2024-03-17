@@ -26,7 +26,7 @@ class CommentaireRepository extends BaseRepository{
     public function getCommentaire(Commentaire $commentaire, $id){
         try{
 
-            $resultat = $this->dbConnection->prepare("SELECT * FROM commentaire INNER JOIN utilisateur ON commentaire.fk_Utilisateur = utilisateur.idUtilisateur WHERE fk_Telephone = :id");
+            $resultat = $this->dbConnection->prepare("SELECT *, utilisateur.prenomUtilisateur FROM commentaire INNER JOIN utilisateur ON commentaire.fk_Utilisateur = utilisateur.idUtilisateur WHERE fk_Telephone = :id");
             $resultat-> bindValue(":id", $id);
             $resultat->execute();
             $commentget = $resultat -> fetchAll(\PDO::FETCH_CLASS, "Model\Entity\Commentaire");

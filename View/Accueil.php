@@ -2,7 +2,7 @@
 <main>
     <h1><?= $parametres["h1"]?></h1>
 
-    <section class="accueilsection">
+    <section id="accueilsection">
         <?php
             foreach ($telephones as $telephone){
         ?>
