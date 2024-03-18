@@ -46,5 +46,4 @@ class TelephoneRepository extends BaseRepository{
         $requete->execute();
     }
 
-    
 }

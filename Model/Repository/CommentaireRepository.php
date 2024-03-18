@@ -2,6 +2,7 @@
 namespace Model\Repository;
 
 use Model\Entity\Commentaire;
+use Model\Entity\Utilisateur;
 use Model\Entity\Telephone;
 use Service\Session;
 
@@ -26,7 +27,7 @@ class CommentaireRepository extends BaseRepository{
     public function getCommentaire(Commentaire $commentaire, $id){
         try{
 
-            $resultat = $this->dbConnection->prepare("SELECT *, utilisateur.prenomUtilisateur FROM commentaire INNER JOIN utilisateur ON commentaire.fk_Utilisateur = utilisateur.idUtilisateur WHERE fk_Telephone = :id");
+            $resultat = $this->dbConnection->prepare("SELECT utilisateur.prenomUtilisateur, utilisateur.nomUtilisateur, commentaire.avis, commentaire.note, commentaire.idCommentaire, commentaire.created_at  FROM commentaire INNER JOIN utilisateur ON commentaire.fk_Utilisateur = utilisateur.idUtilisateur WHERE fk_Telephone = :id");
             $resultat-> bindValue(":id", $id);
             $resultat->execute();
             $commentget = $resultat -> fetchAll(\PDO::FETCH_CLASS, "Model\Entity\Commentaire");
@@ -35,6 +36,7 @@ class CommentaireRepository extends BaseRepository{
             die("Erreur lors de l'affichage : " . $e->getMessage());
         }
     }
+
 
 
 }

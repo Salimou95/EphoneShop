@@ -25,15 +25,18 @@ h3{
     width:85%;
     margin: auto;
 }
-.sectionForm{
+.sectionForm, .sectionFormComment{
     display: flex;
     margin: 5% auto 2% auto;
 
 }
+.sectionFormComment{
+    justify-content: space-around;
+}
 .sectionForm>div{
     width: 40%;
 }
-.sectionForm>div>form{
+.sectionForm>div>form, .sectionFormComment>div>form{
     border: 5px solid #6142FE;
     border-radius: 10px;
     padding: 5%;
@@ -54,7 +57,7 @@ h3{
     align-items: center;
 }
 
-.subconlinkbtn>input{
+.subconlinkbtn>input, .btnsubmit{
     width: 50%;
     height: 35px;
     background-color: #6142FE;
@@ -63,6 +66,9 @@ h3{
     border-radius: 10px;
     margin: 0 0 1% 0;
     font-weight: bold;
+}
+.btnsubmit{
+    margin: auto;
 }
 
 .subconlinkbtn>a{
@@ -77,12 +83,18 @@ h3{
     align-content: center;
     border-radius: 10px;
 }
-.labeform{
+.labeform,.labelTelephoneUniqueTitle{
     color: #6142FE;
     margin: 0 0 1% 0;
     font-weight: bold;
 }
-#accueilsection{
+.labelTelephoneUniqueTitle{
+    font-size: 120%;
+}
+.labelTelephoneUniqueData{
+    font-size: 110%;
+}
+#accueilsection,#sectionTelephoneUnique{
     width: 75%;
     margin: auto;
     display: flex;
@@ -90,7 +102,14 @@ h3{
     justify-content: space-around;
 
 }
-
+#sectionTelephoneUnique{
+    align-items: center;
+    margin-top: 5%;
+}
+#sectionTelephoneUnique>article>div{
+    margin: 2% 0 0 0;
+    
+}
 #accueilsection>div{
     width: 30%;
     height: 400px;
@@ -110,4 +129,7 @@ nav{
 }
 .imgTelephones{
     height: 320px;
+}
+#telephoneunique{
+    width: 150%
 }
