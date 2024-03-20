@@ -42,8 +42,8 @@
                 <label for="quantite" class="labeform">Quantité:</label>
                 <input type="number" name="quantite"  class="inputform" required><br>
                     
-                <!-- <label for="image" class="labeform">Image:</label>
-                <input type="file" name="image" required><br> -->
+                <label for="image" class="labeform">Image:</label>
+                <input type="file" name="image" required><br>
 
 
                 

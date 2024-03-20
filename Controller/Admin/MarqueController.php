@@ -1,50 +1,34 @@
 <?php
 
-namespace Controller;
+namespace Controller\Admin;
+
+
 use Model\Entity\Marque;
 use Model\Repository\MarqueRepository;
-use Model\Entity\Telephone;
-use Model\Repository\TelephoneRepository;
-use Form\TelephoneHandleRequest;
-use Model\Entity\Commentaire;
-use Model\Repository\CommentaireRepository;
-use Model\Entity\Utilisateur;
-use Model\Repository\UtilisateurRepository;
-use Form\CommentaireHandleRequest;
-
-
 use Controller\BaseController;
 
-
-class TelephoneController extends BaseController
+class MarqueController extends BaseController
 {
-    private Marque $marque;
     private MarqueRepository $marqueRepository;
-    private TelephoneRepository $telephoneRepository;
-    // private Telephone $telephone;
-    private TelephoneHandleRequest $telephoneHandleRequest;  
-    private Commentaire $commentaire;
-    private CommentaireRepository $commentaireRepository; 
-    private CommentaireHandleRequest $commentaireHandleRequest;
-    private Utilisateur $utilisateur;
-    private UtilisateurRepository $utilisateurRepository;
-    
+    private Marque $marque;
 
     public function __construct()
     {
-        $this->marque = new Marque;
         $this->marqueRepository = new MarqueRepository;
-        $this->telephoneRepository = new TelephoneRepository;
-        // $this->$telephone = new Telephone;
-        $this->telephoneHandleRequest = new TelephoneHandleRequest;
-        $this->commentaire = new Commentaire;
-        $this->commentaireRepository = new CommentaireRepository;
-        $this->commentaireHandleRequest = new CommentaireHandleRequest;
-        $this->utilisateur = new Utilisateur;
+        $this->marque = new Marque;
+    }
+    public function list()
+    {
+        $marques = $this->marqueRepository->findAll($this->marque);
+
+        $this->render("Admin/Marque/Marques.php", [
+
+            "h1" => "Nos Marques",
+            "marques" => $marques
+        ]);
     }
 
-    
-    
+
     public function telephone($id)
     {
 
@@ -78,7 +62,4 @@ class TelephoneController extends BaseController
             error("404.php");
         }
     }
-
-    
-   
 }

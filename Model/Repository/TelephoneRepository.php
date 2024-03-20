@@ -2,6 +2,7 @@
 namespace Model\Repository;
 
 use Model\Entity\Telephone;
+
 use Service\Session;
 
 class TelephoneRepository extends BaseRepository{
@@ -11,7 +12,7 @@ class TelephoneRepository extends BaseRepository{
             $telephone->setFk_utilisateur($_SESSION["user"]->getIdUtilisateur());
             $requete = $this->dbConnection->prepare("INSERT INTO `telephone` (`fk_marque`,`fk_utilisateur`, `prix`, `modele`, `couleur`, `systemeexploitation`, `ram`,`memoire`,`paysfabrication`,`description`, `quantite`, `image`) VALUES (:fk_marque, :fk_utilisateur, :prix, :modele, :couleur, :systemeexploitation,:ram,:memoire,:paysfabrication, :description, :quantite,:image)");
             
-            $requete->bindValue(':fk_marque', $telephone->getFk_marque());
+            $requete->bindValue(':fk_marque', $telephone->getFk_marque(),  \PDO::PARAM_INT);
             $requete->bindValue(':fk_utilisateur', $telephone->getFk_utilisateur(),  \PDO::PARAM_INT);
             $requete->bindValue(':prix', $telephone->getPrix(),  \PDO::PARAM_INT);
             $requete->bindValue(':modele', $telephone->getModele());

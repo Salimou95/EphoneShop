@@ -73,7 +73,6 @@
                 }
                 ?><br>
                 <label for=""><?= $comment->getAvis()?></label><br>
-                <label for=""><?= $comment->getAvis()?></label><br>
                 <label for=""><?= $comment->getNote()?></label><br>
                 <label for=""><?= $comment->getCreated_at()?></label><br> 
                 </article>

@@ -20,7 +20,7 @@ class TelephoneController extends BaseController
     private Marque $marque;
     private MarqueRepository $marqueRepository;
     private TelephoneRepository $telephoneRepository;
-    private Telephone $telephone;
+    // private Telephone $telephone;
     private TelephoneHandleRequest $form;
     private Commentaire $commentaire;
     private CommentaireRepository $commentaireRepository; 
@@ -31,7 +31,7 @@ class TelephoneController extends BaseController
 
     public function __construct()
     {
-        $this->$telephone = new Telephone;
+        // $this->$telephone = new Telephone;
         $this->marque = new Marque;
         $this->marqueRepository = new MarqueRepository;
         $this->telephoneRepository = new TelephoneRepository;
@@ -41,6 +41,20 @@ class TelephoneController extends BaseController
         $this->commentaireHandleRequest = new CommentaireHandleRequest;
 
     }
+
+    public function getTelephone(){
+
+        $telephone = new Telephone;
+        $telephones = $this->telephoneRepository->findAll($telephone);
+
+        $this->render("Admin/Telephone/Telephones.php", [
+
+            "h1" => "Nos téléphones",
+            "telephones" => $telephones
+        ]);
+    }
+
+    
 
     public function addTelephone(){
         if($this->getAdmin()){

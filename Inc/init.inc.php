@@ -11,9 +11,10 @@ define("ROLE_ADMIN", "ROLE_ADMIN");
 define("INSERTED", "Enregistrer"); 
 define("UPDATED", "Modifier"); 
 define("DELETED", "Supprimer"); 
-// define("UPLOAD_PRODUCTS_IMG", "uploads/products/");
 define("UPLOAD_IMG", "uploads/imgSite/");
 define("UPLOAD_IMG_TELEPHONE", "uploads/imgTelephone/");
+define("UPLOAD_IMG_MARQUE", "uploads/imgMarque/");
+
 
 
 define("STYLE", "Public/assets/css/");

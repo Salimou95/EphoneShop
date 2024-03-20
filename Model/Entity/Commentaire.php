@@ -10,6 +10,7 @@ class Commentaire extends BaseEntity{
     private $note;
     private $fk_Utilisateur;
     private $fk_Telephone;
+    private Utilisateur $utilisateur;
 
     /**
      * Get the value of idCommentaire
@@ -111,5 +112,33 @@ class Commentaire extends BaseEntity{
         $this->avis = $avis;
 
         return $this;
+    }
+
+    /**
+     * Get the value of Utilsateur
+     */ 
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
+    }
+
+    /**
+     * Set the value of Utilsateur
+     *
+     * @return  self
+     */ 
+    public function setUtilisateur($commentaire)
+    {
+        $utilisateur = new Utilisateur;
+        $utilisateur
+        ->setNomUtilisateur($commentaire->nomUtilisateur)
+        ->setPrenomUtilisateur($commentaire->prenomUtilisateur)
+        ->setCreated_at($commentaire->created_at)
+        ->setUpdated_at($commentaire->updated_at)
+        ->setIs_deleted($commentaire->is_deleted);
+
+        
+        $this->utilisateur = $utilisateur;
+        return $commentaire;
     }
 }
