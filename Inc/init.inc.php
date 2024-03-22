@@ -14,9 +14,5 @@ define("DELETED", "Supprimer");
 define("UPLOAD_IMG", "uploads/imgSite/");
 define("UPLOAD_IMG_TELEPHONE", "uploads/imgTelephone/");
 define("UPLOAD_IMG_MARQUE", "uploads/imgMarque/");
-
-
-
 define("STYLE", "Public/assets/css/");
-
 define("EN_ATTENTE", "En Attente");

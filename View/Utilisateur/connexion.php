@@ -1,3 +1,4 @@
+<?php require "View/errors_form.html.php";?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>

@@ -5,17 +5,23 @@ namespace Controller\Admin;
 
 use Model\Entity\Marque;
 use Model\Repository\MarqueRepository;
+use Form\MarqueHandleRequest;
+use Service\ImageHandler;
+
+
 use Controller\BaseController;
 
 class MarqueController extends BaseController
 {
     private MarqueRepository $marqueRepository;
     private Marque $marque;
+    private MarqueHandleRequest $form;
 
     public function __construct()
     {
         $this->marqueRepository = new MarqueRepository;
         $this->marque = new Marque;
+        $this->form = new MarqueHandleRequest;
     }
     public function list()
     {
@@ -29,37 +35,34 @@ class MarqueController extends BaseController
     }
 
 
-    public function telephone($id)
-    {
-
-
-        if (!empty($id) && is_numeric($id)) {   
-
-            $tel = new TelephoneRepository;
-            $telephones = $tel->findById('telephone', $id);
-            $commentaire = new Commentaire;
-            $commentaires = $this->commentaireRepository->getCommentaire($commentaire, $id);
-            $commentaire->setUtilisateur($commentaires);
-            
-            $this->commentaireHandleRequest->handleInsertForm($commentaire);
-            if ($this->commentaireHandleRequest->isSubmitted() && $this->commentaireHandleRequest->isValid()) {
+    public function addMarque(){
+        if($this->getAdmin()){
                 
-                $this->commentaireRepository->addCommentaire($commentaire, $id);
-                // return redirection(addLink("Utilisateur","connexion"));
-            }
-            $errors = $this->commentaireHandleRequest->getEerrorsForm();
-                if (empty($telephones)) {
-                $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
-                // redirection(addLink("home"));
-            }
-            $this->render("telephone/Telephone.php", [
-            "telephones" => $telephones,
-            "h1" => "Fiche product",
-            "commentaire" => $commentaires,
-            "errors" => $errors,
+                $marque = new Marque ;
+                $this->form->handleInsertForm($marque);
+                if ($this->form->isSubmitted() && $this->form->isValid()) {
+                    ImageHandler::handelPhoto($marque);
+                    $this->marqueRepository->addMarque($marque);
+                    // return redirection(addLink("Accueil"));
+                }
+            $errors = $this->form->getEerrorsForm();
+    
+            $this->render("Admin/Marque/FormMarques.php", [
+                "h1" => "Ajouter une marque",
+                "marque" => $marque,
+                "errors" => $errors
+                
             ]);
         }else{
+
             error("404.php");
         }
+
+
+    }
+    public function marqueUnique($id)
+    {
+
+        
     }
 }

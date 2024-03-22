@@ -30,6 +30,6 @@ function redirection($url)
 // ⚠ test 
 function error($num = 404)
 {
-    include "errors/$num";
+    include "errors/$num.php";
     exit;
 }

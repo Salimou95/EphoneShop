@@ -10,5 +10,9 @@
 </head>
 <body>
     <header>
-    <?php include __DIR__ . "/nav.php"; ?>
+    <?php 
+        include __DIR__ . "/nav.php"; 
+        
+
+    ?>
     </header>

@@ -1,5 +1,6 @@
-<?php $mode = $mode ?? "insertion";
- ?>
+<?php $mode = $mode ?? "insertion";?>
+<?php require "View/errors_form.html.php";?>
+
 
     <main>
         <h1>Ajouter un Téléphone</h1>

@@ -7,6 +7,7 @@ class Marque extends BaseEntity{
     private $idMarque;
     private $nomMarque;
     private $logoMarque;
+    private $image;
    
 
     /**
@@ -65,6 +66,26 @@ class Marque extends BaseEntity{
     public function setIdMarque($idMarque)
     {
         $this->idMarque = $idMarque;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }
