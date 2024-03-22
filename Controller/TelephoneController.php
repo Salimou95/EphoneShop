@@ -52,10 +52,10 @@ class TelephoneController extends BaseController
         if (!empty($id) && is_numeric($id)) {   
 
             $tel = new TelephoneRepository;
-            $telephones = $tel->findById('telephone', $id);
+            $telephone = $tel->findById('telephone', $id);
             $commentaire = new Commentaire;
             $commentaires = $this->commentaireRepository->getCommentaire($commentaire, $id);
-            $commentaire->setUtilisateur($commentaires);
+            // $commentaire->setUtilisateur($commentaires);
             
             $this->commentaireHandleRequest->handleInsertForm($commentaire);
             if ($this->commentaireHandleRequest->isSubmitted() && $this->commentaireHandleRequest->isValid()) {
@@ -64,12 +64,12 @@ class TelephoneController extends BaseController
                 // return redirection(addLink("Utilisateur","connexion"));
             }
             $errors = $this->commentaireHandleRequest->getEerrorsForm();
-                if (empty($telephones)) {
+                if (empty($telephone)) {
                 $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
                 // redirection(addLink("home"));
             }
             $this->render("telephone/Telephone.php", [
-            "telephones" => $telephones,
+            "telephone" => $telephone,
             "h1" => "Fiche product",
             "commentaire" => $commentaires,
             "errors" => $errors,

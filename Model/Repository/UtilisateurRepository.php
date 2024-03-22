@@ -65,4 +65,15 @@ class UtilisateurRepository extends BaseRepository{
                 return null;
             }
         }
+
+        public function udapteUtilisateur(Utilisateur $utilisateur){
+            $resultat = $this->dbConnection->prepare("UPDATE `utilisateur` SET `nomUtilisateur` = :nomUtilisateur, `prenomUtilisateur`= :prenomUtilisateur, `emailUtilisateur` = :emailUtilisateur, `dateNaissanceUtilisateur` = :dateNaissanceUtilisateur, `telephoneUtilisateur` = :telephoneUtilisateur, `sexeUtilisateur` = :sexeUtilisateur  WHERE `utilisateur`.`idUtilisateur` = 28;");
+            $resultat->bindValue(":nomUtilisateur", $utilisateur->getNomUtilisateur());
+            $resultat->bindValue(":prenomUtilisateur", $utilisateur->getPrenomUtilisateur());
+            $resultat->bindValue(":emailUtilisateur", $utilisateur->getEmailUtilisateur());
+            $resultat->bindValue(":dateNaissanceUtilisateur", $utilisateur->getDateNaissanceUtilisateur());
+            $resultat->bindValue(":telephoneUtilisateur", $utilisateur->getTelephoneUtilisateur(), \PDO::PARAM_INT);
+            $resultat->bindValue(":sexeUtilisateur", $utilisateur->getSexeUtilisateur());
+            $resultat->execute();
+        }
 }

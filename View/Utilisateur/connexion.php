@@ -32,13 +32,13 @@
                             <input type="password" name="mdpUtilisateur" class="inputform" placeholder="Inscrivez votre mot de passe" required>
                         </div>
                         <div class="subconlinkbtn">
-                        <input type="submit" name="connexion" value="Connexion">
+                            <input type="submit" name="connexion" value="Connexion">
                             <a href="<?= addLink("utilisateur", "inscription")?>">Inscrivez-vous ?</a>
                         </div>
                     </form>
                 </div>
                 <div>
-                    <img style="height: 500px;" src="<?php UPLOAD_IMG. "formimng.png"?>" alt="">
+                    <img style="height: 500px;" src="<?= UPLOAD_IMG. "formimg.png"?>" alt="">
                 </div>
             </section>
         </main>

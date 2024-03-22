@@ -25,19 +25,19 @@ require "View/errors_form.html.php";
                         </div>
                         <div>
                             <label for="nomUtilisateur" class="labeform">Nom :</label>
-                            <input type="text" name="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform"  required>
+                            <input type="text" name="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform" value="<?= $utilisateur->getNomUtilisateur() ?>" required>
                         </div>
                         <div>
                             <label for="prenomUtilisateur" class="labeform">Prénom :</label>
-                            <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" class="inputform" required>
+                            <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" class="inputform" value="<?= $utilisateur->getprenomUtilisateur()?>" required>
                         </div>
                         <div>
                             <label for="emailUtilisateur" class="labeform">Email :</label>
                             <input type="email" name="emailUtilisateur" class="inputform" placeholder="Inscrivez votre email" required>
                         </div>
                         <div>
-                            <label for="mdpUtilisateur" class="labeform">Mot de passe :</label>
-                            <input type="password" name="mdpUtilisateur" class="inputform" placeholder="Inscrivez votre mot de passe" required>
+                            <!-- <label for="mdpUtilisateur" class="labeform">Mot de passe :</label>
+                            <input type="password" name="mdpUtilisateur" class="inputform" placeholder="Inscrivez votre mot de passe" required> -->
                         </div>
                         <div>                            
                             <label for="dateNaissanceUtilisateur" class="labeform">Date de naissance :</label>

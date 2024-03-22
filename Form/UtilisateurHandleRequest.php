@@ -76,8 +76,53 @@ class UtilisateurHandleRequest extends BaseHandleRequest
         }
     }
 
-    public function handleEditForm($user)
+    public function handleEditForm(Utilisateur $utilisateur)
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+            extract($_POST);
+            $errors = [];
+
+
+            if (!empty($nomUtilisateur)) {
+                if (strlen($nomUtilisateur) < 2) {
+                    $errors[] = "Le nom doit avoir au moins 2 caractères";
+                }
+                if (strlen($nomUtilisateur) > 30) {
+                    $errors[] = "Le nom ne peut avoir plus de 30 caractères";
+                }
+            }
+            if (!empty($prenomUtilisateur)) {
+                if (strlen($prenomUtilisateur) < 2) {
+                    $errors[] = "Le prénom doit avoir au moins 2 caractères";
+                }
+                if (strlen($prenomUtilisateur) > 30) {
+                    $errors[] = "Le prénom ne peut avoir plus de 30 caractères";
+                }
+            }
+            
+            if (!empty($telephoneUtilisateur)) {
+                if (strlen($telephoneUtilisateur) != 10)  {
+                    $errors[] = "Veuillez noter un numéro valide";
+                }
+            }
+        
+
+            if (empty($errors)) {
+                $utilisateur->setNomUtilisateur($nomUtilisateur);
+                $utilisateur->setPrenomUtilisateur($prenomUtilisateur);
+                $utilisateur->setEmailUtilisateur($emailUtilisateur);
+                $utilisateur->setDateNaissanceUtilisateur($dateNaissanceUtilisateur);
+                $utilisateur->setTelephoneUtilisateur($telephoneUtilisateur);
+                $utilisateur->setSexeUtilisateur($sexeUtilisateur);
+                $utilisateur->setRoleUtilisateur($roleUtilisateur);
+
+                return $this;
+            }
+            $this->setEerrorsForm($errors);
+            return $this;
+        }
     }
     public function handleLogin()
     {
