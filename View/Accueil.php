@@ -11,7 +11,7 @@
             <img class="imgTelephones" src="<?=UPLOAD_IMG_TELEPHONE . $telephone->getImage(); ?>" alt="">
             <p><?= $telephone->getPrix();?>&euro;</p>
             <button>Ajouter au panier</button>
-            <a href="<?= addLink("telephone","telephone",$telephone->getIdTelephone())?>">Voir +</a>
+            <a href="<?= addLink("telephone","telephone",$telephone->getId())?>">Voir +</a>
         </div>
         <?php }?>
     </section>

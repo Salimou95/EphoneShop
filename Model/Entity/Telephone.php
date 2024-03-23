@@ -5,7 +5,6 @@ namespace Model\Entity;
 
 class Telephone extends BaseEntity{
 
-    private $idTelephone;
     private $prix;
     private $modele;
     private $couleur;
@@ -122,25 +121,6 @@ class Telephone extends BaseEntity{
 
 
 
-    /**
-     * Get the value of idTelephone
-     */ 
-    public function getIdTelephone()
-    {
-        return $this->idTelephone;
-    }
-
-    /**
-     * Set the value of idTelephone
-     *
-     * @return  self
-     */ 
-    public function setIdTelephone($idTelephone)
-    {
-        $this->idTelephone = $idTelephone;
-
-        return $this;
-    }
 
     /**
      * Get the value of ram

@@ -20,9 +20,9 @@
                     <td><?= $utilisateur->getTelephoneUtilisateur();?></td>
                     <td><?= $utilisateur->getRoleUtilisateur();?></td>
                     <td>
-                        <a href="<?= addLink("marque","marque",$utilisateur->getIdUtilisateur())?>">Voir +</a>
-                        <a href="<?= addLink("marque","udapteMarque",$utilisateur->getIdUtilisateur())?>">Modifier</a>
-                        <a href="<?= addLink("marque","delete",$utilisateur->getIdUtilisateur())?>">Supprimer</a>
+                        <a href="<?= addLink("marque","marque",$utilisateur->getId())?>">Voir +</a>
+                        <a href="<?= addLink("marque","udapteMarque",$utilisateur->getId())?>">Modifier</a>
+                        <a href="<?= addLinkAdmin("admin","utilisateur","deleteUtilisateur",$utilisateur->getId())?>">Supprimer</a>
                     </td>
                 </tr>
             <?php } ?>

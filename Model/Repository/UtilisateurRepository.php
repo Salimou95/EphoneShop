@@ -67,8 +67,8 @@ class UtilisateurRepository extends BaseRepository{
         }
 
         public function udapteUtilisateur(Utilisateur $utilisateur){
-            $resultat = $this->dbConnection->prepare("UPDATE `utilisateur` SET `nomUtilisateur` = :nomUtilisateur, `prenomUtilisateur`= :prenomUtilisateur, `emailUtilisateur` = :emailUtilisateur, `dateNaissanceUtilisateur` = :dateNaissanceUtilisateur, `telephoneUtilisateur` = :telephoneUtilisateur, `sexeUtilisateur` = :sexeUtilisateur  WHERE `utilisateur`.`idUtilisateur` = :id;");
-            $resultat->bindValue(":id", $utilisateur->getIdUtilisateur());
+            $resultat = $this->dbConnection->prepare("UPDATE `utilisateur` SET `nomUtilisateur` = :nomUtilisateur, `prenomUtilisateur`= :prenomUtilisateur, `emailUtilisateur` = :emailUtilisateur, `dateNaissanceUtilisateur` = :dateNaissanceUtilisateur, `telephoneUtilisateur` = :telephoneUtilisateur, `sexeUtilisateur` = :sexeUtilisateur  WHERE `utilisateur`.`id` = :id;");
+            $resultat->bindValue(":id", $utilisateur->getId());
             $resultat->bindValue(":nomUtilisateur", $utilisateur->getNomUtilisateur());
             $resultat->bindValue(":prenomUtilisateur", $utilisateur->getPrenomUtilisateur());
             $resultat->bindValue(":emailUtilisateur", $utilisateur->getEmailUtilisateur());

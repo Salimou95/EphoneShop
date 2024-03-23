@@ -4,6 +4,11 @@ function addLink($controller, $method = "list", $id = null)
     // return ROOT . "?controller=$controller&method=$method" . ($id ? "&id=$id" : "");
     return ROOT . "$controller/$method" . ($id ? "/$id" : "");
 }
+function addLinkAdmin($doc= "admin" ,$controller, $method = "list", $id = null)
+{
+    // return ROOT . "?controller=$controller&method=$method" . ($id ? "&id=$id" : "");
+    return ROOT . "$doc/$controller/$method" . ($id ? "/$id" : "");
+}
 
 
 function debug($var)

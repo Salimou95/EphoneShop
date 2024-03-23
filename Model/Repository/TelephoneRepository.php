@@ -9,7 +9,7 @@ class TelephoneRepository extends BaseRepository{
 
 
     public function addTelephone(Telephone $telephone){
-            $telephone->setFk_utilisateur($_SESSION["user"]->getIdUtilisateur());
+            $telephone->setFk_utilisateur($_SESSION["user"]->getId());
             $requete = $this->dbConnection->prepare("INSERT INTO `telephone` (`fk_marque`,`fk_utilisateur`, `prix`, `modele`, `couleur`, `systemeexploitation`, `ram`,`memoire`,`paysfabrication`,`description`, `quantite`, `image`) VALUES (:fk_marque, :fk_utilisateur, :prix, :modele, :couleur, :systemeexploitation,:ram,:memoire,:paysfabrication, :description, :quantite,:image)");
             
             $requete->bindValue(':fk_marque', $telephone->getFk_marque(),  \PDO::PARAM_INT);
@@ -42,7 +42,7 @@ class TelephoneRepository extends BaseRepository{
         $requete->bindValue(':description', $telephone->getDescription());
         $requete->bindValue(':quantite', $telephone->getQuantite());
         $requete->bindValue(':image', $telephone->getImage());
-        $requete->bindValue(':idTelephone', $telephone->getIdTelephone());
+        $requete->bindValue(':idTelephone', $telephone->getId());
 
         $requete->execute();
     }

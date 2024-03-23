@@ -71,7 +71,7 @@ class TelephoneController extends BaseController
             $this->render("telephone/Telephone.php", [
             "telephone" => $telephone,
             "h1" => "Fiche product",
-            "commentaire" => $commentaires,
+            "commentaires" => $commentaires,
             "errors" => $errors,
             ]);
         }else{

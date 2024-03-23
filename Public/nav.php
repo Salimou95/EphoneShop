@@ -8,7 +8,7 @@
     <div>
     <a class="nav-link" href="<?= addLink("utilisateur", "deconnexion") ?>">
     deconnexion</a>
-    <a class="nav-link" href="<?= addLink("utilisateur", "profil",$userConnecte->getIdUtilisateur())?>">
+    <a class="nav-link" href="<?= addLink("utilisateur", "profil",$userConnecte->getId())?>">
     mon profil</a>
 
     </div>

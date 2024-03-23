@@ -4,7 +4,7 @@ namespace Model\Entity;
 
 abstract class BaseEntity
 {
-
+    protected $id;
     protected $created_at;
     protected $updated_at;
     protected $is_deleted;
@@ -70,7 +70,7 @@ abstract class BaseEntity
     /**
      * Get the value of is_deleted
      */ 
-    public function getIs_deleted()
+    public function getIsDeleted()
     {
         return $this->is_deleted;
     }
@@ -80,9 +80,29 @@ abstract class BaseEntity
      *
      * @return  self
      */ 
-    public function setIs_deleted($is_deleted)
+    public function setIsDeleted($is_deleted)
     {
         $this->is_deleted = $is_deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

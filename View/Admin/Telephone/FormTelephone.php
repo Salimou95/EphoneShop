@@ -11,7 +11,7 @@
                 <label for="prix" class="labeform">Marque:</label>
                 <select name="fk_marque" id="" class="inputform">
                 <?php foreach($marques as $marque){?>
-                    <option value="<?=$marque->getIdMarque()?>"><?= $marque->getNomMarque()?></option>
+                    <option value="<?=$marque->getId()?>"><?= $marque->getNomMarque()?></option>
             <?php }?>    
                 
                 </select>

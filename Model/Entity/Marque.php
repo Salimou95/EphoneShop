@@ -4,7 +4,6 @@ namespace Model\Entity;
 
 class Marque extends BaseEntity{
 
-    private $idMarque;
     private $nomMarque;
     private $logoMarque;
     private $image;
@@ -50,25 +49,6 @@ class Marque extends BaseEntity{
         return $this;
     }
 
-    /**
-     * Get the value of idMarque
-     */ 
-    public function getIdMarque()
-    {
-        return $this->idMarque;
-    }
-
-    /**
-     * Set the value of idMarque
-     *
-     * @return  self
-     */ 
-    public function setIdMarque($idMarque)
-    {
-        $this->idMarque = $idMarque;
-
-        return $this;
-    }
 
     /**
      * Get the value of image

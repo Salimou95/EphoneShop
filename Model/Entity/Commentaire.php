@@ -5,34 +5,12 @@ namespace Model\Entity;
 use Model\Entity\Utilisateur;
 class Commentaire extends BaseEntity{
 
-    private $idCommentaire;
     private $avis;
     private $note;
     private $fk_Utilisateur;
     private $fk_Telephone;
     private Utilisateur $utilisateur;
-
-    /**
-     * Get the value of idCommentaire
-     */ 
-    public function getIdCommentaire()
-    {
-        return $this->idCommentaire;
-    }
-
-    /**
-     * Set the value of idCommentaire
-     *
-     * @return  self
-     */ 
-    public function setIdCommentaire($idCommentaire)
-    {
-        $this->idCommentaire = $idCommentaire;
-
-        return $this;
-    }
-
-    
+ 
 
     /**
      * Get the value of note

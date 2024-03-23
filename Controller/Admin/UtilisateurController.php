@@ -137,23 +137,17 @@ class UtilisateurController extends BaseController
     public function deleteUtilisateur($id)
     {
         if (!empty($id) && is_numeric($id)) {
-
-            
             $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
 
-            $this->form->handleDeleteForm($utilisateur);
-
-            if ($this->form->isSubmitted() && $this->form->isValid()) {
                 $this->utilisateurRepository->setIsDeletedTrueById($utilisateur);
-            }
+            
+                $this->render("utilisateur/inscription.php", [
+                    "h1" => "Supression de l'utilisateur n° $id",
+                    "utilisateur" => $utilisateur,
+                    "mode" => "suppression"
+                ]);
+                return redirection(addLink("Accueil"));
 
-            $errors = $this->form->getEerrorsForm();
-            return $this->render("utilisateur/inscription.php", [
-                "h1" => "Supression de l'utilisateur n° $id",
-                "utilisateur" => $utilisateur,
-                "errors" => $errors,
-                "mode" => "suppression"
-            ]);
         }
     }
 

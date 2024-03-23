@@ -50,8 +50,7 @@ require "View/errors_form.html.php";
                         </div>
                    
                         <div class="subconlinkbtn">
-                            <input type="submit" value="<?= $mode == "suppression" ? "Supprimer" : ($mode == "modification" ? "Modifier" : "S'incrire") ?>
-">
+                            <input type="submit" value="<?= $mode == "suppression" ? "Supprimer" : ($mode == "modification" ? "Modifier" : "S'incrire") ?>">
                             <a href="<?= addLink("utilisateur", "connexion")?>" 
                             <?= $mode !== "insertion" ? "class='none'" : "" ?> >Se connecter</a>
                         </div>

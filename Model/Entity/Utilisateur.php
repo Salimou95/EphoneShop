@@ -5,7 +5,6 @@ namespace Model\Entity;
 
 class Utilisateur extends BaseEntity{
 
-    private $idUtilisateur;
     private $nomUtilisateur;
     private $prenomUtilisateur;
     private $emailUtilisateur;
@@ -123,23 +122,4 @@ class Utilisateur extends BaseEntity{
         return $this;
     }
 
-    /**
-     * Get the value of idUtilisateur
-     */ 
-    public function getIdUtilisateur()
-    {
-        return $this->idUtilisateur;
-    }
-
-    /**
-     * Set the value of idUtilisateur
-     *
-     * @return  self
-     */ 
-    public function setIdUtilisateur($idUtilisateur)
-    {
-        $this->idUtilisateur = $idUtilisateur;
-
-        return $this;
-    }
 }

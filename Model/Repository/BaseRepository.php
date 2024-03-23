@@ -29,7 +29,7 @@ class BaseRepository
     public function findById($tableName, $id)
     {
         // Construction de la requête SELECT
-        $query = "SELECT * FROM $tableName WHERE id$tableName = :id";
+        $query = "SELECT * FROM $tableName WHERE id = :id";
         
         $request = $this->dbConnection->prepare($query);
         $request->bindValue(':id', $id);
@@ -95,7 +95,7 @@ class BaseRepository
     {
         $tableName->setIsDeleted(true);
         $sql = "UPDATE $tableName 
-                SET type = :type, is_deleted = :isDeleted WHERE id$tableName = :id";
+                SET is_deleted = :isDeleted WHERE id = :id";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":id", $tableName->getId());
         $request->bindValue(":isDeleted", $tableName->getIsDeleted());

@@ -1,7 +1,7 @@
 <?php require "View/errors_form.html.php";?>
 
 <main>
-    <?php var_dump($commentaire) ?>
+    <?php var_dump($commentaires) ?>
     <section>
         <h1><?= $telephone->getModele();?></h1>
     </section>
@@ -61,7 +61,7 @@
         </div>
 
         <div>
-            <?php foreach($commentaire as $comment){ ?>
+            <?php foreach($commentaires as $comment){ ?>
                 <article>
                 <?php for($i=0; $i<$comment->getNote(); $i++){ ?>
                     <i class="fa-solid fa-star" style="color: #6142fe;"></i>                <?php } 
