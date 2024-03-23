@@ -121,36 +121,40 @@ class UtilisateurController extends BaseController
             $this->form->handleEditForm($utilisateur);
 
             if ($this->form->isSubmitted() && $this->form->isValid()) {
-                $this->userRepository->udapteUtilisateur($user);
+                $this->utilisateurRepository->udapteUtilisateur($utilisateur);
             }
 
             $errors = $this->form->getEerrorsForm();
             return $this->render("utilisateur/inscription.php", [
                 "h1" => "Update de l'utilisateur n° $id",
                 "utilisateur" => $utilisateur,
-                "errors" => $errors
+                "errors" => $errors,
+                "mode" => "modification"
             ]);
         }
     }
 
-    public function delete($id)
+    public function deleteUtilisateur($id)
     {
-        if (!empty($id) && $id && $this->getUser()) {
-            if (is_numeric($id)) {
+        if (!empty($id) && is_numeric($id)) {
 
-                $user = $this->user;
-            } else {
-                $this->setMessage("danger",  "ERREUR 404 : la page demandé n'existe pas");
+            
+            $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
+
+            $this->form->handleDeleteForm($utilisateur);
+
+            if ($this->form->isSubmitted() && $this->form->isValid()) {
+                $this->utilisateurRepository->setIsDeletedTrueById($utilisateur);
             }
-        } else {
-            $this->setMessage("danger",  "ERREUR 404 : la page demandé n'existe pas");
-        }
 
-        $this->render("user/form.html.php", [
-            "h1" => "Suppresion de l'user n°$id ?",
-            "user" => $user,
-            "mode" => "suppression"
-        ]);
+            $errors = $this->form->getEerrorsForm();
+            return $this->render("utilisateur/inscription.php", [
+                "h1" => "Supression de l'utilisateur n° $id",
+                "utilisateur" => $utilisateur,
+                "errors" => $errors,
+                "mode" => "suppression"
+            ]);
+        }
     }
 
     public function profil($id)

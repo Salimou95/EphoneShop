@@ -116,7 +116,6 @@ class UtilisateurHandleRequest extends BaseHandleRequest
                 $utilisateur->setDateNaissanceUtilisateur($dateNaissanceUtilisateur);
                 $utilisateur->setTelephoneUtilisateur($telephoneUtilisateur);
                 $utilisateur->setSexeUtilisateur($sexeUtilisateur);
-                $utilisateur->setRoleUtilisateur($roleUtilisateur);
 
                 return $this;
             }
@@ -124,6 +123,7 @@ class UtilisateurHandleRequest extends BaseHandleRequest
             return $this;
         }
     }
+    
     public function handleLogin()
     {
         if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST["connexion"])) {
@@ -151,6 +151,15 @@ class UtilisateurHandleRequest extends BaseHandleRequest
             }
             
             $this->setEerrorsForm($errors);
+            return $this;
+        }
+    }
+
+    public function handleDeleteForm()
+    {
+        if (($_SERVER['REQUEST_METHOD'] === 'POST')) {
+
+        
             return $this;
         }
     }

@@ -45,8 +45,9 @@ class UtilisateurController extends BaseController
 
             $this->render("Utilisateur/inscription.php", [
                 "h1" => "Inscription",
-                "user" => $utilisateur,
-                "errors" => $errors
+                "utilisateur" => $utilisateur,
+                "errors" => $errors,
+                "mode"=>"insertion"
 
             ]);
 

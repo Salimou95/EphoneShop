@@ -18,39 +18,42 @@ require "View/errors_form.html.php";
                     <form method="post">
                     <div>
                         <label for="sexeUtilisateur" class="labeform">Genre :</label>
-                        <select name="sexeUtilisateur" class="inputform" required>
-                            <option value="F">Mme</option>
-                            <option value="M">Mr</option>
+                        <select name="sexeUtilisateur" class="inputform" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <option value="F" <?= ($utilisateur->getSexeUtilisateur() === 'F') ? 'selected' : ''; ?>>Mme</option>
+                            <option value="M" <?= ($utilisateur->getSexeUtilisateur() === 'M') ? 'selected' : ''; ?>>Mr</option>
                         </select>
                         </div>
                         <div>
                             <label for="nomUtilisateur" class="labeform">Nom :</label>
-                            <input type="text" name="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform" value="<?= $utilisateur->getNomUtilisateur() ?>" required>
+                            <input type="text" name="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform" value="<?= $utilisateur->getNomUtilisateur() ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
                         </div>
                         <div>
                             <label for="prenomUtilisateur" class="labeform">Prénom :</label>
-                            <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" class="inputform" value="<?= $utilisateur->getprenomUtilisateur()?>" required>
+                            <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" class="inputform" value="<?= $utilisateur->getprenomUtilisateur()?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
                         </div>
                         <div>
                             <label for="emailUtilisateur" class="labeform">Email :</label>
-                            <input type="email" name="emailUtilisateur" class="inputform" placeholder="Inscrivez votre email" required>
+                            <input type="email" name="emailUtilisateur" class="inputform" placeholder="Inscrivez votre email" value="<?= $utilisateur->getEmailUtilisateur() ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
                         </div>
                         <div>
-                            <!-- <label for="mdpUtilisateur" class="labeform">Mot de passe :</label>
-                            <input type="password" name="mdpUtilisateur" class="inputform" placeholder="Inscrivez votre mot de passe" required> -->
+                            <label for="mdpUtilisateur" class="labeform <?= $mode !== "insertion" ? "none" : "" ?>">Mot de passe :</label>
+                            <input type="password" name="mdpUtilisateur" class="inputform <?= $mode !== "insertion" ? "none" : "" ?>" placeholder="Inscrivez votre mot de passe"  required>
                         </div>
                         <div>                            
                             <label for="dateNaissanceUtilisateur" class="labeform">Date de naissance :</label>
-                            <input type="date" name="dateNaissanceUtilisateur" class="inputform" required>
+                            <input type="date" name="dateNaissanceUtilisateur" class="inputform"<?= $mode == "suppression" ? "disabled" : "" ?> required>
                         </div>
                         <div>
                             <label for="telephoneUtilisateur" class="labeform">Telephone :</label>
-                            <input type="number" name="telephoneUtilisateur" class="inputform" placeholder="Inscrivez votre téléphone" required>
+                            <input type="number" name="telephoneUtilisateur" class="inputform" placeholder="Inscrivez votre téléphone" value="<?= $utilisateur->getTelephoneUtilisateur() ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+
                         </div>
                    
                         <div class="subconlinkbtn">
-                            <input type="submit" value="S'inscrire">
-                            <a href="<?= addLink("utilisateur", "connexion")?>">Se connecter</a>
+                            <input type="submit" value="<?= $mode == "suppression" ? "Supprimer" : ($mode == "modification" ? "Modifier" : "S'incrire") ?>
+">
+                            <a href="<?= addLink("utilisateur", "connexion")?>" 
+                            <?= $mode !== "insertion" ? "class='none'" : "" ?> >Se connecter</a>
                         </div>
                     </form>
                 </div>

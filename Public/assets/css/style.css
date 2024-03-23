@@ -139,3 +139,6 @@ nav{
 #telephoneunique{
     width: 150%
 }
+.none{
+    display: none;
+}

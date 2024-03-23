@@ -95,7 +95,7 @@ class BaseRepository
     {
         $tableName->setIsDeleted(true);
         $sql = "UPDATE $tableName 
-                SET type = :type, is_deleted = :isDeleted WHERE id = :id";
+                SET type = :type, is_deleted = :isDeleted WHERE id$tableName = :id";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":id", $tableName->getId());
         $request->bindValue(":isDeleted", $tableName->getIsDeleted());
