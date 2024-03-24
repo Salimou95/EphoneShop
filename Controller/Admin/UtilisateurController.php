@@ -93,7 +93,7 @@ class UtilisateurController extends BaseController
     {
         $this->disconnection();
         $this->setMessage("success", "Vous êtes déconnecté");
-        redirection(addLink("Accueil"));
+        redirection(addLink("utilisateur","connexion"));
     }
     
 
@@ -113,41 +113,44 @@ class UtilisateurController extends BaseController
     
     public function modifierUtilisateur($id)
     {
-        if (!empty($id) && is_numeric($id)) {
+        if($this->getAdmin()){
 
-            
-            $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
+            if (!empty($id) && is_numeric($id)) {
+                
+                $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
 
-            $this->form->handleEditForm($utilisateur);
+                $this->form->handleEditForm($utilisateur);
 
-            if ($this->form->isSubmitted() && $this->form->isValid()) {
-                $this->utilisateurRepository->udapteUtilisateur($utilisateur);
+                if ($this->form->isSubmitted() && $this->form->isValid()) {
+                    $this->utilisateurRepository->udapteUtilisateur($utilisateur);
+                }
+
+                $errors = $this->form->getEerrorsForm();
+                return $this->render("utilisateur/inscription.php", [
+                    "h1" => "Update de l'utilisateur n° $id",
+                    "utilisateur" => $utilisateur,
+                    "errors" => $errors,
+                    "mode" => "modification"
+                ]);
             }
-
-            $errors = $this->form->getEerrorsForm();
-            return $this->render("utilisateur/inscription.php", [
-                "h1" => "Update de l'utilisateur n° $id",
-                "utilisateur" => $utilisateur,
-                "errors" => $errors,
-                "mode" => "modification"
-            ]);
         }
     }
 
     public function deleteUtilisateur($id)
     {
-        if (!empty($id) && is_numeric($id)) {
-            $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
-
-                $this->utilisateurRepository->setIsDeletedTrueById($utilisateur);
-            
-                $this->render("utilisateur/inscription.php", [
-                    "h1" => "Supression de l'utilisateur n° $id",
-                    "utilisateur" => $utilisateur,
-                    "mode" => "suppression"
-                ]);
-                return redirection(addLink("Accueil"));
-
+        if($this->getAdmin()){
+            if (!empty($id) && is_numeric($id)) {
+                $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
+    
+                    $this->utilisateurRepository->setIsDeletedTrueById($utilisateur);
+                
+                    $this->render("utilisateur/inscription.php", [
+                        "h1" => "Supression de l'utilisateur n° $id",
+                        "utilisateur" => $utilisateur,
+                        "mode" => "suppression"
+                    ]);
+                    redirection(addLink("Accueil"));
+            }
         }
     }
 

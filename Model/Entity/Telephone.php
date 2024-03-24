@@ -2,6 +2,7 @@
 
 namespace Model\Entity;
 
+use Model\Entity\Marque;
 
 class Telephone extends BaseEntity{
 
@@ -17,6 +18,7 @@ class Telephone extends BaseEntity{
     private $fk_marque;
     private $image;
     private $fk_utilisateur;
+    private Marque $Marque;
 
     /**
      * Get the value of prix
@@ -258,6 +260,26 @@ class Telephone extends BaseEntity{
     public function setFk_utilisateur($fk_utilisateur)
     {
         $this->fk_utilisateur = $fk_utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Marque
+     */ 
+    public function getMarque()
+    {
+        return $this->Marque;
+    }
+
+    /**
+     * Set the value of Marque
+     *
+     * @return  self
+     */ 
+    public function setMarque($Marque)
+    {
+        $this->Marque = $Marque;
 
         return $this;
     }

@@ -93,7 +93,7 @@ class Commentaire extends BaseEntity{
     }
 
     /**
-     * Get the value of Utilsateur
+     * Get the value of Utilisateur
      */ 
     public function getUtilisateur()
     {
@@ -101,19 +101,15 @@ class Commentaire extends BaseEntity{
     }
 
     /**
-     * Set the value of Utilsateur
+     * Set the value of Utilisateur
      *
      * @return  self
      */ 
     public function setUtilisateur($commentaire)
     {
         $utilisateur = new Utilisateur;
-        $utilisateur
-        ->setNomUtilisateur($commentaire->nomUtilisateur)
-        ->setPrenomUtilisateur($commentaire->prenomUtilisateur)
-        ->setCreated_at($commentaire->created_at)
-        ->setUpdated_at($commentaire->updated_at)
-        ->setIs_deleted($commentaire->is_deleted);
+        $utilisateur->setNomUtilisateur($commentaire->nomUtilisateur);
+        $utilisateur->setPrenomUtilisateur($commentaire->prenomUtilisateur);
 
         
         $this->utilisateur = $utilisateur;
