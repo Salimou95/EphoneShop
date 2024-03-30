@@ -3,36 +3,36 @@
 <main>
     <?php var_dump($commentaires) ?>
     <section>
-        <h1><?= $telephone->getModele();?></h1>
+        <h1><?= htmlspecialchars($telephone->getModele())?></h1>
     </section>
     <section id="sectionTelephoneUnique">
         <article>
-            <img id="telephoneunique" src="<?=UPLOAD_IMG_TELEPHONE . $telephone->getImage(); ?>" alt="">
+            <img id="telephoneunique" src="<?=UPLOAD_IMG_TELEPHONE . htmlspecialchars($telephone->getImage()) ?>" alt="">
         </article>
         <article class="telephoneUniqueDescription">
         <div>
             <label for="" class="labelTelephoneUniqueTitle" >Systeme d'exploitation :</label>
-            <label class="labelTelephoneUniqueData"><?= $telephone->getSystemeexploitation();?></label>
+            <label class="labelTelephoneUniqueData"><?= htmlspecialchars($telephone->getSystemeexploitation())?></label>
         </div>
         <div>
             <label for="" class="labelTelephoneUniqueTitle" >Couleur :</label>
-            <label class="labelTelephoneUniqueData"><?= $telephone->getCouleur();?></label>
+            <label class="labelTelephoneUniqueData"><?= htmlspecialchars($telephone->getCouleur())?></label>
         </div>
         <div>
             <label for="" class="labelTelephoneUniqueTitle" >Ram :</label>
-            <label class="labelTelephoneUniqueData"><?= $telephone->getRam();?> Go</label>
+            <label class="labelTelephoneUniqueData"><?= htmlspecialchars($telephone->getRam())?> Go</label>
         </div>
         <div>
             <label for="" class="labelTelephoneUniqueTitle" >Memoire :</label>
-            <label class="labelTelephoneUniqueData"><?= $telephone->getMemoire();?> Go</label>
+            <label class="labelTelephoneUniqueData"><?= htmlspecialchars($telephone->getMemoire())?> Go</label>
         </div>
         <div>
             <label for="" class="labelTelephoneUniqueTitle" >Pays de Fabrication :</label>
-            <label class="labelTelephoneUniqueData"><?= $telephone->getPaysfabrication();?></label>
+            <label class="labelTelephoneUniqueData"><?= htmlspecialchars($telephone->getPaysfabrication())?></label>
         </div>
         <div>
             <label for="" class="labelTelephoneUniqueTitle" >Description :</label>
-            <label class="labelTelephoneUniqueData"><?= $telephone->getDescription();?></label>
+            <label class="labelTelephoneUniqueData"><?= htmlspecialchars($telephone->getDescription())?></label>
         </div> 
         <div>
             <form method="post">
@@ -62,6 +62,11 @@
 
         <div>
             <?php foreach($commentaires as $comment){ ?>
+                <?php if( $userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
+                    <a href="<?= addLink("marque","delete",$comment->getId())?>">Modifier</a>
+                    <a href="<?= addLink("commentaire","deleteCommentaire",$comment->getId())?>">Supprimer</a>
+                <?php } ?>
+
                 <article>
                 <?php for($i=0; $i<$comment->getNote(); $i++){ ?>
                     <i class="fa-solid fa-star" style="color: #6142fe;"></i>                <?php } 
@@ -72,9 +77,9 @@
                     }
                 }
                 ?><br>
-                <label for=""><?= $comment->getAvis()?></label><br>
-                <label for=""><?= $comment->getNote()?></label><br>
-                <label for=""><?= $comment->getCreated_at()?></label><br> 
+                <label for=""><?= htmlspecialchars($comment->getAvis())?></label><br>
+                <label for=""><?= htmlspecialchars($comment->getNote())?></label><br>
+                <label for=""><?= htmlspecialchars($comment->getCreated_at())?></label><br> 
                 </article>
            <?php } ?>
         </div>

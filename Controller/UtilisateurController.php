@@ -112,32 +112,6 @@ class UtilisateurController extends BaseController
         ]);
     }
 
-    
-    public function edit($id)
-    {
-        if (!empty($id) && is_numeric($id) && $this->getUser()) {
-
-            /**
-             * @var User
-             */
-            $user = $this->getUser();
-
-            $this->form->handleEditForm($user);
-
-            if ($this->form->isSubmitted() && $this->form->isValid()) {
-                $this->userRepository->updateUser($user);
-                return redirection(addLink("home"));
-            }
-
-            $errors = $this->form->getEerrorsForm();
-            return $this->render("user/form.html.php", [
-                "h1" => "Update de l'utilisateur n° $id",
-                "user" => $user,
-                "errors" => $errors
-            ]);
-        }
-        return redirection("/errors/404.php");
-    }
 
     public function delete($id)
     {
@@ -159,26 +133,64 @@ class UtilisateurController extends BaseController
         ]);
     }
 
-    public function profil()
+    public function profil($id)
     {
 
-        if ($this->isUserConnected()) {            
-            $user = $this->getUser();
-                if (empty($user)) {
-                $this->setMessage("danger",  "L'utilisateur n'existe pas");
-                // redirection(addLink("home"));
+        if ($this->isUserConnected()) {  
+            $utilisateur = $this->getUser();
+            if ($id === $this->getidUser()) {
+                if (!empty($id) && is_numeric($id)) {
+                    
+                    $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
+                    $this->form->handleEditForm($utilisateur);
+
+                    if ($this->form->isSubmitted() && $this->form->isValid()) {
+                        $this->utilisateurRepository->udapteUtilisateur($utilisateur);
+                    }
+
+                    $errors = $this->form->getEerrorsForm();
+                    return $this->render("utilisateur/inscription.php", [
+                        "h1" => "Update de l'utilisateur n° $id",
+                        "utilisateur" => $utilisateur,
+                        "errors" => $errors,
+                        "mode" => "modification"
+                    ]);
+                }          
+            }else{
+                echo "Error";
             }
+            
+            //     if (empty($user)) {
+            //     $this->setMessage("danger", "L'utilisateur n'existe pas");
+            //     // redirection(addLink("home"));
+            // }
         } 
-        $this->render("utilisateur/profil.php", [
-            "user" => $user,
-            "h1" => "Fiche user"
-        ]);
-
-
         
     }
 
 
+    public function deleteUtilisateur($id)
+    {
+            if (!empty($id) && is_numeric($id)) {
+                if ($this->isUserConnected()) {  
+                    if ($id === $this->getidUser()){
+                        $utilisateur = $this->getUser();    
+                        $this->utilisateurRepository->setIsDeletedTrueById($utilisateur);
+                    
+                        $this->render("utilisateur/inscription.php", [
+                            "h1" => "Supression de l'utilisateur n° $id",
+                            "utilisateur" => $utilisateur,
+                            "mode" => "suppression"
+                        ]);
+                        redirection(addLink("Accueil"));
+                    }
+
+        
+                } 
+        
+                
+            }
+    }
     public function logout()
     {
         $this->disconnection();

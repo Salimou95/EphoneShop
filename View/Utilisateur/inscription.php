@@ -8,7 +8,7 @@ require "View/errors_form.html.php";
         <main id="mainInscription">
             <section>
                 <div>
-                    <h1><?= $parametres["h1"]?></h1>
+                    <h1><?= $h1?></h1>
                     <div class="sousligner"></div>
                 </div>
             </section>
@@ -25,15 +25,15 @@ require "View/errors_form.html.php";
                         </div>
                         <div>
                             <label for="nomUtilisateur" class="labeform">Nom :</label>
-                            <input type="text" name="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform" value="<?= $utilisateur->getNomUtilisateur() ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <input type="text" name="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform" value="<?= htmlspecialchars($utilisateur->getNomUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
                         </div>
                         <div>
                             <label for="prenomUtilisateur" class="labeform">Prénom :</label>
-                            <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" class="inputform" value="<?= $utilisateur->getprenomUtilisateur()?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" class="inputform" value="<?= htmlspecialchars($utilisateur->getprenomUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
                         </div>
                         <div>
                             <label for="emailUtilisateur" class="labeform">Email :</label>
-                            <input type="email" name="emailUtilisateur" class="inputform" placeholder="Inscrivez votre email" value="<?= $utilisateur->getEmailUtilisateur() ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <input type="email" name="emailUtilisateur" class="inputform" placeholder="Inscrivez votre email" value="<?= htmlspecialchars($utilisateur->getEmailUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
                         </div>
                         <div>
                             <label for="mdpUtilisateur" class="labeform <?= $mode !== "insertion" ? "none" : "" ?>">Mot de passe :</label>
@@ -45,7 +45,7 @@ require "View/errors_form.html.php";
                         </div>
                         <div>
                             <label for="telephoneUtilisateur" class="labeform">Telephone :</label>
-                            <input type="number" name="telephoneUtilisateur" class="inputform" placeholder="Inscrivez votre téléphone" value="<?= $utilisateur->getTelephoneUtilisateur() ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <input type="number" name="telephoneUtilisateur" class="inputform" placeholder="Inscrivez votre téléphone" value="<?= htmlspecialchars($utilisateur->getTelephoneUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
 
                         </div>
                    
@@ -53,6 +53,8 @@ require "View/errors_form.html.php";
                             <input type="submit" value="<?= $mode == "suppression" ? "Supprimer" : ($mode == "modification" ? "Modifier" : "S'incrire") ?>">
                             <a href="<?= addLink("utilisateur", "connexion")?>" 
                             <?= $mode !== "insertion" ? "class='none'" : "" ?> >Se connecter</a>
+                            <a href="<?= addLink("utilisateur", "deleteUtilisateur",$utilisateur->getid())?>" 
+                            <?= $mode !== "modification" ? "class='none'" : "" ?> >X SUPPRIMER SON COMPTE</a>
                         </div>
                     </form>
                 </div>

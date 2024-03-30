@@ -17,9 +17,9 @@
                     <td><img class="imgTelephones" src="<?=UPLOAD_IMG_TELEPHONE. $telephone->getImage();?>" alt=""></td>
                     <td><?= $telephone->getQuantite();?></td>
                     <td>
-                        <a href="<?= addLink("telephone","telephone",$telephone->getId())?>">Voir +</a>
-                        <a href="<?= addLink("telephone","udapteTelephone",$telephone->getId())?>">Modifier</a>
-                        <a href="<?= addLink("telephone","delete",$telephone->getId())?>">Supprimer</a>
+                        <a href="<?= addLinkAdmin("admin","telephone","telephone",$telephone->getId())?>">Voir +</a>
+                        <a href="<?= addLinkAdmin("admin","telephone","udapteTelephone",$telephone->getId())?>">Modifier</a>
+                        <a href="<?= addLinkAdmin("admin","telephone","deleteTelephone",$telephone->getId())?>">Supprimer</a>
                     </td>
                 </tr>
             <?php } ?>

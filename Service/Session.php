@@ -57,8 +57,13 @@ abstract class Session
         }
         return false;
     }
+
     public static function delete($content)
     {
         unset($_SESSION[$content]);
+    }
+
+    public static function getUserid(){
+        return $_SESSION["user"]->getId();
     }
 }

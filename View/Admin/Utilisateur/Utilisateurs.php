@@ -14,14 +14,14 @@
         <tbody>
             <?php foreach ($utilisateurs as $utilisateur){?>
                 <tr>
-                    <td><?= $utilisateur->getNomUtilisateur();?></td>
-                    <td><?= $utilisateur->getPrenomUtilisateur();?></td>
-                    <td><?= $utilisateur->getEmailUtilisateur();?></td>
-                    <td><?= $utilisateur->getTelephoneUtilisateur();?></td>
-                    <td><?= $utilisateur->getRoleUtilisateur();?></td>
+                    <td><?= htmlspecialchars($utilisateur->getNomUtilisateur())?></td>
+                    <td><?= htmlspecialchars($utilisateur->getPrenomUtilisateur())?></td>
+                    <td><?= htmlspecialchars($utilisateur->getEmailUtilisateur())?></td>
+                    <td><?= htmlspecialchars($utilisateur->getTelephoneUtilisateur())?></td>
+                    <td><?= htmlspecialchars($utilisateur->getRoleUtilisateur())?></td>
                     <td>
-                        <a href="<?= addLink("marque","marque",$utilisateur->getId())?>">Voir +</a>
-                        <a href="<?= addLink("marque","udapteMarque",$utilisateur->getId())?>">Modifier</a>
+                        <a href="<?= addLinkAdmin("admin","marque","marque",$utilisateur->getId())?>">Voir +</a>
+                        <a href="<?= addLinkAdmin("admin","udapteMarque",$utilisateur->getId())?>">Modifier</a>
                         <a href="<?= addLinkAdmin("admin","utilisateur","deleteUtilisateur",$utilisateur->getId())?>">Supprimer</a>
                     </td>
                 </tr>

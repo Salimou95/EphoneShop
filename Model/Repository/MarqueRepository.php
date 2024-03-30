@@ -14,7 +14,7 @@ class MarqueRepository extends BaseRepository{
             $marque = $resultat -> fetchAll(\PDO::FETCH_CLASS, "Model\Entity\Marque");
             return $marque;
         }catch (PDOException $e) {
-            die("Erreur lors de l'insertion : " . $e->getMessage());
+            die("Erreur lors de la recuperation des donnees de la marque : " . $e->getMessage());
         }
 
     
@@ -28,7 +28,7 @@ public function addMarque(Marque $marque){
         $resultat->execute();
         return true;
     }catch (PDOException $e) {
-        die("Erreur lors de l'insertion : ". $e->getMessage());
+        die("Erreur lors de l'insertion de la marque: ". $e->getMessage());
     }
 }
     

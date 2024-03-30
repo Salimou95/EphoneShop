@@ -42,5 +42,31 @@ class CommentaireHandleRequest extends BaseHandleRequest
         }
     }
 
+    public function handleUdapteForm(Commentaire $commentaire)
+    {   
+      
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['envoiecommentaire'])){
+
+
+            extract($_POST);
+            $errors = []; 
+            if(empty($note)){
+                $errors[] = "Veuillez donner une note";
+            }
+            if($note <0 || $note > 5){
+                $errors[] = "Veuillez donner une note entre 0 et 5";
+            }
+            
+
+            if (empty($errors)) {
+                $commentaire->setAvis($avis);
+                $commentaire->setNote($note);
+
+                return $this;
+            }
+            $this->setEerrorsForm($errors);
+            return $this;
+        }
+    }
    
 }

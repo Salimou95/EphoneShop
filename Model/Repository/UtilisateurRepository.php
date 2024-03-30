@@ -10,12 +10,17 @@ class UtilisateurRepository extends BaseRepository{
 
     public function checkUserExist($emailUtilisateur)
     {
-        $request = $this->dbConnection->prepare("SELECT COUNT(*) FROM utilisateur WHERE emailUtilisateur = :emailUtilisateur");
-        $request->bindParam(":emailUtilisateur", $emailUtilisateur);
-
-        $request->execute(); 
-        $count = $request->fetchColumn();
-        return $count > 1 ? true : false;
+        try{
+            $request = $this->dbConnection->prepare("SELECT COUNT(*) FROM utilisateur WHERE emailUtilisateur = :emailUtilisateur");
+            $request->bindParam(":emailUtilisateur", $emailUtilisateur);
+    
+            $request->execute(); 
+            $count = $request->fetchColumn();
+            return $count > 1 ? true : false;
+        }catch (PDOException $e) {
+            echo "Erreur lors de la verification email de l'utilisateur existant: " . $e->getMessage();
+        }
+        
     }
 
 
@@ -50,31 +55,42 @@ class UtilisateurRepository extends BaseRepository{
         }
         }
 
-        public function loginUser($email) {        
-            $request = $this->dbConnection->prepare("SELECT * FROM utilisateur WHERE emailUtilisateur = :emailUtilisateur");
-            $request->bindParam(":emailUtilisateur", $email);
+        public function loginUser($email) { 
+            try{
+                $request = $this->dbConnection->prepare("SELECT * FROM utilisateur WHERE emailUtilisateur = :emailUtilisateur");
+                $request->bindParam(":emailUtilisateur", $email);
     
-            if ($request->execute()) {
-                if ($request->rowCount() == 1) {
-                    $request->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\utilisateur");
-                    return $request->fetch();
+                if ($request->execute()) {
+                    if ($request->rowCount() == 1) {
+                        $request->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\utilisateur");
+                        return $request->fetch();
+                    } else {
+                        return false;
+                    }
                 } else {
-                    return false;
+                    return null;
                 }
-            } else {
-                return null;
-            }
+            }catch (PDOException $e) {
+            echo "Erreur lors de la connexion de l'utilisateur : " . $e->getMessage();
+        }
+        
+            
+            
         }
 
         public function udapteUtilisateur(Utilisateur $utilisateur){
-            $resultat = $this->dbConnection->prepare("UPDATE `utilisateur` SET `nomUtilisateur` = :nomUtilisateur, `prenomUtilisateur`= :prenomUtilisateur, `emailUtilisateur` = :emailUtilisateur, `dateNaissanceUtilisateur` = :dateNaissanceUtilisateur, `telephoneUtilisateur` = :telephoneUtilisateur, `sexeUtilisateur` = :sexeUtilisateur  WHERE `utilisateur`.`id` = :id;");
-            $resultat->bindValue(":id", $utilisateur->getId());
-            $resultat->bindValue(":nomUtilisateur", $utilisateur->getNomUtilisateur());
-            $resultat->bindValue(":prenomUtilisateur", $utilisateur->getPrenomUtilisateur());
-            $resultat->bindValue(":emailUtilisateur", $utilisateur->getEmailUtilisateur());
-            $resultat->bindValue(":dateNaissanceUtilisateur", $utilisateur->getDateNaissanceUtilisateur());
-            $resultat->bindValue(":telephoneUtilisateur", $utilisateur->getTelephoneUtilisateur(), \PDO::PARAM_INT);
-            $resultat->bindValue(":sexeUtilisateur", $utilisateur->getSexeUtilisateur());
-            $resultat->execute();
+            try{
+                $resultat = $this->dbConnection->prepare("UPDATE `utilisateur` SET `nomUtilisateur` = :nomUtilisateur, `prenomUtilisateur`= :prenomUtilisateur, `emailUtilisateur` = :emailUtilisateur, `dateNaissanceUtilisateur` = :dateNaissanceUtilisateur, `telephoneUtilisateur` = :telephoneUtilisateur, `sexeUtilisateur` = :sexeUtilisateur  WHERE `utilisateur`.`id` = :id;");
+                $resultat->bindValue(":id", $utilisateur->getId());
+                $resultat->bindValue(":nomUtilisateur", $utilisateur->getNomUtilisateur());
+                $resultat->bindValue(":prenomUtilisateur", $utilisateur->getPrenomUtilisateur());
+                $resultat->bindValue(":emailUtilisateur", $utilisateur->getEmailUtilisateur());
+                $resultat->bindValue(":dateNaissanceUtilisateur", $utilisateur->getDateNaissanceUtilisateur());
+                $resultat->bindValue(":telephoneUtilisateur", $utilisateur->getTelephoneUtilisateur(), \PDO::PARAM_INT);
+                $resultat->bindValue(":sexeUtilisateur", $utilisateur->getSexeUtilisateur());
+                $resultat->execute();
+            }catch (PDOException $e) {
+                echo "Erreur lors de la mise a jour de l'utilisateur : " . $e->getMessage();
+            }
         }
 }

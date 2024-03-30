@@ -90,23 +90,49 @@ class TelephoneController extends BaseController
 
     public function udapteTelephone($id)
     {
+        if($this->getAdmin()){
+            if (!empty($id) && is_numeric($id)) { 
+                $marques = $this->marqueRepository->findAll($this->marque);           
+                $telephones = $this->telephoneRepository->findById('telephone', $id);
+                
+                if (empty($telephones)) {
+                    $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
+                    // redirection(addLink("home"));
+                }
+                $this->form->handleEditForm($telephones);
+
+                if ($this->form->isSubmitted() && $this->form->isValid()) {
+                    $this->telephonesRepository->udaptetelephones($telephones);
+                }
+
+                $errors = $this->form->getEerrorsForm();
+                
+                $this->render("admin/telephone/FormTelephone.php", [
+                "telephone" => $telephones,
+                "h1" => "Fiche product",
+                ]);
+            }else{
+                error("404.php");
+            }
+        }
+    }
+
+    public function deleteTelephone($id){
         if (!empty($id) && is_numeric($id)) {            
             // $tel = new TelephoneRepository;
             $telephones = $this->telephoneRepository->findById('telephone', $id);
-            $comm = new Commentaire;
-            $commentaire = $this->commentaireRepository->getCommentaire($comm, $id);
-                if (empty($telephones)) {
+            $this->telephoneRepository->setIsDeletedTrueById($telephones);
+            if (empty($telephones)) {
                 $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
-                // redirection(addLink("home"));
             }
-            $this->render("telephone/Telephone.php", [
-            "telephone" => $telephones,
-            "h1" => "Fiche product",
-            "commentaire" => $commentaire
+            $this->render("admin/telephone/FormTelephone.php", [
+                "telephone" => $telephones,
+                "h1" => "Fiche product",
             ]);
         }else{
             error("404.php");
         }
+        return redirection(addLink("Accueil"));
     }
 
 

@@ -105,7 +105,7 @@ class Commentaire extends BaseEntity{
      *
      * @return  self
      */ 
-    public function setUtilisateur($commentaire)
+    public function setUtilisateur(Commentaire $commentaire)
     {
         $utilisateur = new Utilisateur;
         $utilisateur->setNomUtilisateur($commentaire->nomUtilisateur);

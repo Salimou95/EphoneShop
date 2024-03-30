@@ -41,6 +41,15 @@ abstract class BaseController
             redirection("/errors/403.php");
         }
         return $user;
+    }  
+    public function getidUser()
+    {
+        $user = Sess::getUserid();
+
+        if (!$user) {
+            redirection("/errors/403.php");
+        }
+        return $user;
     }
 
     /**

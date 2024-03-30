@@ -3,7 +3,7 @@ namespace Model\Repository;
 
 use Model\Entity\Commentaire;
 use Model\Entity\Utilisateur;
-use Model\Entity\Telephone;
+// use Model\Entity\Telephone;
 use Service\Session;
 
 class CommentaireRepository extends BaseRepository{
@@ -19,7 +19,7 @@ class CommentaireRepository extends BaseRepository{
             $resultat->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);
             $resultat->execute();
         }catch(PDOException $e) {
-            die("Erreur lors de l'insertion : " . $e->getMessage());
+            die("Erreur lors de l'insertion du commentaire: " . $e->getMessage());
         }
     
     }
@@ -33,7 +33,19 @@ class CommentaireRepository extends BaseRepository{
             $commentget = $resultat -> fetchAll(\PDO::FETCH_CLASS, "Model\Entity\Commentaire");
             return $commentget; 
         }catch (PDOException $e) {
-            die("Erreur lors de l'affichage : " . $e->getMessage());
+            die("Erreur lors de l'affichage du commentaire: " . $e->getMessage());
+        }
+    }
+
+    public function udapteCommentaire(Commentaire $commentaire){
+        try{
+            $resultat = $this->dbConnection->prepare("UPDATE commentaire SET avis = :avis, note = :note WHERE id = :id");
+            $resultat->bindValue(":avis", $commentaire->getAvis());
+            $resultat->bindValue(":note", $commentaire->getNote(),  \PDO::PARAM_INT);
+            $resultat->bindValue(":id", $commentaire->getId(),  \PDO::PARAM_INT);
+            $resultat->execute();
+        }catch(PDOException $e) {
+            die("Erreur lors de l'enregistrement du commentaire: " . $e->getMessage());
         }
     }
 

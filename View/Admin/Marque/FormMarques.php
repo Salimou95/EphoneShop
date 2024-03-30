@@ -4,7 +4,7 @@
 <main>
     <section>
         <div>
-            <h1><?= $parametres["h1"]?></h1>
+            <h1><?= $h1?></h1>
         </div>
         <div>
             <form method="post"  enctype="multipart/form-data" class="form">
