@@ -12,7 +12,6 @@
     <header>
     <?php 
         include __DIR__ . "/nav.php"; 
-        
-
+        include __DIR__ . "/../view/messages.html.php";  
     ?>
     </header>

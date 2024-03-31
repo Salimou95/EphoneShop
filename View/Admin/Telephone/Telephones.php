@@ -12,10 +12,10 @@
         <tbody>
             <?php foreach ($telephones as $telephone){?>
                 <tr>
-                    <td><?= $telephone->getModele();?></td>
-                    <td><?= $telephone->getfk_Marque();?></td>
-                    <td><img class="imgTelephones" src="<?=UPLOAD_IMG_TELEPHONE. $telephone->getImage();?>" alt=""></td>
-                    <td><?= $telephone->getQuantite();?></td>
+                    <td><?= htmlspecialchars($telephone->getModele())?></td>
+                    <td><?= htmlspecialchars($telephone->getfk_Marque())?></td>
+                    <td><img class="imgTelephones" src="<?=UPLOAD_IMG_TELEPHONE. htmlspecialchars($telephone->getImage())?>" alt=""></td>
+                    <td><?= htmlspecialchars($telephone->getQuantite())?></td>
                     <td>
                         <a href="<?= addLinkAdmin("admin","telephone","telephone",$telephone->getId())?>">Voir +</a>
                         <a href="<?= addLinkAdmin("admin","telephone","udapteTelephone",$telephone->getId())?>">Modifier</a>

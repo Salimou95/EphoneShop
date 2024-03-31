@@ -24,38 +24,30 @@ class UtilisateurHandleRequest extends BaseHandleRequest
             extract($_POST);
             $errors = [];
 
-
+            
             $userExists = $this->utilisateurRepository->checkUserExist($emailUtilisateur);
+            if(empty($mdpUtilisateur) || empty($nomUtilisateur) || empty($prenomUtilisateur) || empty($dateNaissanceUtilisateur) || empty($telephoneUtilisateur) || empty($sexeUtilisateur)){
+                $errors[] = "Veuillez remplir les champs obligatoires";
+            }
             
             if ($userExists) {
                 $errors[] = "l'email existe déjà, veuillez en choisir un nouveau";
             }
 
-            if (!empty($nomUtilisateur)) {
-                if (strlen($nomUtilisateur) < 2) {
+            if (strlen($nomUtilisateur) < 2 && strlen($nomUtilisateur) > 30) {
                     $errors[] = "Le nom doit avoir au moins 2 caractères";
                 }
-                if (strlen($nomUtilisateur) > 30) {
-                    $errors[] = "Le nom ne peut avoir plus de 30 caractères";
+            if (strlen($prenomUtilisateur) < 2 && strlen($prenomUtilisateur) > 30) {
+                    $errors[] = "Le prénom doit avoir entre 2 et 30 caractères";
                 }
-            }
-            if (!empty($prenomUtilisateur)) {
-                if (strlen($prenomUtilisateur) < 2) {
-                    $errors[] = "Le prénom doit avoir au moins 2 caractères";
-                }
-                if (strlen($prenomUtilisateur) > 30) {
-                    $errors[] = "Le prénom ne peut avoir plus de 30 caractères";
-                }
-            }
+            
             if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $mdpUtilisateur) && (strlen($mdpUtilisateur) < 8)){
                 $errors[] = "Le mot de passe doit contenir au moins 8 caractere, une majuscule, un minuscule, un chiffre et un caractère spécial";
             }
             
-            if (!empty($telephoneUtilisateur)) {
-                if (strlen($telephoneUtilisateur) != 10)  {
+            if (strlen($telephoneUtilisateur) != 10)  {
                     $errors[] = "Veuillez noter un nulméro valide";
                 }
-            }
         
 
             if (empty($errors)) {
@@ -85,28 +77,28 @@ class UtilisateurHandleRequest extends BaseHandleRequest
             $errors = [];
 
 
-            if (!empty($nomUtilisateur)) {
-                if (strlen($nomUtilisateur) < 2) {
-                    $errors[] = "Le nom doit avoir au moins 2 caractères";
-                }
-                if (strlen($nomUtilisateur) > 30) {
-                    $errors[] = "Le nom ne peut avoir plus de 30 caractères";
-                }
-            }
-            if (!empty($prenomUtilisateur)) {
-                if (strlen($prenomUtilisateur) < 2) {
-                    $errors[] = "Le prénom doit avoir au moins 2 caractères";
-                }
-                if (strlen($prenomUtilisateur) > 30) {
-                    $errors[] = "Le prénom ne peut avoir plus de 30 caractères";
-                }
+            if(empty($mdpUtilisateur) || empty($nomUtilisateur) || empty($prenomUtilisateur) || empty($dateNaissanceUtilisateur) || empty($telephoneUtilisateur) || empty($sexeUtilisateur)){
+                $errors[] = "Veuillez remplir les champs obligatoires";
             }
             
-            if (!empty($telephoneUtilisateur)) {
-                if (strlen($telephoneUtilisateur) != 10)  {
+            if ($userExists) {
+                $errors[] = "l'email existe déjà, veuillez en choisir un nouveau";
+            }
+
+            if (strlen($nomUtilisateur) < 2 && strlen($nomUtilisateur) > 30) {
+                    $errors[] = "Le nom doit avoir au moins 2 caractères";
+                }
+            if (strlen($prenomUtilisateur) < 2 && strlen($prenomUtilisateur) > 30) {
+                    $errors[] = "Le prénom doit avoir entre 2 et 30 caractères";
+                }
+            
+            if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $mdpUtilisateur) && (strlen($mdpUtilisateur) < 8)){
+                $errors[] = "Le mot de passe doit contenir au moins 8 caractere, une majuscule, un minuscule, un chiffre et un caractère spécial";
+            }
+            
+            if (strlen($telephoneUtilisateur) != 10)  {
                     $errors[] = "Veuillez noter un numéro valide";
                 }
-            }
         
 
             if (empty($errors)) {
@@ -143,6 +135,9 @@ class UtilisateurHandleRequest extends BaseHandleRequest
                     if (!password_verify($mdpUtilisateur, $user->getMdpUtilisateur())) {
                         $errors[] = "Le mot de passe ne correspond pas";
                     }
+                    if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $mdpUtilisateur) && (strlen($mdpUtilisateur) < 8)){
+                        $errors[] = "Le mot de passe doit contenir au moins 8 caractere, une majuscule, un minuscule, un chiffre et un caractère spécial";
+                    }
                 }
             }
             if (empty($errors)) {        
@@ -155,12 +150,5 @@ class UtilisateurHandleRequest extends BaseHandleRequest
         }
     }
 
-    public function handleDeleteForm()
-    {
-        if (($_SERVER['REQUEST_METHOD'] === 'POST')) {
-
-          
-            return $this;
-        }
-    }
+    
 }

@@ -17,34 +17,34 @@
                 </select>
 
                 <label for="prix" class="labeform">Prix:</label>
-                <input type="number" name="prix" class="inputform" required><br>
+                <input type="number" name="prix" class="inputform" ><br>
 
                 <label for="modele" class="labeform">Modèle:</label>
-                <input type="text" name="modele" class="inputform" value="<?= $telephone->getModele()?>" required><br>
+                <input type="text" name="modele" class="inputform" value="<?= $telephone->getModele()?>" ><br>
 
                 <label for="couleur" class="labeform">Couleur:</label>
-                <input type="text" name="couleur"  class="inputform"required><br>
+                <input type="text" name="couleur"  class="inputform"><br>
 
                 <label for="systemeexploitation" class="labeform">Système d'exploitation:</label>
-                <input type="text" name="systemeexploitation"  class="inputform"required><br>
+                <input type="text" name="systemeexploitation"  class="inputform"><br>
 
                 <label for="ram" class="labeform">RAM:</label>
-                <input type="text" name="ram"  class="inputform" required><br>
+                <input type="text" name="ram"  class="inputform"><br>
 
                 <label for="memoire" class="labeform">Mémoire interne:</label>
-                <input type="text" name="memoire"  class="inputform" required><br>
+                <input type="text" name="memoire"  class="inputform"><br>
 
                 <label for="paysfabrication" class="labeform">Pays de fabrication:</label>
-                <input type="text" name="paysfabrication"  class="inputform" required><br>
+                <input type="text" name="paysfabrication"  class="inputform"><br>
 
                 <label for="description" class="labeform">Description:</label>
-                <textarea name="description"  class="inputform" required></textarea><br>
+                <textarea name="description"  class="inputform"></textarea><br>
 
                 <label for="quantite" class="labeform">Quantité:</label>
-                <input type="number" name="quantite"  class="inputform" required><br>
+                <input type="number" name="quantite"  class="inputform"><br>
                     
                 <label for="image" class="labeform">Image:</label>
-                <input type="file" name="image" required><br>
+                <input type="file" name="image"><br>
 
 
                 

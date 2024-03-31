@@ -59,17 +59,19 @@ class CommentaireController extends BaseController
 
             if ($this->form->isSubmitted() && $this->form->isValid()) {
                     $this->commentaireRepository->udapteCommentaire($commentaire);
+                    // return redirection(addLink("Accueil"));
+
                 }
 
                 $errors = $this->form->getEerrorsForm();
             $this->render("Commentaire/commentaire.php", [
                 "commentaire" => $commentaire,
-                "h1" => "Commentaire",
+                "h1" => "Modifier votre commentaire",
             ]);
         }else{
             error("404.php");
         }
-        return redirection(addLink("Accueil"));
+        // return redirection(addLink("Accueil"));
     }
     
 

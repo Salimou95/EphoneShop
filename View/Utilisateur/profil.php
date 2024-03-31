@@ -17,6 +17,5 @@
                 <label for="">Adresse Mail</label>
                 <input type="text" value="<?= htmlspecialchars($user->getEmailUtilisateur())?>">
             </div>
-
     </section>
 </main>

@@ -63,7 +63,7 @@
         <div>
             <?php foreach($commentaires as $comment){ ?>
                 <?php if( $userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
-                    <a href="<?= addLink("marque","delete",$comment->getId())?>">Modifier</a>
+                    <a href="<?= addLink("commentaire","udapteCommentaire",$comment->getId())?>">Modifier</a>
                     <a href="<?= addLink("commentaire","deleteCommentaire",$comment->getId())?>">Supprimer</a>
                 <?php } ?>
 

@@ -60,8 +60,26 @@ class MarqueController extends BaseController
 
 
     }
+    public function deleteMarque($id)
+    {
+        if($this->getAdmin()){
+            if (!empty($id) && is_numeric($id)) {
+                $marque = $this->marqueRepository->findById("marque", $id);
+    
+                $this->marqueRepository->setIsDeletedTrueById($marque);
+                
+                $this->render("Admin/Marque/FormMarques.php", [
+                        "h1" => "Supression de l'utilisateur n° $id",
+                        "marque" => $marque,
+                        "mode" => "suppression"
+                    ]);
+                redirection(addLink("Accueil"));
+            }
+        }
+    }
     public function marqueUnique($id)
     {
+
 
         
     }

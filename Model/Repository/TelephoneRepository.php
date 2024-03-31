@@ -57,4 +57,23 @@ class TelephoneRepository extends BaseRepository{
         }
     }
 
+    public function checkTelephoneExist($modele)
+    {
+        try{
+            $request = $this->dbConnection->prepare("SELECT COUNT(*) FROM telephone WHERE modele = :modele");
+            $request->bindParam(":modele", $modele);
+    
+            $request->execute(); 
+            $count = $request->fetchColumn();
+            return $count > 1 ? true : false;
+        }catch (PDOException $e) {
+            echo "Erreur lors de la verification email de l'utilisateur existant: " . $e->getMessage();
+        }
+        
+    }
+
+    public function moyenTelephone($fk_marque){
+        
+    }
+
 }

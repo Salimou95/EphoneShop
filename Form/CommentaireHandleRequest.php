@@ -29,6 +29,9 @@ class CommentaireHandleRequest extends BaseHandleRequest
             if($note <0 || $note > 5){
                 $errors[] = "Veuillez donner une note entre 0 et 5";
             }
+            if(!is_numeric($note)){
+                $errors[] = "Veuillez donner une note valide";
+            }
             
 
             if (empty($errors)) {

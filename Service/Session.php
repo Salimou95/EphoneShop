@@ -10,9 +10,6 @@ abstract class Session
         session_destroy();
     }
     
-
-    
-
     public static function addMessage($type, $message)
     {
         $_SESSION["messages"][$type][] = $message;

@@ -74,6 +74,7 @@ class TelephoneController extends BaseController
                 "h1" => "Ajouter un téléphone",
                 "telephone" => $telephone,
                 "marques" => $marques,
+                "errors" => $errors,
                 "mode" => "insertion"
                 
             ]);
