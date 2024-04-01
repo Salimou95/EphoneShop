@@ -25,24 +25,27 @@ class MarqueController extends BaseController
     }
     public function list()
     {
-        $marques = $this->marqueRepository->findAll($this->marque);
+        if($this->isUserConnected() && $this->getAdmin()){
 
-        $this->render("Admin/Marque/Marques.php", [
+            $marques = $this->marqueRepository->findAll($this->marque);
 
-            "h1" => "Nos Marques",
-            "marques" => $marques
-        ]);
+            $this->render("Admin/Marque/Marques.php", [
+
+                "h1" => "Nos Marques",
+                "marques" => $marques
+            ]);
+        }
     }
 
 
     public function addMarque(){
-        if($this->getAdmin()){
+        if($this->isUserConnected() && $this->getAdmin()){
                 
-                $marque = new Marque ;
-                $this->form->handleInsertForm($marque);
-                if ($this->form->isSubmitted() && $this->form->isValid()) {
-                    ImageHandler::handelPhoto($marque);
-                    $this->marqueRepository->addMarque($marque);
+            $marque = new Marque ;
+            $this->form->handleInsertForm($marque);
+            if ($this->form->isSubmitted() && $this->form->isValid()) {
+                ImageHandler::handelPhoto($marque);
+                $this->marqueRepository->addMarque($marque);
                     // return redirection(addLink("Accueil"));
                 }
             $errors = $this->form->getEerrorsForm();
@@ -62,7 +65,7 @@ class MarqueController extends BaseController
     }
     public function deleteMarque($id)
     {
-        if($this->getAdmin()){
+        if($this->isUserConnected() && $this->getAdmin()){
             if (!empty($id) && is_numeric($id)) {
                 $marque = $this->marqueRepository->findById("marque", $id);
     

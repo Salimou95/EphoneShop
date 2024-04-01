@@ -115,7 +115,7 @@ class UtilisateurController extends BaseController
 
     public function delete($id)
     {
-        if (!empty($id) && $id && $this->getUser()) {
+        if (!empty($id) && $this->getUser()) {
             if (is_numeric($id)) {
 
                 $user = $this->user;
@@ -138,8 +138,8 @@ class UtilisateurController extends BaseController
 
         if ($this->isUserConnected()) {  
             $utilisateur = $this->getUser();
+            if (!empty($id) && is_numeric($id)) {
             if ($id === $this->getidUser()) {
-                if (!empty($id) && is_numeric($id)) {
                     
                     $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
                     $this->form->handleEditForm($utilisateur);
@@ -171,21 +171,19 @@ class UtilisateurController extends BaseController
 
     public function deleteUtilisateur($id)
     {
-            if (!empty($id) && is_numeric($id)) {
-                if ($this->isUserConnected()) {  
-                    if ($id === $this->getidUser()){
-                        $utilisateur = $this->getUser();    
-                        $this->utilisateurRepository->setIsDeletedTrueById($utilisateur);
+        if (!empty($id) && is_numeric($id)) {
+            if ($this->isUserConnected()) {  
+                 if ($id === $this->getidUser()){
+                    $utilisateur = $this->getUser();    
+                    $this->utilisateurRepository->setIsDeletedTrueById($utilisateur);
                     
-                        $this->render("utilisateur/inscription.php", [
-                            "h1" => "Supression de l'utilisateur n° $id",
-                            "utilisateur" => $utilisateur,
-                            "mode" => "suppression"
+                    $this->render("utilisateur/inscription.php", [
+                        "h1" => "Supression de l'utilisateur n° $id",
+                        "utilisateur" => $utilisateur,
+                        "mode" => "suppression"
                         ]);
                         redirection(addLink("Accueil"));
                     }
-
-        
                 } 
         
                 
@@ -195,6 +193,6 @@ class UtilisateurController extends BaseController
     {
         $this->disconnection();
         $this->setMessage("success", "Vous êtes déconnecté");
-        redirection(addLink("home"));
+        redirection(addLink("Accueil"));
     }
 }

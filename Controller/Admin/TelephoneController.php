@@ -44,20 +44,20 @@ class TelephoneController extends BaseController
 
     public function getTelephone(){
 
-        $telephone = new Telephone;
-        $telephones = $this->telephoneRepository->findAll($telephone);
-
-        $this->render("Admin/Telephone/Telephones.php", [
-
-            "h1" => "Nos téléphones",
-            "telephones" => $telephones
-        ]);
+        if($this->isUserConnected() && $this->getAdmin()){
+            $telephone = new Telephone;
+            $telephones = $this->telephoneRepository->findAll($telephone);
+            $this->render("Admin/Telephone/Telephones.php", [
+                "h1" => "Nos téléphones",
+                "telephones" => $telephones
+            ]);
+        }
     }
 
     
 
     public function addTelephone(){
-        if($this->getAdmin()){
+        if($this->isUserConnected() && $this->getAdmin()){
             $marques = $this->marqueRepository->findAll($this->marque);
 
             $telephone = new Telephone;
@@ -91,7 +91,7 @@ class TelephoneController extends BaseController
 
     public function udapteTelephone($id)
     {
-        if($this->getAdmin()){
+        if($this->isUserConnected() && $this->getAdmin()){
             if (!empty($id) && is_numeric($id)) { 
                 $marques = $this->marqueRepository->findAll($this->marque);           
                 $telephones = $this->telephoneRepository->findById('telephone', $id);
@@ -119,19 +119,22 @@ class TelephoneController extends BaseController
     }
 
     public function deleteTelephone($id){
-        if (!empty($id) && is_numeric($id)) {            
-            // $tel = new TelephoneRepository;
-            $telephones = $this->telephoneRepository->findById('telephone', $id);
-            $this->telephoneRepository->setIsDeletedTrueById($telephones);
-            if (empty($telephones)) {
-                $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
+        if($this->isUserConnected() && $this->getAdmin()){
+
+            if (!empty($id) && is_numeric($id)) {            
+                // $tel = new TelephoneRepository;
+                $telephones = $this->telephoneRepository->findById('telephone', $id);
+                $this->telephoneRepository->setIsDeletedTrueById($telephones);
+                if (empty($telephones)) {
+                    $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
+                }
+                $this->render("admin/telephone/FormTelephone.php", [
+                    "telephone" => $telephones,
+                    "h1" => "Fiche product",
+                ]);
+            }else{
+                error("404.php");
             }
-            $this->render("admin/telephone/FormTelephone.php", [
-                "telephone" => $telephones,
-                "h1" => "Fiche product",
-            ]);
-        }else{
-            error("404.php");
         }
         return redirection(addLink("Accueil"));
     }

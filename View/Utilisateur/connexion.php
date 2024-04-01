@@ -17,7 +17,7 @@
         </header>
         <main id="mainInscription">
             <section>
-                <h1><?= $parametres["h1"]?></h1>
+                <h1><?= $h1?></h1>
                 <div class="sousligner"></div>
             </section>
             <section class="sectionForm">
@@ -25,11 +25,11 @@
                     <form method="post">
                     <div>
                         <label for="emailUtilisateur" class="labeform">Email :</label>
-                        <input type="email" name="email" class="inputform" placeholder="Inscrivez votre email" required>
+                        <input type="email" name="email" class="inputform" placeholder="Inscrivez votre email">
                     </div>
                         <div>
                             <label for="mdpUtilisateur" class="labeform">Mot de passe :</label>
-                            <input type="password" name="mdpUtilisateur" class="inputform" placeholder="Inscrivez votre mot de passe" required>
+                            <input type="password" name="mdpUtilisateur" class="inputform" placeholder="Inscrivez votre mot de passe">
                         </div>
                         <div class="subconlinkbtn">
                             <input type="submit" name="connexion" value="Connexion">

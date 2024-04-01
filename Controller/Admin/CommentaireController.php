@@ -24,33 +24,39 @@ class CommentaireController extends BaseController
     }
     public function list()
     {
-        $commentaires = $this->commentaireRepository->findAll($this->commentaire);
+        if($this->isUserConnected() && $this->getAdmin()){
+            $commentaires = $this->commentaireRepository->findAll($this->commentaire);
+            $this->render("Admin/Commentaire/commentaires.php", [
 
-        $this->render("Admin/Commentaire/commentaires.php", [
-
-            "h1" => "Les commentaires",
-            "commentaires" => $commentaires
-        ]);
+                "h1" => "Les commentaires",
+                "commentaires" => $commentaires
+            ]);
+        }else{
+            error(404);
+        }
     }
 
     public function deleteCommentaire($id){
-        if (!empty($id) && is_numeric($id)) {            
-            $commentaire = $this->commentaireRepository->findById('commentaire', $id);
-            $this->commentaireRepository->remove($commentaire);
-            if (empty($commentaire)) {
-                $this->setMessage("danger",  "Le commentaire NO $id n'existe pas");
+        if($this->isUserConnected() && $this->getAdmin()){
+
+            if (!empty($id) && is_numeric($id)) {            
+                $commentaire = $this->commentaireRepository->findById('commentaire', $id);
+                $this->commentaireRepository->remove($commentaire);
+                if (empty($commentaire)) {
+                    $this->setMessage("danger",  "Le commentaire NO $id n'existe pas");
+                }
+                $this->render("admin/Commentaire/Commentaires.php", [
+                    "commentaire" => $commentaire,
+                    "h1" => "Commentaire",
+                ]);
+            }else{
+                error("404.php");
             }
-            $this->render("admin/Commentaire/Commentaires.php", [
-                "commentaire" => $commentaire,
-                "h1" => "Commentaire",
-            ]);
-        }else{
-            error("404.php");
         }
         return redirection(addLink("Accueil"));
     }
 
-    
+
 
     
 }

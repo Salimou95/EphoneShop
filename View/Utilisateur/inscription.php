@@ -18,34 +18,34 @@ require "View/errors_form.html.php";
                     <form method="post">
                     <div>
                         <label for="sexeUtilisateur" class="labeform">Genre :</label>
-                        <select name="sexeUtilisateur" class="inputform" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                        <select name="sexeUtilisateur" class="inputform" <?= $mode == "suppression" ? "disabled" : "" ?>>
                             <option value="F" <?= ($utilisateur->getSexeUtilisateur() === 'F') ? 'selected' : ''; ?>>Mme</option>
                             <option value="M" <?= ($utilisateur->getSexeUtilisateur() === 'M') ? 'selected' : ''; ?>>Mr</option>
                         </select>
                         </div>
                         <div>
                             <label for="nomUtilisateur" class="labeform">Nom :</label>
-                            <input type="text" name="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform" value="<?= htmlspecialchars($utilisateur->getNomUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <input type="text" name="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform" value="<?= htmlspecialchars($utilisateur->getNomUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
                         </div>
                         <div>
                             <label for="prenomUtilisateur" class="labeform">Prénom :</label>
-                            <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" class="inputform" value="<?= htmlspecialchars($utilisateur->getprenomUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" class="inputform" value="<?= htmlspecialchars($utilisateur->getprenomUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
                         </div>
                         <div>
                             <label for="emailUtilisateur" class="labeform">Email :</label>
-                            <input type="email" name="emailUtilisateur" class="inputform" placeholder="Inscrivez votre email" value="<?= htmlspecialchars($utilisateur->getEmailUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <input type="email" name="emailUtilisateur" class="inputform" placeholder="Inscrivez votre email" value="<?= htmlspecialchars($utilisateur->getEmailUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
                         </div>
                         <div>
                             <label for="mdpUtilisateur" class="labeform <?= $mode !== "insertion" ? "none" : "" ?>">Mot de passe :</label>
-                            <input type="password" name="mdpUtilisateur" class="inputform <?= $mode !== "insertion" ? "none" : "" ?>" placeholder="Inscrivez votre mot de passe"  required>
+                            <input type="password" name="mdpUtilisateur" class="inputform <?= $mode !== "insertion" ? "none" : "" ?>" placeholder="Inscrivez votre mot de passe" >
                         </div>
                         <div>                            
                             <label for="dateNaissanceUtilisateur" class="labeform">Date de naissance :</label>
-                            <input type="date" name="dateNaissanceUtilisateur" class="inputform"<?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <input type="date" name="dateNaissanceUtilisateur" class="inputform"<?= $mode == "suppression" ? "disabled" : "" ?>>
                         </div>
                         <div>
                             <label for="telephoneUtilisateur" class="labeform">Telephone :</label>
-                            <input type="number" name="telephoneUtilisateur" class="inputform" placeholder="Inscrivez votre téléphone" value="<?= htmlspecialchars($utilisateur->getTelephoneUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+                            <input type="number" name="telephoneUtilisateur" class="inputform" placeholder="Inscrivez votre téléphone" value="<?= htmlspecialchars($utilisateur->getTelephoneUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
 
                         </div>
                    

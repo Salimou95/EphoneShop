@@ -99,21 +99,21 @@ class UtilisateurController extends BaseController
 
     public function list()
     {
-        $utilisateur = $this->utilisateur;
-        $utilisateurs = $this->utilisateurRepository->findAll($utilisateur);
+        if($this->isUserConnected() && $this->getAdmin()){
 
-        
-
-        $this->render("Admin/Utilisateur/Utilisateurs.php", [
-            "h1" => "Liste des utilisateurs",
-            "utilisateurs" => $utilisateurs
-        ]);
+            $utilisateur = $this->utilisateur;
+            $utilisateurs = $this->utilisateurRepository->findAll($utilisateur);
+            $this->render("Admin/Utilisateur/Utilisateurs.php", [
+                "h1" => "Liste des utilisateurs",
+                "utilisateurs" => $utilisateurs
+            ]);
+        }
     }
 
     
     public function modifierUtilisateur($id)
     {
-        if($this->getAdmin()){
+        if($this->isUserConnected() && $this->getAdmin()){
 
             if (!empty($id) && is_numeric($id)) {
                 
@@ -138,7 +138,7 @@ class UtilisateurController extends BaseController
 
     public function deleteUtilisateur($id)
     {
-        if($this->getAdmin()){
+        if($this->isUserConnected() && $this->getAdmin()){
             if (!empty($id) && is_numeric($id)) {
                 $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
     
