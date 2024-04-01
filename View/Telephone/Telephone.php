@@ -77,6 +77,7 @@
                     }
                 }
                 ?><br>
+                <label for=""><?= htmlspecialchars($comment->getUtilisateur()->getPrenomUtilisateur())." ". htmlspecialchars($comment->getUtilisateur()->getNomUtilisateur())?></label><br>
                 <label for=""><?= htmlspecialchars($comment->getAvis())?></label><br>
                 <label for=""><?= htmlspecialchars($comment->getNote())?></label><br>
                 <label for=""><?= htmlspecialchars($comment->getCreated_at())?></label><br> 

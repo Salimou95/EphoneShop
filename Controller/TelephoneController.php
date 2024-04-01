@@ -55,7 +55,9 @@ class TelephoneController extends BaseController
             $telephone = $tel->findById('telephone', $id);
             $commentaire = new Commentaire;
             $commentaires = $this->commentaireRepository->getCommentaire($commentaire, $id);
-            // $commentaires->setUtilisateur($commentaires);
+            foreach($commentaires as $comm){
+                $comm->setUtilisateur($comm);
+            }
             
             $this->commentaireHandleRequest->handleInsertForm($commentaire);
             if ($this->commentaireHandleRequest->isSubmitted() && $this->commentaireHandleRequest->isValid()) {

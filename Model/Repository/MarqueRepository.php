@@ -23,8 +23,8 @@ class MarqueRepository extends BaseRepository{
 public function addMarque(Marque $marque){
     try{
         $resultat = $this->dbConnection->prepare("INSERT INTO marque (nomMarque, image, created_at) VALUES (:nomMarque, :image, NOW())");
-        $resultat->bindValue(':nomMarque', $marque->getNomMarque());
-        $resultat->bindValue(':logoMarque', $marque->getImage());
+        $resultat->bindValue(':nomMarque', $marque->getNomMarque(), \PDO::PARAM_STR);
+        $resultat->bindValue(':logoMarque', $marque->getImage(), \PDO::PARAM_STR);
         $resultat->execute();
         return true;
     }catch (PDOException $e) {

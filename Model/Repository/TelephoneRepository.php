@@ -10,21 +10,20 @@ class TelephoneRepository extends BaseRepository{
     public function addTelephone(Telephone $telephone){
         try{
             $telephone->setFk_utilisateur($_SESSION["user"]->getId());
-            $telephone->setFk_utilisateur($_SESSION["user"]->getId());
             $requete = $this->dbConnection->prepare("INSERT INTO `telephone` (`fk_marque`,`fk_utilisateur`, `prix`, `modele`, `couleur`, `systemeexploitation`, `ram`,`memoire`,`paysfabrication`,`description`, `quantite`, `image`) VALUES (:fk_marque, :fk_utilisateur, :prix, :modele, :couleur, :systemeexploitation,:ram,:memoire,:paysfabrication, :description, :quantite,:image)");
             
             $requete->bindValue(':fk_marque', $telephone->getFk_marque(),  \PDO::PARAM_INT);
             $requete->bindValue(':fk_utilisateur', $telephone->getFk_utilisateur(),  \PDO::PARAM_INT);
             $requete->bindValue(':prix', $telephone->getPrix(),  \PDO::PARAM_INT);
-            $requete->bindValue(':modele', $telephone->getModele());
-            $requete->bindValue(':couleur', $telephone->getCouleur());
-            $requete->bindValue(':systemeexploitation', $telephone->getSystemeexploitation());
+            $requete->bindValue(':modele', $telephone->getModele(), \PDO::PARAM_STR);
+            $requete->bindValue(':couleur', $telephone->getCouleur(), \PDO::PARAM_STR);
+            $requete->bindValue(':systemeexploitation', $telephone->getSystemeexploitation(), \PDO::PARAM_STR);
             $requete->bindValue(':ram', $telephone->getRam(),  \PDO::PARAM_INT);
             $requete->bindValue(':memoire', $telephone->getMemoire(),  \PDO::PARAM_INT);
-            $requete->bindValue(':paysfabrication', $telephone->getPaysfabrication());
-            $requete->bindValue(':description', $telephone->getDescription());
+            $requete->bindValue(':paysfabrication', $telephone->getPaysfabrication(), \PDO::PARAM_STR);
+            $requete->bindValue(':description', $telephone->getDescription(), \PDO::PARAM_STR);
             $requete->bindValue(':quantite', $telephone->getQuantite(),  \PDO::PARAM_INT);
-            $requete->bindValue(':image', $telephone->getImage());
+            $requete->bindValue(':image', $telephone->getImage(), \PDO::PARAM_STR);
 
             $requete->execute();
             
@@ -37,18 +36,18 @@ class TelephoneRepository extends BaseRepository{
         try {
             $requete = $this->dbConnection->prepare("UPDATE `telephone` SET `fk_marque` = :fk_marque, `prix` = :prix, `modele` = :modele, `couleur` = :couleur, `systemeexploitation` = :systemeexploitation, `ram` = :ram, `memoire` = :memoire, `paysfabrication` = :paysfabrication, `description` = :description, `quantite` = :quantite, `image` = :image WHERE `telephone`.`idTelephone` = :idTelephone");
     
-            $requete->bindValue(':fk_marque', $telephone->getFk_marque());
-            $requete->bindValue(':prix', $telephone->getPrix());
-            $requete->bindValue(':modele', $telephone->getModele());
-            $requete->bindValue(':couleur', $telephone->getCouleur());
-            $requete->bindValue(':systemeexploitation', $telephone->getSystemeexploitation());
-            $requete->bindValue(':ram', $telephone->getRam());
-            $requete->bindValue(':memoire', $telephone->getMemoire());
-            $requete->bindValue(':paysfabrication', $telephone->getPaysfabrication());
-            $requete->bindValue(':description', $telephone->getDescription());
-            $requete->bindValue(':quantite', $telephone->getQuantite());
-            $requete->bindValue(':image', $telephone->getImage());
-            $requete->bindValue(':idTelephone', $telephone->getId());
+            $requete->bindValue(':fk_marque', $telephone->getFk_marque(), \PDO::PARAM_INT);
+            $requete->bindValue(':prix', $telephone->getPrix(), \PDO::PARAM_INT);
+            $requete->bindValue(':modele', $telephone->getModele(), \PDO::PARAM_STR);
+            $requete->bindValue(':couleur', $telephone->getCouleur(), \PDO::PARAM_STR);
+            $requete->bindValue(':systemeexploitation', $telephone->getSystemeexploitation(), \PDO::PARAM_STR);
+            $requete->bindValue(':ram', $telephone->getRam(), \PDO::PARAM_INT);
+            $requete->bindValue(':memoire', $telephone->getMemoire(), \PDO::PARAM_INT);
+            $requete->bindValue(':paysfabrication', $telephone->getPaysfabrication(), \PDO::PARAM_STR);
+            $requete->bindValue(':description', $telephone->getDescription(), \PDO::PARAM_STR);
+            $requete->bindValue(':quantite', $telephone->getQuantite(), \PDO::PARAM_STR);
+            $requete->bindValue(':image', $telephone->getImage(), \PDO::PARAM_STR);
+            $requete->bindValue(':idTelephone', $telephone->getId(), \PDO::PARAM_INT);
     
             $requete->execute();
 
@@ -72,8 +71,5 @@ class TelephoneRepository extends BaseRepository{
         
     }
 
-    public function moyenTelephone($fk_marque){
-        
-    }
 
 }

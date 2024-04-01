@@ -41,7 +41,7 @@ require "View/errors_form.html.php";
                         </div>
                         <div>                            
                             <label for="dateNaissanceUtilisateur" class="labeform">Date de naissance :</label>
-                            <input type="date" name="dateNaissanceUtilisateur" class="inputform"<?= $mode == "suppression" ? "disabled" : "" ?>>
+                            <input type="date" name="dateNaissanceUtilisateur" class="inputform"<?= $mode == "suppression" ? "disabled" : "" ?> value="<?= htmlspecialchars($utilisateur->getDateNaissanceUtilisateur())?>">
                         </div>
                         <div>
                             <label for="telephoneUtilisateur" class="labeform">Telephone :</label>
