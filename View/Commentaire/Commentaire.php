@@ -3,7 +3,7 @@
         <h1><?=$h1?></h1>
     </section>
     <section class="sectionFormComment">
-            <div>
+            <article>
                 <form method="post">
                     <!-- <input type="button" value="Ajouter au panier"> -->
                     <article>
@@ -16,6 +16,6 @@
                     </article>
                     <input type="submit" name="envoiecommentaire" value="Ajouter un commentaire">
                 </form>
-            </div>
+            </article>
     </section>
 </main>

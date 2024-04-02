@@ -2,10 +2,10 @@
 
 <main>
     <section>
-        <div>
+        <article>
             <h1><?=$h1?></h1>
-        </div>
-        <div>
+        </article>
+        <article>
             <form method="post"  enctype="multipart/form-data" class="form">
             <label for="nomMarque" class="labeform">Nom Marque :</label>
             <input type="text" id="nomMarque" name="nomMarque" class="inputform" required><br>
@@ -15,6 +15,6 @@
             
             <input type="submit" value="Ajouter">
             </form>
-        </div>
+        </article>
     </section>
 </main>

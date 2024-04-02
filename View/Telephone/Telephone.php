@@ -46,7 +46,7 @@
 
 
     <section class="sectionFormComment">
-        <div>
+        <article>
             <form method="post">
                 <!-- <input type="button" value="Ajouter au panier"> -->
                 <article>
@@ -60,32 +60,29 @@
                 <input type="submit" name="envoiecommentaire" value="Ajouter un commentaire">
 
             </form>
-        </div>
+        </article>
 
-        <div>
-            
-            <article>
-                    <?php foreach($commentaires as $comment){ ?>
-                        <?php if( $userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
-                            <a href="<?= addLink("commentaire","udapteCommentaire",$comment->getId())?>">Modifier</a>
-                            <a href="<?= addLink("commentaire","deleteCommentaire",$comment->getId())?>">Supprimer</a><br>
-                        <?php } ?>
-                    <?php for($i=0; $i<$comment->getNote(); $i++){ ?>
-                        <i class="fa-solid fa-star" style="color: #6142fe;"></i><?php } 
-                    if($i<5){
-                        for($i=$i; $i<5; $i++){?>
-                        <i class="fa-regular fa-star" style="color: #6142fe;"></i>                    
-                    <?php 
-                        }
+        <article>
+                <?php foreach($commentaires as $comment){ ?>
+                    <?php if( $userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
+                        <a href="<?= addLink("commentaire","udapteCommentaire",$comment->getId())?>">Modifier</a>
+                        <a href="<?= addLink("commentaire","deleteCommentaire",$comment->getId())?>">Supprimer</a><br>
+                    <?php } ?>
+                <?php for($i=0; $i<$comment->getNote(); $i++){ ?>
+                    <i class="fa-solid fa-star" style="color: #6142fe;"></i><?php } 
+                if($i<5){
+                    for($i=$i; $i<5; $i++){?>
+                    <i class="fa-regular fa-star" style="color: #6142fe;"></i>                    
+                <?php 
                     }
-                    ?><br>
-                    <p><?= htmlspecialchars($comment->getUtilisateur()->getPrenomUtilisateur())." ". htmlspecialchars($comment->getUtilisateur()->getNomUtilisateur())?></p><br>
-                    <p><?= htmlspecialchars($comment->getAvis())?></p><br>
-                    <p><?= htmlspecialchars($comment->getNote())?></p><br>
-                    <p><?= htmlspecialchars($comment->getCreated_at())?></p><br> 
-                </article>
-           <?php } ?>
-        </div>
+                }
+                ?><br>
+                <p><?= htmlspecialchars($comment->getUtilisateur()->getPrenomUtilisateur())." ". htmlspecialchars($comment->getUtilisateur()->getNomUtilisateur())?></p><br>
+                <p><?= htmlspecialchars($comment->getAvis())?></p><br>
+                <p><?= htmlspecialchars($comment->getNote())?></p><br>
+                <p><?= htmlspecialchars($comment->getCreated_at())?></p><br> 
+        </article>
+                <?php } ?>
     </section>
 </main>
 

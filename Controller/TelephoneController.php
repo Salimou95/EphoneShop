@@ -58,7 +58,6 @@ class TelephoneController extends BaseController
             foreach($commentaires as $comm){
                 $comm->setUtilisateur($comm);
             }
-            
             $this->commentaireHandleRequest->handleInsertForm($commentaire);
             if ($this->commentaireHandleRequest->isSubmitted() && $this->commentaireHandleRequest->isValid()) {
                 

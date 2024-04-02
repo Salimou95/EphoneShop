@@ -7,7 +7,7 @@
         </div>
     </section>
     <section class="sectionForm">
-        <div>
+        <article>
             <form method="post">
 
             <label for="sexeUtilisateur" class="labeform">Genre :</label>
@@ -17,22 +17,22 @@
                 </select>
 
                 <label for="nomUtilisateur" class="labeform">Nom :</label>
-                    <input type="text" name="nomUtilisateur" id="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform" value="<?= htmlspecialchars($utilisateur->getNomUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
+                <input type="text" name="nomUtilisateur" id="nomUtilisateur" placeholder="Inscrivez votre nom" class="inputform" value="<?= htmlspecialchars($utilisateur->getNomUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
 
-                    <label for="prenomUtilisateur" class="labeform">Prénom :</label>
-                    <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" id="prenomUtilisateur" class="inputform" value="<?= htmlspecialchars($utilisateur->getprenomUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
+                <label for="prenomUtilisateur" class="labeform">Prénom :</label>
+                <input type="text" placeholder="Inscrivez votre prenom" name="prenomUtilisateur" id="prenomUtilisateur" class="inputform" value="<?= htmlspecialchars($utilisateur->getprenomUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
 
-                    <label for="emailUtilisateur" class="labeform">Email :</label>
-                    <input type="email" name="emailUtilisateur" id="emailUtilisateur" class="inputform" placeholder="Inscrivez votre email" value="<?= htmlspecialchars($utilisateur->getEmailUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
+                <label for="emailUtilisateur" class="labeform">Email :</label>
+                <input type="email" name="emailUtilisateur" id="emailUtilisateur" class="inputform" placeholder="Inscrivez votre email" value="<?= htmlspecialchars($utilisateur->getEmailUtilisateur())?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
 
-                    <label for="mdpUtilisateur" class="labeform <?= $mode !== "insertion" ? "none" : "" ?>">Mot de passe :</label>
-                    <input type="password" name="mdpUtilisateur" id="mdpUtilisateur" class="inputform <?= $mode !== "insertion" ? "none" : "" ?>" placeholder="Inscrivez votre mot de passe" >
+                <label for="mdpUtilisateur" class="labeform <?= $mode !== "insertion" ? "none" : "" ?>">Mot de passe :</label>
+                <input type="password" name="mdpUtilisateur" id="mdpUtilisateur" class="inputform <?= $mode !== "insertion" ? "none" : "" ?>" placeholder="Inscrivez votre mot de passe" >
 
-                    <label for="dateNaissanceUtilisateur" class="labeform">Date de naissance :</label>
-                    <input type="date" name="dateNaissanceUtilisateur" id="dateNaissanceUtilisateur" class="inputform"<?= $mode == "suppression" ? "disabled" : "" ?> value="<?= htmlspecialchars($utilisateur->getDateNaissanceUtilisateur())?>">
+                <label for="dateNaissanceUtilisateur" class="labeform">Date de naissance :</label>
+                <input type="date" name="dateNaissanceUtilisateur" id="dateNaissanceUtilisateur" class="inputform"<?= $mode == "suppression" ? "disabled" : "" ?> value="<?= htmlspecialchars($utilisateur->getDateNaissanceUtilisateur())?>">
 
-                    <label for="telephoneUtilisateur" class="labeform">Telephone :</label>
-                    <input type="number" name="telephoneUtilisateur" id="telephoneUtilisateur" class="inputform" placeholder="Inscrivez votre téléphone" value="<?= htmlspecialchars($utilisateur->getTelephoneUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
+                <label for="telephoneUtilisateur" class="labeform">Telephone :</label>
+                <input type="number" name="telephoneUtilisateur" id="telephoneUtilisateur" class="inputform" placeholder="Inscrivez votre téléphone" value="<?= htmlspecialchars($utilisateur->getTelephoneUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
 
                     
                 <article class="subconlinkbtn">
@@ -43,7 +43,7 @@
                     <?= $mode !== "modification" ? "class='none'" : "" ?> >X SUPPRIMER SON COMPTE</a>
                 </article>
             </form>
-        </div>
+        </article>
         <article>
             <img style="height: 500px;" src="<?= UPLOAD_IMG . "formimg.png" ?>" alt="">
         </article>

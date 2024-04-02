@@ -33,10 +33,10 @@ h3{
 .sectionFormComment{
     justify-content: space-around;
 }
-.sectionForm>div{
+.sectionForm>article{
     width: 40%;
 }
-.sectionForm>div>form, .sectionFormComment>div>form{
+.sectionForm>article>form, .sectionFormComment>div>form{
     border: 5px solid #6142FE;
     border-radius: 10px;
     padding: 5%;
@@ -52,7 +52,7 @@ h3{
     padding: 0 1%;
 
 }
-.sectionForm>div>img{
+.sectionForm>article>img{
     margin: 0 0 0 5%;
 }
 .subconlinkbtn{

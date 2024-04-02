@@ -77,7 +77,7 @@ class UtilisateurHandleRequest extends BaseHandleRequest
             $errors = [];
 
 
-            if(empty($mdpUtilisateur) || empty($nomUtilisateur) || empty($prenomUtilisateur) || empty($dateNaissanceUtilisateur) || empty($telephoneUtilisateur) || empty($sexeUtilisateur)){
+            if(empty($nomUtilisateur) || empty($prenomUtilisateur) || empty($dateNaissanceUtilisateur) || empty($telephoneUtilisateur) || empty($sexeUtilisateur)){
                 $errors[] = "Veuillez remplir les champs obligatoires";
             }
             
@@ -92,9 +92,9 @@ class UtilisateurHandleRequest extends BaseHandleRequest
                     $errors[] = "Le prénom doit avoir entre 2 et 30 caractères";
                 }
             
-            if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $mdpUtilisateur) && (strlen($mdpUtilisateur) < 8)){
-                $errors[] = "Le mot de passe doit contenir au moins 8 caractere, une majuscule, un minuscule, un chiffre et un caractère spécial";
-            }
+            // if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $mdpUtilisateur) && (strlen($mdpUtilisateur) < 8)){
+            //     $errors[] = "Le mot de passe doit contenir au moins 8 caractere, une majuscule, un minuscule, un chiffre et un caractère spécial";
+            // }
             
             if (strlen($telephoneUtilisateur) != 10)  {
                     $errors[] = "Veuillez noter un numéro valide";

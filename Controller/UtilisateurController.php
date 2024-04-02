@@ -184,9 +184,7 @@ class UtilisateurController extends BaseController
                         ]);
                         redirection(addLink("Accueil"));
                     }
-                } 
-        
-                
+                }         
             }
     }
     public function logout()

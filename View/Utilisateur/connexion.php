@@ -6,7 +6,7 @@
         <div class="sousligner"></div>
     </section>
     <section class="sectionForm">
-        <div>
+        <article>
             <form method="post">
             <article>
                 <label for="emailUtilisateur" class="labeform">Email :</label>
@@ -21,7 +21,7 @@
                     <a href="<?= addLink("utilisateur", "inscription")?>">Inscrivez-vous ?</a>
                 </article>
             </form>
-        </div>
+        </article>
         <article>
             <img style="height: 500px;" src="<?= UPLOAD_IMG. "formimg.png"?>" alt="">
         </article>

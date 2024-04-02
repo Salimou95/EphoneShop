@@ -111,7 +111,7 @@ class UtilisateurController extends BaseController
     }
 
     
-    public function modifierUtilisateur($id)
+    public function udapteUtilisateur($id)
     {
         if($this->isUserConnected() && $this->getAdmin()){
 

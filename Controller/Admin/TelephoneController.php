@@ -105,22 +105,22 @@ class TelephoneController extends BaseController
         if($this->isUserConnected() && $this->getAdmin()){
             if (!empty($id) && is_numeric($id)) { 
                 $marques = $this->marqueRepository->findAll($this->marque);           
-                $telephones = $this->telephoneRepository->findById('telephone', $id);
-                if (empty($telephones)) {
+                $telephone = $this->telephoneRepository->findById('telephone', $id);
+                if (empty($telephone)) {
                     $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
                     // redirection(addLink("home"));
                 }
-                $this->form->handleEditForm($telephones);
-
+                $this->form->handleEditForm($telephone);
                 if ($this->form->isSubmitted() && $this->form->isValid()) {
-                    $this->telephonesRepository->udaptetelephones($telephones);
+                    $this->telephonesRepository->udaptetelephones($telephone);
                 }
 
                 $errors = $this->form->getEerrorsForm();
                 
                 $this->render("admin/telephone/FormTelephone.php", [
-                "telephone" => $telephones,
+                "telephone" => $telephone,
                 "h1" => "Fiche product",
+                "mode"=> "modification"
                 ]);
             }else{
                 error("404.php");
