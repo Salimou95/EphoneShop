@@ -106,7 +106,6 @@ class TelephoneController extends BaseController
             if (!empty($id) && is_numeric($id)) { 
                 $marques = $this->marqueRepository->findAll($this->marque);           
                 $telephones = $this->telephoneRepository->findById('telephone', $id);
-                
                 if (empty($telephones)) {
                     $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
                     // redirection(addLink("home"));

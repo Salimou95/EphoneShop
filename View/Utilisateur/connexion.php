@@ -23,23 +23,23 @@
             <section class="sectionForm">
                 <div>
                     <form method="post">
-                    <div>
+                    <article>
                         <label for="emailUtilisateur" class="labeform">Email :</label>
                         <input type="email" name="email" class="inputform" placeholder="Inscrivez votre email">
-                    </div>
-                        <div>
+                    </article>
+                        <article>
                             <label for="mdpUtilisateur" class="labeform">Mot de passe :</label>
                             <input type="password" name="mdpUtilisateur" class="inputform" placeholder="Inscrivez votre mot de passe">
-                        </div>
-                        <div class="subconlinkbtn">
+                        </article>
+                        <article class="subconlinkbtn">
                             <input type="submit" name="connexion" value="Connexion">
                             <a href="<?= addLink("utilisateur", "inscription")?>">Inscrivez-vous ?</a>
-                        </div>
+                        </article>
                     </form>
                 </div>
-                <div>
+                <article>
                     <img style="height: 500px;" src="<?= UPLOAD_IMG. "formimg.png"?>" alt="">
-                </div>
+                </article>
             </section>
         </main>
     </body>
