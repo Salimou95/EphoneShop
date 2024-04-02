@@ -42,6 +42,17 @@ class TelephoneController extends BaseController
 
     }
 
+    // public function list()
+    // {
+    //     $telephones = $this->telephoneRepository->findAll($this->telephone);
+
+    //     $this->render("Accueil.php", [
+
+    //         "h1" => "Nos téléphones",
+    //         "telephones" => $telephones
+    //     ]);
+    // }
+
     public function getTelephone(){
 
         if($this->isUserConnected() && $this->getAdmin()){
