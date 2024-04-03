@@ -39,7 +39,8 @@ class UtilisateurRepository extends BaseRepository{
             $resultat->bindValue(":roleUtilisateur", $utilisateur->getRoleUtilisateur(), \PDO::PARAM_STR);
             $resultat->execute();
 
-            // $lastUserId = $this->bdd->lastInsertId();
+            $lastUserId = $this->dbConnection->lastInsertId();
+            return $lastUserId;
 
             // $resultatPanier = $this->bdd->prepare("INSERT INTO `panier` (`quantitePanier`, `fk_UtilisateurPanier`) VALUES (0, :fk_UtilisateurPanier)");
             // $resultatPanier->bindParam(":fk_UtilisateurPanier", $lastUserId, PDO::PARAM_INT);

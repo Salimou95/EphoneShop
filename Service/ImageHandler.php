@@ -21,7 +21,7 @@ class ImageHandler
 
         // Vérifier si le fichier est une image JPEG
         if (!in_array($imageFileType, $fileType)) {
-            Sess::addMessage("errors", "Seules les images de types JPEG, png, gif et svg sont autorisées.");
+            Sess::addMessage("errors", "Seules les images de types JPEG, png, gif, webp et svg sont autorisées.");
         } else {
             // Vérifier la taille de l'image (par exemple, 1 Mo)
             if ($_FILES["image"]["size"] > 1000000) {

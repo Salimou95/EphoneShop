@@ -64,10 +64,16 @@
 
         <article>
                 <?php foreach($commentaires as $comment){ ?>
-                    <?php if( $userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
-                        <a href="<?= addLink("commentaire","udapteCommentaire",$comment->getId())?>">Modifier</a>
-                        <a href="<?= addLink("commentaire","deleteCommentaire",$comment->getId())?>">Supprimer</a><br>
-                    <?php } ?>
+
+                    <?php if(!empty($userConnecte)){
+                            if($userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
+                            <a href="<?= addLink("commentaire","udapteCommentaire",$comment->getId())?>">Modifier</a>
+                            <a href="<?= addLink("commentaire","deleteCommentaire",$comment->getId())?>">Supprimer</a><br>
+                        <?php } 
+                    }?>
+
+
+                    
                 <?php for($i=0; $i<$comment->getNote(); $i++){ ?>
                     <i class="fa-solid fa-star" style="color: #6142fe;"></i><?php } 
                 if($i<5){
@@ -83,6 +89,7 @@
                 <p><?= htmlspecialchars($comment->getCreated_at())?></p><br> 
         </article>
                 <?php } ?>
+
     </section>
 </main>
 

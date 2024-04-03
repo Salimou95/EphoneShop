@@ -9,7 +9,10 @@ use Model\Repository\UtilisateurRepository;
 use Form\UtilisateurHandleRequest;
 use Model\Entity\Marque;
 use Model\Repository\MarqueRepository;
+use Model\Entity\Panier;
+use Model\Repository\PanierRepository;
 use Controller\BaseController;
+
 
 
 /**
@@ -20,6 +23,8 @@ class UtilisateurController extends BaseController
     private UtilisateurRepository $utilisateurRepository;
     private UtilisateurHandleRequest $form;
     private Utilisateur $utilisateur;
+    private Panier $panier;
+    private PanierRepository $panierRepository;
     
     
 
@@ -28,6 +33,8 @@ class UtilisateurController extends BaseController
         $this->utilisateurRepository = new UtilisateurRepository;
         $this->form = new UtilisateurHandleRequest;
         $this->utilisateur = new Utilisateur;
+        $this->panier = new Panier;
+        $this->panierRepository = new PanierRepository;
     }
 
 
@@ -38,7 +45,12 @@ class UtilisateurController extends BaseController
             $this->form->handleInsertForm($utilisateur);
             if ($this->form->isSubmitted() && $this->form->isValid()) {
                 
-                $this->utilisateurRepository->registrationUser($utilisateur);
+                $idutilisateur = $this->utilisateurRepository->registrationUser($utilisateur);
+                if(!empty($idutilisateur)) {
+                    $this->panierRepository->addPanier($idutilisateur);
+                    
+                }
+
                 return redirection(addLink("Utilisateur","connexion"));
             }
             $errors = $this->form->getEerrorsForm();
