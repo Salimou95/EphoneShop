@@ -132,11 +132,11 @@ class UtilisateurHandleRequest extends BaseHandleRequest
                 if (empty($user)) {
                         $errors[] = "Il n'y a pas d'utilisateur avec cet email";
                 } else {
-                    if (!password_verify($mdpUtilisateur, $user->getMdpUtilisateur())) {
-                        $errors[] = "Le mot de passe ne correspond pas";
-                    }
                     if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $mdpUtilisateur) && (strlen($mdpUtilisateur) < 8)){
                         $errors[] = "Le mot de passe doit contenir au moins 8 caractere, une majuscule, un minuscule, un chiffre et un caractère spécial";
+                    }
+                    if (!password_verify($mdpUtilisateur, $user->getMdpUtilisateur())) {
+                        $errors[] = "Le mot de passe ne correspond pas";
                     }
                 }
             }
