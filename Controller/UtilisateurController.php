@@ -47,8 +47,7 @@ class UtilisateurController extends BaseController
                 
                 $idutilisateur = $this->utilisateurRepository->registrationUser($utilisateur);
                 if(!empty($idutilisateur)) {
-                    $this->panierRepository->addPanier($idutilisateur);
-                    
+                    $this->panierRepository->createPanier($idutilisateur);
                 }
 
                 return redirection(addLink("Utilisateur","connexion"));
