@@ -9,7 +9,7 @@ class PanierRepository extends BaseRepository{
     public function createPanier($utilisateurId) {
         try{
             $requete = $this->dbConnection->prepare("INSERT INTO `panier` (`fk_UtilisateurPanier`) VALUES (:fk_UtilisateurPanier)");
-            $requete->bindValue(":fk_UtilisateurPanier", $utilisateurId, PDO::PARAM_INT);
+            $requete->bindValue(":fk_UtilisateurPanier", $utilisateurId, \PDO::PARAM_INT);
             $requete->execute();
         }catch(PDOException $e) {
             die("Erreur lors de l'ajout du panier: " . $e->getMessage()); 
@@ -29,7 +29,7 @@ class PanierRepository extends BaseRepository{
         }
     }
 
-    
+
 
 
     

@@ -19,7 +19,7 @@
                         <td><?= htmlspecialchars($telephone->getQuantite())?></td>
                         <td>
                             <a href="<?= addLinkAdmin("admin","telephone","telephone",$telephone->getId())?>">Voir +</a>
-                            <a href="<?= addLinkAdmin("admin","telephone","udapteTelephone",$telephone->getId())?>">Modifier</a>
+                            <a href="<?= addLink("telephone","udapteTelephone",$telephone->getId(),"admin")?>">Modifier</a>
                             <a href="<?= addLinkAdmin("admin","telephone","deleteTelephone",$telephone->getId())?>">Supprimer</a>
                         </td>
                     </tr>

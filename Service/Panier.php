@@ -2,18 +2,26 @@
 
 namespace Service;
 
-use Model\Repository\ProductRepository;
+// use Model\Repository\ProductRepository;
 
 /**
  * Summary of ProductController
  */
-class CartManager
+class Panier
 {
-    private ProductRepository $productRepository;
+    // private ProductRepository $productRepository;
 
     public function __construct()
     {
-        $this->productRepository = new ProductRepository;
+        // $this->productRepository = new ProductRepository;
+    }
+
+    Public function addArticle(){
+
+        if(!isset($_SESSION["cart"])){
+            $_SESSION["cart"] = [];
+        }
+        
     }
 
     public function addCart($id){

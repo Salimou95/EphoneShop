@@ -1,13 +1,17 @@
 <?php
-function addLink($controller, $method = "list", $id = null)
+function addLink($controller, $method = "list", $id = null, $admin = null)
 {
+    if (isset($admin)){
+        return ROOT . "$admin/$controller/$method" . ($id ? "/$id" : "");
+    }else{
     // return ROOT . "?controller=$controller&method=$method" . ($id ? "&id=$id" : "");
-    return ROOT . "$controller/$method" . ($id ? "/$id" : "");
+        return ROOT . "$controller/$method" . ($id ? "/$id" : "");
 }
-function addLinkAdmin($doc= "admin" ,$controller, $method = "list", $id = null)
+}
+function addLinkAdmin($admin= "admin" ,$controller, $method = "list", $id = null)
 {
     // return ROOT . "?controller=$controller&method=$method" . ($id ? "&id=$id" : "");
-    return ROOT . "$doc/$controller/$method" . ($id ? "/$id" : "");
+    return ROOT . "$admin/$controller/$method" . ($id ? "/$id" : "");
 }
 
 
