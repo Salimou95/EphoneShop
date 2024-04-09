@@ -7,7 +7,7 @@ URL: index.php?controller=user&method=update&id=32
 */
 $admin      = $_GET["doc"] ?? null;
 $controller = $_GET["controller"] ?? "Accueil";
-$method     = $_GET["method"] ?? "list";
+$method     = $_GET["method"] ?? "index";
 $id         = $_GET["id"] ?? null;
 
 

@@ -20,7 +20,7 @@
                         <td><?= htmlspecialchars($utilisateur->getTelephoneUtilisateur())?></td>
                         <td><?= htmlspecialchars($utilisateur->getRoleUtilisateur())?></td>
                         <td>
-                            <a href="<?= addLinkAdmin("admin","marque","marque",$utilisateur->getId())?>">Voir +</a>
+                            <a href="<?= addLinkAdmin("admin","utilisateur","ReadOnly",$utilisateur->getId())?>">Voir +</a>
                             <a href="<?= addLinkAdmin("admin","udapteMarque",$utilisateur->getId())?>">Modifier</a>
                             <a href="<?= addLinkAdmin("admin","utilisateur","deleteUtilisateur",$utilisateur->getId())?>">Supprimer</a>
                         </td>

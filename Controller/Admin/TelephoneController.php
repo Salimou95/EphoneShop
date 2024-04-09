@@ -53,7 +53,7 @@ class TelephoneController extends BaseController
     //     ]);
     // }
 
-    public function list(){
+    public function index(){
 
         if($this->isUserConnected() && $this->getAdmin()){
             $telephone = new Telephone;
@@ -69,7 +69,7 @@ class TelephoneController extends BaseController
 
     
 
-    public function addTelephone(){
+    public function created(){
         if($this->isUserConnected() && $this->getAdmin()){
             $marques = $this->marqueRepository->findAll($this->marque);
 

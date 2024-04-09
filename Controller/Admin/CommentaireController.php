@@ -22,7 +22,7 @@ class CommentaireController extends BaseController
         $this->commentaire = new Commentaire;
         $this->form = new CommentaireHandleRequest;
     }
-    public function list()
+    public function index()
     {
         if($this->isUserConnected() && $this->getAdmin()){
             $commentaires = $this->commentaireRepository->findAll($this->commentaire);

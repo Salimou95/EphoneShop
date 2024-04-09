@@ -23,7 +23,7 @@ class MarqueController extends BaseController
         $this->marque = new Marque;
         $this->form = new MarqueHandleRequest;
     }
-    public function list()
+    public function index()
     {
         if($this->isUserConnected() && $this->getAdmin()){
 
@@ -40,7 +40,7 @@ class MarqueController extends BaseController
     }
 
 
-    public function addMarque(){
+    public function created(){
         if($this->isUserConnected() && $this->getAdmin()){
                 
             $marque = new Marque ;
@@ -64,6 +64,23 @@ class MarqueController extends BaseController
         }
 
 
+    }
+
+    public function read($id){
+
+    }
+    public function update($id){
+        if($this->isUserConnected() && $this->getAdmin()){
+            if (!empty($id) && is_numeric($id)) {
+                $marque = $this->marqueRepository->findById("marque", $id);
+                $this->form->handleInsertForm($marque);
+                if ($this->form->isSubmitted() && $this->form->isValid()) {
+                    $this->marqueRepository->addTelephone($marque);
+                    return redirection(addLink("Accueil"));
+                }
+            $errors = $this->form->getEerrorsForm();
+            }
+        }
     }
     public function deleteMarque($id)
     {

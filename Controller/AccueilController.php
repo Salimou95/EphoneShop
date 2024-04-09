@@ -20,7 +20,7 @@ class AccueilController extends BaseController
         $this->telephoneRepository = new TelephoneRepository;
         $this->telephone = new Telephone;
     }
-    public function list()
+    public function index()
     {
         $telephones = $this->telephoneRepository->findAll($this->telephone);
 

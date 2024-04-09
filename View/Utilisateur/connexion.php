@@ -18,7 +18,7 @@
                 </article>
                 <article class="subconlinkbtn">
                     <input type="submit" name="connexion" value="Connexion">
-                    <a href="<?= addLink("utilisateur", "inscription")?>">Inscrivez-vous ?</a>
+                    <a href="<?= addLink("utilisateur", "created")?>">Inscrivez-vous ?</a>
                 </article>
             </form>
         </article>

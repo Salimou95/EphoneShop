@@ -31,7 +31,7 @@ class UtilisateurController extends BaseController
     }
 
 
-    public function inscription(){
+    public function created(){
         
         	$utilisateur = $this->utilisateur;
             
@@ -160,20 +160,23 @@ class UtilisateurController extends BaseController
         }
     }
 
-    public function profil($id)
+    public function ReadOnly($id)
     {
-        if (!empty($id) && is_numeric($id)) {
-
-
-           }
-
-        
-        $this->render("utilisateur/profil.php", [
-            "user" => $user,
-            "h1" => "Fiche user"
-        ]);
-
-
+        if($this->isUserConnected() && $this->getAdmin()){
+            if (!empty($id) && is_numeric($id)) { 
+                $utilisateur = $this->utilisateurRepository->findById('utilisateur', $id);
+                if (empty($utilisateur)) {
+                    $this->setMessage("danger",  "L'utilisateur' NO $id n'existe pas");
+                    // redirection(addLink("home"));
+                }
+                $this->render("admin/Utilisateur/Utilisateur.php", [
+                "utilisateur" => $utilisateur,
+                "h1" => "Fiche utilisateur",
+                ]);
+            }else{
+                error(403);
+            }
+        }
         
     }
 

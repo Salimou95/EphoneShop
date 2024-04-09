@@ -43,7 +43,16 @@ class TelephoneController extends BaseController
         $this->utilisateur = new Utilisateur;
     }
 
-    
+    public function index()
+    {
+        $telephones = $this->telephoneRepository->findAll($this->telephone);
+
+        $this->render("Accueil.php", [
+
+            "h1" => "Nos téléphones",
+            "telephones" => $telephones
+        ]);
+    }
     
     public function telephone($id)
     {

@@ -26,9 +26,6 @@ class MarqueHandleRequest extends BaseHandleRequest
             if(empty($nomMarque)){
                 $errors[] = "Veuillez donner un Nom a la marque";
             }
-            if(empty($image)){
-                $errors[] = "Veuillez Ajouter un logo";
-            }
             
 
             if (empty($errors)) {

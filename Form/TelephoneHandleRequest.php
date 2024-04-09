@@ -30,7 +30,7 @@ class TelephoneHandleRequest extends BaseHandleRequest
                 if ($modelexiste) {
                     $errors[] = "Ce modele de téléphone existe deja";
                 }
-                if(empty($prix) || empty($modele) || empty($couleur) || empty($systemeexploitation) || empty($fk_marque) || empty($ram) || empty($memoire) || empty($paysfabrication) || empty($description) || empty($quantite) || empty($image)){
+                if(empty($prix) || empty($modele) || empty($couleur) || empty($systemeexploitation) || empty($fk_marque) || empty($ram) || empty($memoire) || empty($paysfabrication) || empty($description) || empty($quantite)){
                     $errors[] = "Veuillez remplir tous les champs";
                 }
                 if (!is_numeric($prix)) {

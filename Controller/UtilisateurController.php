@@ -38,7 +38,7 @@ class UtilisateurController extends BaseController
     }
 
 
-    public function inscription(){
+    public function created(){
         
         	$utilisateur = $this->utilisateur;
             
@@ -109,7 +109,7 @@ class UtilisateurController extends BaseController
     }
     
 
-    public function list()
+    public function index()
     {
         $utilisateur = $this->utilisateur;
 
