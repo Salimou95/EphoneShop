@@ -2,56 +2,48 @@
 
 namespace Service;
 
-// use Model\Repository\ProductRepository;
+use Model\Repository\TelephoneRepository;
 
 /**
  * Summary of ProductController
  */
 class Panier
 {
-    // private ProductRepository $productRepository;
+    private TelephoneRepository $telephoneRepository;
 
     public function __construct()
     {
-        // $this->productRepository = new ProductRepository;
+        $this->telephoneRepository = new TelephoneRepository;
     }
 
-    Public function addArticle(){
+    public function addArticlePanier($id){
+        $quantite = $_GET["qte"] ?? 1;
+        $tel = $this->telephoneRepository;
+        $telephone = $tel->findById('telephone', $id);
 
-        if(!isset($_SESSION["cart"])){
-            $_SESSION["cart"] = [];
-        }
+        if(!isset($_SESSION["panier"]))
+            $_SESSION["panier"] = [];
         
-    }
+        $panier = $_SESSION["panier"]; // on récupère ce qu'il y a dans le panier en session
 
-    public function addCart($id){
-        $quantity = $_GET["qte"] ?? 1;
-        $pr = $this->productRepository;
-        $product = $pr->findById('product', $id);
-
-        if(!isset($_SESSION["cart"]))
-            $_SESSION["cart"] = [];
-        
-        $cart = $_SESSION["cart"]; // on récupère ce qu'il y a dans le cart en session
-
-        $productDejaDanscart = false;
-        foreach ($cart as $indice => $value) {
-            if ($product->getId() == $value["product"]->getId()) {
-                $cart[$indice]["quantity"] += $quantity;
-                $productDejaDanscart = true;
+        $telephoneExistantDansLePanier = false;
+        foreach ($panier as $indice => $value) {
+            if ($telephone->getId() == $value["telephone"]->getId()) {
+                $panier[$indice]["quantite"] += $quantite;
+                $telephoneexistantDansLePanier = true;
                 break;  // pour sortir de la boucle foreach
             }
         }
         
-        if (!$productDejaDanscart) {
-            $cart[] = ["quantity" => $quantity, "product" => $product];  // on ajoute une value au cart => $cart est un array d'array
+        if (!$telephoneexistantDansLePanier) {
+            $panier[] = ["quantite" => $quantite, "telephone" => $telephone];  // on ajoute une value au panier => $panier est un array d'array
         }
         
-        $_SESSION["cart"] = $cart;  // je remets $cart dans la session, à l'indice 'cart'
+        $_SESSION["panier"] = $panier;  // je remets $panier dans la session, à l'indice 'panier'
         
         $nb = 0;
-        foreach ($cart as $value){
-            $nb += $value["quantity"];
+        foreach ($panier as $value){
+            $nb += $value["quantite"];
         }
         $_SESSION["nombre"] = $nb;
         return $nb;

@@ -1,7 +1,7 @@
 <?php
 
 $h1 = "ERREUR 403 : Accès refusé";
-include __DIR__ . "/../public/header.html.php";
+include __DIR__ . "/../public/header.php";
 ?>
 
 <h2>⛔ Vous n'avez pas accès à cet URL</h2>

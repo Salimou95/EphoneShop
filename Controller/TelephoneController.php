@@ -76,7 +76,7 @@ class TelephoneController extends BaseController
             "errors" => $errors,
             ]);
         }else{
-            error("404.php");
+            error(404);
         }
     }
 

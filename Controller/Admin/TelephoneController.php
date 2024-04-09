@@ -53,7 +53,7 @@ class TelephoneController extends BaseController
     //     ]);
     // }
 
-    public function getTelephone(){
+    public function list(){
 
         if($this->isUserConnected() && $this->getAdmin()){
             $telephone = new Telephone;
@@ -62,6 +62,8 @@ class TelephoneController extends BaseController
                 "h1" => "Nos téléphones",
                 "telephones" => $telephones
             ]);
+        }else{
+            error(403);
         }
     }
 
@@ -90,8 +92,7 @@ class TelephoneController extends BaseController
                 
             ]);
         }else{
-
-            error(404);
+            error(403);
         }
         
     }
@@ -123,7 +124,7 @@ class TelephoneController extends BaseController
                 "mode"=> "modification"
                 ]);
             }else{
-                error("404.php");
+                error(403);
             }
         }
     }
@@ -134,7 +135,7 @@ class TelephoneController extends BaseController
             if (!empty($id) && is_numeric($id)) {            
                 // $tel = new TelephoneRepository;
                 $telephones = $this->telephoneRepository->findById('telephone', $id);
-                $this->telephoneRepository->setIsDeletedTrueById($telephones);
+                $this->telephoneRepository->remove($telephones);
                 if (empty($telephones)) {
                     $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
                 }
@@ -142,11 +143,12 @@ class TelephoneController extends BaseController
                     "telephone" => $telephones,
                     "h1" => "Fiche product",
                 ]);
-            }else{
-                error("404.php");
+                return redirection(addLink("Accueil"));
+
             }
+        }else{
+            error(403);
         }
-        return redirection(addLink("Accueil"));
     }
 
 

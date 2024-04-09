@@ -107,6 +107,8 @@ class UtilisateurController extends BaseController
                 "h1" => "Liste des utilisateurs",
                 "utilisateurs" => $utilisateurs
             ]);
+        }else{
+            error(403);
         }
     }
 
@@ -133,6 +135,8 @@ class UtilisateurController extends BaseController
                     "mode" => "modification"
                 ]);
             }
+        }else{
+            error(403);
         }
     }
 
@@ -142,7 +146,7 @@ class UtilisateurController extends BaseController
             if (!empty($id) && is_numeric($id)) {
                 $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
     
-                    $this->utilisateurRepository->setIsDeletedTrueById($utilisateur);
+                    $this->utilisateurRepository->remove($utilisateur);
                 
                     $this->render("utilisateur/inscription.php", [
                         "h1" => "Supression de l'utilisateur n° $id",
@@ -151,6 +155,8 @@ class UtilisateurController extends BaseController
                     ]);
                     redirection(addLink("Accueil"));
             }
+        }else{
+            error(403);
         }
     }
 

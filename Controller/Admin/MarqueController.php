@@ -34,6 +34,8 @@ class MarqueController extends BaseController
                 "h1" => "Nos Marques",
                 "marques" => $marques
             ]);
+        }else{
+            error(403);
         }
     }
 
@@ -58,7 +60,7 @@ class MarqueController extends BaseController
             ]);
         }else{
 
-            error("404.php");
+            error(403);
         }
 
 
@@ -69,7 +71,7 @@ class MarqueController extends BaseController
             if (!empty($id) && is_numeric($id)) {
                 $marque = $this->marqueRepository->findById("marque", $id);
     
-                $this->marqueRepository->setIsDeletedTrueById($marque);
+                $this->marqueRepository->remove($marque);
                 
                 $this->render("Admin/Marque/FormMarques.php", [
                         "h1" => "Supression de l'utilisateur n° $id",
@@ -78,6 +80,8 @@ class MarqueController extends BaseController
                     ]);
                 redirection(addLink("Accueil"));
             }
+        }else{
+            error(403);
         }
     }
     public function marqueUnique($id)

@@ -1,7 +1,7 @@
 <?php
 
 $h1 = "ERREUR 404 : La page n'existe pas";
-include __DIR__ . "/../public/header.html.php";
+include __DIR__ . "/../public/header.php";
 ?>
 
 <h2>🛑 L'URL demandé n'existe pas</h2>
@@ -11,4 +11,4 @@ include __DIR__ . "/../public/header.html.php";
 </a>
 
 <?php
-include __DIR__ . "/../public/footer.html.php";
+// include __DIR__ . "/../public/footer.html.php";

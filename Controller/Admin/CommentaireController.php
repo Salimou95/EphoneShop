@@ -32,7 +32,7 @@ class CommentaireController extends BaseController
                 "commentaires" => $commentaires
             ]);
         }else{
-            error(404);
+            error(403);
         }
     }
 
@@ -49,10 +49,10 @@ class CommentaireController extends BaseController
                     "commentaire" => $commentaire,
                     "h1" => "Commentaire",
                 ]);
-            }else{
-                error("404.php");
             }
-        }
+        }else{
+            error(403);
+            }
         return redirection(addLink("Accueil"));
     }
 
