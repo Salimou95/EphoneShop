@@ -79,7 +79,8 @@ class TelephoneController extends BaseController
                 if ($this->form->isSubmitted() && $this->form->isValid()) {
                     ImageHandler::handelPhoto($telephone);
                     $this->telephoneRepository->addTelephone($telephone);
-                    return redirection(addLink("Accueil"));
+                    $this->setMessage("success", "le téléphone a été ajouté");
+                    redirection(addLinkAdmin("admin","telephone","index"));
                 }
             $errors = $this->form->getEerrorsForm();
     
@@ -109,11 +110,12 @@ class TelephoneController extends BaseController
                 $telephone = $this->telephoneRepository->findById('telephone', $id);
                 if (empty($telephone)) {
                     $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
-                    // redirection(addLink("home"));
                 }
                 $this->form->handleEditForm($telephone);
                 if ($this->form->isSubmitted() && $this->form->isValid()) {
                     $this->telephonesRepository->udaptetelephones($telephone);
+                    $this->setMessage("success", "le téléphone a été modifié");
+                    redirection(addLinkAdmin("admin","telephone","index"));
                 }
 
                 $errors = $this->form->getEerrorsForm();
@@ -133,18 +135,18 @@ class TelephoneController extends BaseController
         if($this->isUserConnected() && $this->getAdmin()){
 
             if (!empty($id) && is_numeric($id)) {            
-                // $tel = new TelephoneRepository;
                 $telephones = $this->telephoneRepository->findById('telephone', $id);
+                
                 $this->telephoneRepository->remove($telephones);
                 if (empty($telephones)) {
+                }else{
+                    $this->render("admin/telephone/FormTelephone.php", [
+                        "telephone" => $telephones,
+                        "h1" => "Fiche product",
+                    ]);
                     $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
                 }
-                $this->render("admin/telephone/FormTelephone.php", [
-                    "telephone" => $telephones,
-                    "h1" => "Fiche product",
-                ]);
-                return redirection(addLink("Accueil"));
-
+                redirection(addLinkAdmin("admin","telephone","index"));
             }
         }else{
             error(403);

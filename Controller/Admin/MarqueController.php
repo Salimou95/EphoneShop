@@ -48,7 +48,8 @@ class MarqueController extends BaseController
             if ($this->form->isSubmitted() && $this->form->isValid()) {
                 ImageHandler::handelPhoto($marque);
                 $this->marqueRepository->addMarque($marque);
-                    // return redirection(addLink("Accueil"));
+                $this->setMessage("sucess", "la marque a été crée");
+                return redirection(addLinkAdmin("admin","marque","index"));
                 }
             $errors = $this->form->getEerrorsForm();
     
@@ -66,45 +67,66 @@ class MarqueController extends BaseController
 
     }
 
-    public function read($id){
-
-    }
-    public function update($id){
+    public function readOnly($id){
         if($this->isUserConnected() && $this->getAdmin()){
             if (!empty($id) && is_numeric($id)) {
                 $marque = $this->marqueRepository->findById("marque", $id);
-                $this->form->handleInsertForm($marque);
-                if ($this->form->isSubmitted() && $this->form->isValid()) {
-                    $this->marqueRepository->addTelephone($marque);
-                    return redirection(addLink("Accueil"));
-                }
-            $errors = $this->form->getEerrorsForm();
-            }
-        }
-    }
-    public function deleteMarque($id)
-    {
-        if($this->isUserConnected() && $this->getAdmin()){
-            if (!empty($id) && is_numeric($id)) {
-                $marque = $this->marqueRepository->findById("marque", $id);
-    
-                $this->marqueRepository->remove($marque);
-                
                 $this->render("Admin/Marque/FormMarques.php", [
-                        "h1" => "Supression de l'utilisateur n° $id",
-                        "marque" => $marque,
-                        "mode" => "suppression"
-                    ]);
-                redirection(addLink("Accueil"));
+                "h1" => "Modification de la marque n° $id",
+                "marque" => $marque,
+                ]);
             }
         }else{
             error(403);
         }
     }
-    public function marqueUnique($id)
-    {
 
-
-        
+    public function update($id){
+        if($this->isUserConnected() && $this->getAdmin()){
+            if (!empty($id) && is_numeric($id)) {
+                $marque = $this->marqueRepository->findById("marque", $id);
+                if (empty($marque)){
+                    $this->setMessage("danger",  "La marque n° $id n'existe pas");
+                }else{
+                    $this->form->handleUdapteForm($marque);
+                    if ($this->form->isSubmitted() && $this->form->isValid()) {
+                        $this->marqueRepository->udapteMarque($marque);
+                        $this->setMessage("sucess", "la marque n° $id a été modifier");
+                        redirection(addLinkAdmin("admin","marque","index"));
+                    }
+                }
+            $errors = $this->form->getEerrorsForm();
+            }
+            $this->render("Admin/Marque/FormMarques.php", [
+                "h1" => "Modification de la marque n° $id",
+                "marque" => $marque,
+                "mode" => "suppression"
+            ]);
+        }else{
+            error(403);
+        }
     }
+    public function delete($id)
+    {
+        if($this->isUserConnected() && $this->getAdmin()){
+            if (!empty($id) && is_numeric($id)) {
+                $marque = $this->marqueRepository->findById("marque", $id);
+                if (empty($marque)){
+                    $this->setMessage("danger",  "La marque n° $id n'existe pas");
+                }else{
+                    $this->marqueRepository->remove($marque);
+                    $this->render("Admin/Marque/FormMarques.php", [
+                            "h1" => "Supression de l'utilisateur n° $id",
+                            "marque" => $marque,
+                            "mode" => "suppression"
+                        ]);
+                    $this->setMessage("sucess", "la marque n° $id a été supprimer");
+                }
+                redirection(addLinkAdmin("admin","marque","index"));
+            }
+        }else{
+            error(403);
+        }
+    }
+    
 }

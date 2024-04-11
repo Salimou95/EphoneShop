@@ -1,10 +1,10 @@
 <?php
-function addLink($controller, $method = "list", $id = null, $admin = null)
+function addLink($controller, $method = "index", $id = null, $admin = null)
 {
     // return ROOT . "?controller=$controller&method=$method" . ($id ? "&id=$id" : "");
         return ROOT . "$controller/$method" . ($id ? "/$id" : "");
 }
-function addLinkAdmin($admin,$controller, $method = "list", $id = null)
+function addLinkAdmin($admin,$controller, $method = "index", $id = null)
 {
     return ROOT . "$admin/$controller/$method" . ($id ? "/$id" : "");
 }

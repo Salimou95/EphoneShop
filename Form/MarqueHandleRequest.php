@@ -38,6 +38,28 @@ class MarqueHandleRequest extends BaseHandleRequest
             return $this;
         }
     }
+    public function handleUdapteForm(Marque $marque)
+    {   
+      
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+
+            extract($_POST);
+            $errors = []; 
+            if(empty($nomMarque)){
+                $errors[] = "Veuillez donner un Nom a la marque";
+            }
+            
+
+            if (empty($errors)) {
+                $marque->setNomMarque($nomMarque);
+
+                return $this;
+            }
+            $this->setEerrorsForm($errors);
+            return $this;
+        }
+    }
 
    
 }

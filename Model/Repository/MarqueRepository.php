@@ -22,14 +22,27 @@ class MarqueRepository extends BaseRepository{
 
 public function addMarque(Marque $marque){
     try{
-        $resultat = $this->dbConnection->prepare("INSERT INTO marque (nomMarque, image, created_at) VALUES (:nomMarque, :image, NOW())");
-        $resultat->bindValue(':nomMarque', $marque->getNomMarque(), \PDO::PARAM_STR);
-        $resultat->bindValue(':image', $marque->getImage(), \PDO::PARAM_STR);
-        $resultat->execute();
+        $requete = $this->dbConnection->prepare("INSERT INTO marque (nomMarque, image, created_at) VALUES (:nomMarque, :image, NOW())");
+        $requete->bindValue(':nomMarque', $marque->getNomMarque(), \PDO::PARAM_STR);
+        $requete->bindValue(':image', $marque->getImage(), \PDO::PARAM_STR);
+        $requete->execute();
         return true;
     }catch (PDOException $e) {
         die("Erreur lors de l'insertion de la marque: ". $e->getMessage());
     }
+}
+
+public function udapteMarque(Marque $marque){
+    try{
+        $requete = $this->dbConnection->prepare("UPDATE marque SET nomMarque = :nomMarque WHERE id = :id");
+        $requete->bindValue(':nomMarque', $marque->getNomMarque(), \PDO::PARAM_STR);
+        $requete->bindValue(':id', $marque->getId(), \PDO::PARAM_INT);
+        $requete->execute();
+        return true;
+    }catch (PDOException $e) {
+        die("Erreur lors de la modification de la marque: ". $e->getMessage());
+    }
+
 }
     
 }
