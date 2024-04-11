@@ -33,45 +33,48 @@ class CommentaireController extends BaseController
         ]);
     }
 
-    public function deleteCommentaire($id){
+    public function delete($id){
         if (!empty($id) && is_numeric($id)) {            
             $commentaire = $this->commentaireRepository->findById('commentaire', $id);
-            $this->commentaireRepository->remove($commentaire);
             if (empty($commentaire)) {
                 $this->setMessage("danger",  "Le commentaire NO $id n'existe pas");
+            }else{
+                $this->commentaireRepository->remove($commentaire);
+                $this->render("Commentaires.php", [
+                    "commentaire" => $commentaire,
+                    "h1" => "Commentaire",
+                ]);
+                $this->setMessage("success",  "Le commentaire a été supprimer");
+                return redirection(addLink("Accueil"));
             }
-            $this->render("Commentaires.php", [
-                "commentaire" => $commentaire,
-                "h1" => "Commentaire",
-            ]);
         }else{
             error("404.php");
         }
-        return redirection(addLink("Accueil"));
     }
-    public function udapteCommentaire($id){
+    public function udapte($id){
         if (!empty($id) && is_numeric($id)) {            
             $commentaire = $this->commentaireRepository->findById('commentaire', $id);
             if (empty($commentaire)) {
                 $this->setMessage("danger",  "Le commentaire NO $id n'existe pas");
+                return redirection(addLink("Accueil"));
+            }else{
+                $this->form->handleUdapteForm($commentaire);
+    
+                if ($this->form->isSubmitted() && $this->form->isValid()) {
+                        $this->commentaireRepository->udapteCommentaire($commentaire);
+                        $this->setMessage("success", "Le commentaire a été modifier");
+                        return redirection(addLink("Accueil"));
+                    }
+    
+                    $errors = $this->form->getEerrorsForm();
+                    $this->render("Commentaire/commentaire.php", [
+                    "commentaire" => $commentaire,
+                    "h1" => "Modifier votre commentaire",
+                    ]);
             }
-            $this->form->handleUdapteForm($commentaire);
-
-            if ($this->form->isSubmitted() && $this->form->isValid()) {
-                    $this->commentaireRepository->udapteCommentaire($commentaire);
-                    // return redirection(addLink("Accueil"));
-
-                }
-
-                $errors = $this->form->getEerrorsForm();
-            $this->render("Commentaire/commentaire.php", [
-                "commentaire" => $commentaire,
-                "h1" => "Modifier votre commentaire",
-            ]);
         }else{
             error("404.php");
         }
-        // return redirection(addLink("Accueil"));
     }
     
 

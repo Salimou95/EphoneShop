@@ -102,7 +102,7 @@ class TelephoneController extends BaseController
     
     
 
-    public function udapteTelephone($id)
+    public function udapte($id)
     {
         if($this->isUserConnected() && $this->getAdmin()){
             if (!empty($id) && is_numeric($id)) { 
@@ -131,22 +131,23 @@ class TelephoneController extends BaseController
         }
     }
 
-    public function deleteTelephone($id){
+    public function delete($id){
         if($this->isUserConnected() && $this->getAdmin()){
 
             if (!empty($id) && is_numeric($id)) {            
                 $telephones = $this->telephoneRepository->findById('telephone', $id);
                 
-                $this->telephoneRepository->remove($telephones);
                 if (empty($telephones)) {
-                }else{
-                    $this->render("admin/telephone/FormTelephone.php", [
-                        "telephone" => $telephones,
-                        "h1" => "Fiche product",
-                    ]);
                     $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
+                }else{
+                    $this->telephoneRepository->remove($telephones);
+                    $this->setMessage("success", "le téléphone a été supprimé");
+                    return redirection(addLinkAdmin("admin","telephone","index"));
                 }
-                redirection(addLinkAdmin("admin","telephone","index"));
+                $this->render("admin/telephone/FormTelephone.php", [
+                    "telephone" => $telephones,
+                    "h1" => "Fiche product",
+                ]);
             }
         }else{
             error(403);

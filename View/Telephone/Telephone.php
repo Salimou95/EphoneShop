@@ -68,7 +68,7 @@
                     <?php if(!empty($userConnecte)){
                             if($userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
                             <a href="<?= addLink("commentaire","udapteCommentaire",$comment->getId())?>">Modifier</a>
-                            <a href="<?= addLink("commentaire","deleteCommentaire",$comment->getId())?>">Supprimer</a><br>
+                            <a href="<?= addLink("commentaire","delete",$comment->getId())?>">Supprimer</a><br>
                         <?php } 
                     }?>
 

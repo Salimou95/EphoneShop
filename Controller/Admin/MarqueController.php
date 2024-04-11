@@ -67,7 +67,7 @@ class MarqueController extends BaseController
 
     }
 
-    public function readOnly($id){
+    public function read($id){
         if($this->isUserConnected() && $this->getAdmin()){
             if (!empty($id) && is_numeric($id)) {
                 $marque = $this->marqueRepository->findById("marque", $id);

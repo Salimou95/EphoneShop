@@ -39,6 +39,7 @@ class UtilisateurController extends BaseController
             if ($this->form->isSubmitted() && $this->form->isValid()) {
                 
                 $this->utilisateurRepository->registrationUser($utilisateur);
+                $this->setMessage("success",  "Nouveau compte crée avec success ");
                 return redirection(addLink("Utilisateur","connexion"));
             }
             $errors = $this->form->getEerrorsForm();
@@ -97,7 +98,7 @@ class UtilisateurController extends BaseController
     }
     
 
-    public function list()
+    public function index()
     {
         if($this->isUserConnected() && $this->getAdmin()){
 
@@ -113,7 +114,7 @@ class UtilisateurController extends BaseController
     }
 
     
-    public function udapteUtilisateur($id)
+    public function udapte($id)
     {
         if($this->isUserConnected() && $this->getAdmin()){
 
@@ -121,58 +122,67 @@ class UtilisateurController extends BaseController
                 
                 $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
 
-                $this->form->handleEditForm($utilisateur);
-
-                if ($this->form->isSubmitted() && $this->form->isValid()) {
-                    $this->utilisateurRepository->udapteUtilisateur($utilisateur);
+                if(empty($utilisateur)){
+                    $this->setMessage("danger",  "Le utilisateur NO $id n'existe pas");
+                    redirection(addLinkAdmin("admin","utilisateur","index"));
+                }else{
+                        $this->form->handleEditForm($utilisateur);
+                        if ($this->form->isSubmitted() && $this->form->isValid()) {
+                            $this->utilisateurRepository->udapteUtilisateur($utilisateur);
+                            $this->setMessage("success",  "Utilisateur modifié avec success ");
+                            redirection(addLinkAdmin("admin","utilisateur","index"));
+                        }
+                        $errors = $this->form->getEerrorsForm();
+                        return $this->render("utilisateur/inscription.php", [
+                            "h1" => "Update de l'utilisateur n° $id",
+                            "utilisateur" => $utilisateur,
+                            "errors" => $errors,
+                            "mode" => "modification"
+                        ]);
                 }
-
-                $errors = $this->form->getEerrorsForm();
-                return $this->render("utilisateur/inscription.php", [
-                    "h1" => "Update de l'utilisateur n° $id",
-                    "utilisateur" => $utilisateur,
-                    "errors" => $errors,
-                    "mode" => "modification"
-                ]);
             }
         }else{
             error(403);
         }
     }
 
-    public function deleteUtilisateur($id)
+    public function delete($id)
     {
         if($this->isUserConnected() && $this->getAdmin()){
             if (!empty($id) && is_numeric($id)) {
                 $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
-    
-                    $this->utilisateurRepository->remove($utilisateur);
                 
+                if(empty($utilisateur)){
+                    $this->setMessage("danger",  "Le utilisateur NO $id n'existe pas");
+                }else{
+                    $this->utilisateurRepository->remove($utilisateur);
                     $this->render("utilisateur/inscription.php", [
                         "h1" => "Supression de l'utilisateur n° $id",
                         "utilisateur" => $utilisateur,
                         "mode" => "suppression"
                     ]);
-                    redirection(addLink("Accueil"));
+                    $this->setMessage("success",  "L'utilisateur n°$id a été suprimer");
+                }
+                redirection(addLinkAdmin("admin","utilisateur","index"));
             }
         }else{
             error(403);
         }
     }
 
-    public function ReadOnly($id)
+    public function read($id)
     {
         if($this->isUserConnected() && $this->getAdmin()){
             if (!empty($id) && is_numeric($id)) { 
                 $utilisateur = $this->utilisateurRepository->findById('utilisateur', $id);
                 if (empty($utilisateur)) {
                     $this->setMessage("danger",  "L'utilisateur' NO $id n'existe pas");
-                    // redirection(addLink("home"));
+                }else{
+                    $this->render("admin/Utilisateur/Utilisateur.php", [
+                    "utilisateur" => $utilisateur,
+                    "h1" => "Fiche utilisateur",
+                    ]);
                 }
-                $this->render("admin/Utilisateur/Utilisateur.php", [
-                "utilisateur" => $utilisateur,
-                "h1" => "Fiche utilisateur",
-                ]);
             }else{
                 error(403);
             }
@@ -185,6 +195,6 @@ class UtilisateurController extends BaseController
     {
         $this->disconnection();
         $this->setMessage("success", "Vous êtes déconnecté");
-        redirection(addLink("home"));
+        redirection(addLink("Accueil"));
     }
 }

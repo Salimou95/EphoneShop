@@ -54,7 +54,7 @@ class TelephoneController extends BaseController
         ]);
     }
     
-    public function telephone($id)
+    public function read($id)
     {
 
 
@@ -62,28 +62,32 @@ class TelephoneController extends BaseController
 
             $tel = new TelephoneRepository;
             $telephone = $tel->findById('telephone', $id);
-            $commentaire = new Commentaire;
-            $commentaires = $this->commentaireRepository->getCommentaire($commentaire, $id);
-            foreach($commentaires as $comm){
-                $comm->setUtilisateur($comm);
-            }
-            $this->commentaireHandleRequest->handleInsertForm($commentaire);
-            if ($this->commentaireHandleRequest->isSubmitted() && $this->commentaireHandleRequest->isValid()) {
-                
-                $this->commentaireRepository->addCommentaire($commentaire, $id);
-                // return redirection(addLink("Utilisateur","connexion"));
-            }
-            $errors = $this->commentaireHandleRequest->getEerrorsForm();
-                if (empty($telephone)) {
+            if(empty($telephone)){
                 $this->setMessage("danger",  "Le telephone NO $id n'existe pas");
-                // redirection(addLink("home"));
+                redirection(addLink("Accueil"));
+            }else{
+                $commentaire = new Commentaire;
+                $commentaires = $this->commentaireRepository->getCommentaire($commentaire, $id);
+                foreach($commentaires as $comm){
+                    $comm->setUtilisateur($comm);
+                }
+                $this->commentaireHandleRequest->handleInsertForm($commentaire);
+                if ($this->commentaireHandleRequest->isSubmitted() && $this->commentaireHandleRequest->isValid()) {
+                    
+                    $this->commentaireRepository->addCommentaire($commentaire, $id);
+                    $this->setMessage("success",  "Commentaire ajouté avec succcess");
+                    // return redirection(addLink("Utilisateur","connexion"));
+                }
+                $errors = $this->commentaireHandleRequest->getEerrorsForm();
+      
+                $this->render("telephone/Telephone.php", [
+                "telephone" => $telephone,
+                "h1" => "Fiche product",
+                "commentaires" => $commentaires,
+                "errors" => $errors,
+                ]);
+
             }
-            $this->render("telephone/Telephone.php", [
-            "telephone" => $telephone,
-            "h1" => "Fiche product",
-            "commentaires" => $commentaires,
-            "errors" => $errors,
-            ]);
         }else{
             error(404);
         }

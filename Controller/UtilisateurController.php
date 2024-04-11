@@ -107,7 +107,6 @@ class UtilisateurController extends BaseController
         $this->setMessage("success", "Vous êtes déconnecté");
         redirection(addLink("Accueil"));
     }
-    
 
     public function index()
     {
@@ -122,28 +121,7 @@ class UtilisateurController extends BaseController
             "users" => $users
         ]);
     }
-
-
-    public function delete($id)
-    {
-        if (!empty($id) && $this->getUser()) {
-            if (is_numeric($id)) {
-
-                $user = $this->user;
-            } else {
-                $this->setMessage("danger",  "ERREUR 404 : la page demandé n'existe pas");
-            }
-        } else {
-            $this->setMessage("danger",  "ERREUR 404 : la page demandé n'existe pas");
-        }
-
-        $this->render("user/form.html.php", [
-            "h1" => "Suppresion de l'user n°$id ?",
-            "user" => $user,
-            "mode" => "suppression"
-        ]);
-    }
-
+    
     public function profil($id)
     {
 
@@ -157,6 +135,7 @@ class UtilisateurController extends BaseController
 
                     if ($this->form->isSubmitted() && $this->form->isValid()) {
                         $this->utilisateurRepository->udapteUtilisateur($utilisateur);
+                        $this->setMessage("success",  "Votre profil a été modifié");
                     }
 
                     $errors = $this->form->getEerrorsForm();
@@ -166,27 +145,26 @@ class UtilisateurController extends BaseController
                         "errors" => $errors,
                         "mode" => "modification"
                     ]);
-                }          
+                }else{
+                    error(403);
+                }        
             }else{
-                echo "Error";
+                error(403);
             }
-            
-            //     if (empty($user)) {
-            //     $this->setMessage("danger", "L'utilisateur n'existe pas");
-            //     // redirection(addLink("home"));
-            // }
-        } 
+        }else{
+            error(403);
+        }
         
     }
 
 
-    public function deleteUtilisateur($id)
+    public function delete($id)
     {
         if (!empty($id) && is_numeric($id)) {
             if ($this->isUserConnected()) {  
                  if ($id === $this->getidUser()){
                     $utilisateur = $this->getUser();    
-                    $this->utilisateurRepository->setIsDeletedTrueById($utilisateur);
+                    $this->utilisateurRepository->remove($utilisateur);
                     
                     $this->render("utilisateur/inscription.php", [
                         "h1" => "Supression de l'utilisateur n° $id",
@@ -194,8 +172,14 @@ class UtilisateurController extends BaseController
                         "mode" => "suppression"
                         ]);
                         redirection(addLink("Accueil"));
+                    }else{
+                        error(403);
                     }
-                }         
+                }else{
+                    error(403);
+                }       
+            }else{
+                error(403);
             }
     }
     public function logout()

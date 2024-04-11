@@ -10,7 +10,7 @@
             <h3><?= htmlspecialchars($telephone->getModele())?></h3>
             <img class="imgTelephones" src="<?=UPLOAD_IMG_TELEPHONE . htmlspecialchars($telephone->getImage()); ?>" alt="">
             <p><?= htmlspecialchars($telephone->getPrix())?>&euro;</p>
-            <button>Ajouter au panier</button>
+            <button <?= $telephone->getQuantite() == 0 ? "disabled" : ""?> >Ajouter au panier</button>
             <a href="<?= addLink("telephone","telephone",$telephone->getId())?>">Voir +</a>
         </div>
         <?php }?>

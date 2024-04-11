@@ -20,7 +20,7 @@
                         <td>
                             <a href="<?= addLinkAdmin("admin","telephone","telephone",$telephone->getId())?>">Voir +</a>
                             <a href="<?= addLinkAdmin("admin","telephone","udapteTelephone",$telephone->getId())?>">Modifier</a>
-                            <a href="<?= addLinkAdmin("admin","telephone","deleteTelephone",$telephone->getId())?>">Supprimer</a>
+                            <a href="<?= addLinkAdmin("admin","telephone","delete",$telephone->getId())?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php } ?>

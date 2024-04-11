@@ -30,6 +30,10 @@ function redirection($url)
     header("Location: $url");
     exit;
 }
+function previousPage(){
+    header ("Location:". $_SERVER["HTTP_REFERER"]);
+    exit;
+}
 
 // ⚠ test 
 function error($num = 404)

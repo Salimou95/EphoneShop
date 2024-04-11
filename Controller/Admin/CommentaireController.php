@@ -36,7 +36,7 @@ class CommentaireController extends BaseController
         }
     }
 
-    public function deleteCommentaire($id){
+    public function delete($id){
         if($this->isUserConnected() && $this->getAdmin()){
 
             if (!empty($id) && is_numeric($id)) {            
