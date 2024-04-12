@@ -70,6 +70,7 @@ class CommentaireController extends BaseController
                     $this->render("Commentaire/commentaire.php", [
                     "commentaire" => $commentaire,
                     "h1" => "Modifier votre commentaire",
+                    "errors" => $errors
                     ]);
             }
         }else{

@@ -11,7 +11,7 @@
             <img class="imgTelephones" src="<?=UPLOAD_IMG_TELEPHONE . htmlspecialchars($telephone->getImage()); ?>" alt="">
             <p><?= htmlspecialchars($telephone->getPrix())?>&euro;</p>
             <button <?= $telephone->getQuantite() == 0 ? "disabled" : ""?> >Ajouter au panier</button>
-            <a href="<?= addLink("telephone","telephone",$telephone->getId())?>">Voir +</a>
+            <a href="<?= addLink("telephone","read",$telephone->getId())?>">Voir +</a>
         </div>
         <?php }?>
     </section>
