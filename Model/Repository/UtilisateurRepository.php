@@ -42,15 +42,6 @@ class UtilisateurRepository extends BaseRepository{
             $lastUserId = $this->dbConnection->lastInsertId();
             return $lastUserId;
 
-            // $resultatPanier = $this->bdd->prepare("INSERT INTO `panier` (`quantitePanier`, `fk_UtilisateurPanier`) VALUES (0, :fk_UtilisateurPanier)");
-            // $resultatPanier->bindParam(":fk_UtilisateurPanier", $lastUserId, PDO::PARAM_INT);
-            // $resultatPanier->execute();
-
-            // $resultatWishlist = $this->bdd->prepare("INSERT INTO `wishlist` (`fk_UtilisateurWishlist`, `nbArticleWishlist`) VALUES (:fk_UtilisateurWishlist,0)");
-            // $resultatWishlist->bindParam(":fk_UtilisateurWishlist", $lastUserId, PDO::PARAM_INT);
-            // $resultatWishlist->execute();
-            // header('Location: index.php?page=connexion'); 
-            // echo "Utilisateur inscrit avec succès, panier créé.";
         }catch (PDOException $e) {
             echo "Erreur lors de l'enregistrement de l'utilisateur : " . $e->getMessage();
         }

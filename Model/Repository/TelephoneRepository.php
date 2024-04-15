@@ -34,7 +34,7 @@ class TelephoneRepository extends BaseRepository{
 
     public function udapteTelephone(Telephone $telephone){
         try {
-            $requete = $this->dbConnection->prepare("UPDATE `telephone` SET `fk_marque` = :fk_marque, `prix` = :prix, `modele` = :modele, `couleur` = :couleur, `systemeexploitation` = :systemeexploitation, `ram` = :ram, `memoire` = :memoire, `paysfabrication` = :paysfabrication, `description` = :description, `quantite` = :quantite, `image` = :image WHERE `telephone`.`idTelephone` = :idTelephone");
+            $requete = $this->dbConnection->prepare("UPDATE `telephone` SET `fk_marque` = :fk_marque, `prix` = :prix, `modele` = :modele, `couleur` = :couleur, `systemeexploitation` = :systemeexploitation, `ram` = :ram, `memoire` = :memoire, `paysfabrication` = :paysfabrication, `description` = :description, `quantite` = :quantite, `image` = :image WHERE `telephone`.`id` = :idTelephone");
     
             $requete->bindValue(':fk_marque', $telephone->getFk_marque(), \PDO::PARAM_INT);
             $requete->bindValue(':prix', $telephone->getPrix(), \PDO::PARAM_INT);
@@ -59,12 +59,11 @@ class TelephoneRepository extends BaseRepository{
     public function checkTelephoneExist($modele)
     {
         try{
-            $request = $this->dbConnection->prepare("SELECT COUNT(*) FROM telephone WHERE modele = :modele");
-            $request->bindParam(":modele", $modele);
-    
-            $request->execute(); 
-            $count = $request->fetchColumn();
-            return $count > 1 ? true : false;
+            $requete = $this->dbConnection->prepare("SELECT COUNT(*) FROM telephone WHERE modele = :modele");
+            $requete->bindParam(":modele", $modele);
+            $requete->execute(); 
+            $count = $requete->fetchColumn();
+            return $count > 0 ? true : false;
         }catch (PDOException $e) {
             echo "Erreur lors de la verification email de l'utilisateur existant: " . $e->getMessage();
         }

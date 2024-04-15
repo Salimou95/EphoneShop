@@ -113,7 +113,7 @@ class TelephoneController extends BaseController
                 }
                 $this->form->handleEditForm($telephone);
                 if ($this->form->isSubmitted() && $this->form->isValid()) {
-                    $this->telephonesRepository->udaptetelephones($telephone);
+                    $this->telephoneRepository->udapteTelephone($telephone);
                     $this->setMessage("success", "le téléphone a été modifié");
                     redirection(addLinkAdmin("admin","telephone","index"));
                 }
@@ -123,7 +123,8 @@ class TelephoneController extends BaseController
                 $this->render("admin/telephone/FormTelephone.php", [
                 "telephone" => $telephone,
                 "h1" => "Fiche product",
-                "mode"=> "modification"
+                "mode"=> "modification",
+                "marques" => $marques,
                 ]);
             }else{
                 error(403);

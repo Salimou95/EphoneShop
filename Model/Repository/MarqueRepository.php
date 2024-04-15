@@ -7,18 +7,18 @@ use Service\Session;
 class MarqueRepository extends BaseRepository{
 
 
-    public function getMarque(){
-        try{
-            $resultat = $this->dbConnection->prepare("SELECT * FROM marque");
-            $resultat->execute();
-            $marque = $resultat -> fetchAll(\PDO::FETCH_CLASS, "Model\Entity\Marque");
-            return $marque;
-        }catch (PDOException $e) {
-            die("Erreur lors de la recuperation des donnees de la marque : " . $e->getMessage());
-        }
+    // public function getMarque(){
+    //     try{
+    //         $resultat = $this->dbConnection->prepare("SELECT * FROM marque INNER JOIN telephone ON marque.id = telephone.fk_marque");
+    //         $resultat->execute();
+    //         $marque = $resultat -> fetchAll(\PDO::FETCH_CLASS, "Model\Entity\Marque");
+    //         return $marque;
+    //     }catch (PDOException $e) {
+    //         die("Erreur lors de la recuperation des donnees de la marque : " . $e->getMessage());
+    //     }
 
     
-}
+// }
 
 public function addMarque(Marque $marque){
     try{
