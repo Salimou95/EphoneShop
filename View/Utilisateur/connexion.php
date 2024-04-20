@@ -1,6 +1,6 @@
 <?php require "View/errors_form.html.php";?>
 
-<main id="mainInscription">
+<main id="mainInscriptionConnexion">
     <section>
         <h1><?= $h1?></h1>
         <div class="sousligner"></div>

@@ -1,4 +1,3 @@
-<?php var_dump($_SESSION) ?>
 <main>
     <h1><?= $h1?></h1>
 

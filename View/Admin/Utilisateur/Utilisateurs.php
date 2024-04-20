@@ -20,9 +20,9 @@
                         <td><?= htmlspecialchars($utilisateur->getTelephoneUtilisateur())?></td>
                         <td><?= htmlspecialchars($utilisateur->getRoleUtilisateur())?></td>
                         <td>
-                            <a href="<?= addLinkAdmin("admin","utilisateur","ReadOnly",$utilisateur->getId())?>">Voir +</a>
-                            <a href="<?= addLinkAdmin("admin","udapteMarque",$utilisateur->getId())?>">Modifier</a>
-                            <a href="<?= addLinkAdmin("admin","utilisateur","deleteUtilisateur",$utilisateur->getId())?>">Supprimer</a>
+                            <a href="<?= addLink("utilisateur","ReadOnly",$utilisateur->getId(),"admin")?>">Voir +</a>
+                            <a href="<?= addLink("udapteMarque",$utilisateur->getId(),"admin")?>">Modifier</a>
+                            <a href="<?= addLink("utilisateur","delete",$utilisateur->getId(),"admin")?>" onclick='afficherAlerte()'>Supprimer</a>
                         </td>
                     </tr>
                 <?php } ?>

@@ -1,5 +1,5 @@
 <?php require "View/errors_form.html.php";?>
-<main id="mainInscription">
+<main id="mainInscriptionConnexion">
     <section>
         <div>
             <h1><?= $h1?></h1>
@@ -34,7 +34,7 @@
                 <label for="telephoneUtilisateur" class="labeform">Telephone :</label>
                 <input type="number" name="telephoneUtilisateur" id="telephoneUtilisateur" class="inputform" placeholder="Inscrivez votre téléphone" value="<?= htmlspecialchars($utilisateur->getTelephoneUtilisateur()) ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
 
-                <input type="text" value="ROLE_USER" name="roleUtilisateur">
+                <!-- <input type="text" value="ROLE_USER" name="roleUtilisateur"> -->
                 <article class="subconlinkbtn">
                     <input type="submit" value="<?= $mode == "suppression" ? "Supprimer" : ($mode == "modification" ? "Modifier" : "S'incrire") ?>">
                     <a href="<?= addLink("utilisateur", "connexion")?>" 

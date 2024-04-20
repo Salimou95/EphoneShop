@@ -1,7 +1,7 @@
 <?php require "View/errors_form.html.php";?>
 
 <main>
-    <section>
+    <section class="sectionForm">
         <article>
             <h1><?=$h1?></h1>
         </article>

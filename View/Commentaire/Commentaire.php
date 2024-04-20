@@ -2,7 +2,7 @@
     <section>
         <h1><?=$h1?></h1>
     </section>
-    <section class="sectionFormComment">
+    <section class="sectionForm">
             <article>
                 <form method="post">
                     <!-- <input type="button" value="Ajouter au panier"> -->

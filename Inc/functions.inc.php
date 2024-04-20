@@ -2,12 +2,12 @@
 function addLink($controller, $method = "index", $id = null, $admin = null)
 {
     // return ROOT . "?controller=$controller&method=$method" . ($id ? "&id=$id" : "");
-        return ROOT . "$controller/$method" . ($id ? "/$id" : "");
+        return ROOT .($admin ? "$admin/" : "")."$controller/$method" . ($id ? "/$id" : "");
 }
-function addLinkAdmin($admin,$controller, $method = "index", $id = null)
-{
-    return ROOT . "$admin/$controller/$method" . ($id ? "/$id" : "");
-}
+// function addLinkAdmin($admin,$controller, $method = "index", $id = null)
+// {
+//     return ROOT . "$admin/$controller/$method" . ($id ? "/$id" : "");
+// }
 
 
 function debug($var)

@@ -25,7 +25,7 @@ h3{
     width:85%;
     margin: auto;
 }
-.sectionForm, .sectionFormComment{
+.sectionForm{
     display: flex;
     margin: 5% auto 2% auto;
 

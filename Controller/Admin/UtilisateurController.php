@@ -155,16 +155,16 @@ class UtilisateurController extends BaseController
                 if(empty($utilisateur)){
                     $this->setMessage("danger",  "Le utilisateur NO $id n'existe pas");
                 }else{
-                    $this->utilisateurRepository->remove($utilisateur);
-                    $this->render("utilisateur/inscription.php", [
-                        "h1" => "Supression de l'utilisateur n° $id",
-                        "utilisateur" => $utilisateur,
-                        "mode" => "suppression"
-                    ]);
                     $this->setMessage("success",  "L'utilisateur n°$id a été suprimer");
+                    $this->utilisateurRepository->remove($utilisateur);
                 }
-                redirection(addLinkAdmin("admin","utilisateur","index"));
+                // $this->render("utilisateur/inscription.php", [
+                //     "h1" => "Supression de l'utilisateur n° $id",
+                //     "utilisateur" => $utilisateur,
+                //     "mode" => "suppression"
+                // ]);
             }
+            return redirection(addLink("utilisateur","index",null,"admin"));
         }else{
             error(403);
         }

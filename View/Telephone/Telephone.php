@@ -45,7 +45,7 @@
     </section>
 
 
-    <section class="sectionFormComment">
+    <section class="sectionForm">
         <article>
             <form method="post">
                 <!-- <input type="button" value="Ajouter au panier"> -->

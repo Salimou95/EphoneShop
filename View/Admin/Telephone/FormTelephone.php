@@ -1,7 +1,7 @@
 <?php require "View/errors_form.html.php";?>
 <main>
     <h1>Ajouter un Téléphone</h1>
-    <section class="sectionInscription">
+    <section class="sectionForm">
         <article>
             <form method="post" enctype="multipart/form-data" class="form">
 
@@ -43,7 +43,7 @@
                 <input type="number" id="quantite" name="quantite"  class="inputform" value="<?= $telephone->getQuantite()?>"><br>
                         
                 <label for="image" class="labeform">Image:</label>
-                <input type="file" id="image" name="image"><br>
+                <input type="file" id="image" name="image" required><br>
 
                 <input type="submit" value="<?= $mode == "suppression" ? "disabled" : "Ajouter" ?>">
                 
