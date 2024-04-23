@@ -1,4 +1,8 @@
-function afficherAlerte() {
-    var confirmation = confirm("Voulez-vous vraiment supprimer cet utilisateur ?");
-    return confirmation
-  }
+document.querySelector(".cross").addEventListener("click", () => {
+    console.log("ok");
+    var change = document.querySelector(".alert");
+    // var menuburger = document.querySelector(".menuburger");
+  
+    change.classList.toggle("disparition");
+    // menuburger.classList.toggle("menuburgerchange");
+  });

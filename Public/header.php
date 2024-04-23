@@ -6,8 +6,8 @@
     <base href="<?= ROOT;?>">
     <title>Ephone</title>
     <link rel="stylesheet" href="Public/assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="assets/js/script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <script src="assets/js/script.js" defer></script>
+    <script src="Public/assets/js/script.js" defer></script>
 </head>
 <body>
     <header>
@@ -16,3 +16,4 @@
         include __DIR__ . "/../view/messages.html.php";  
     ?>
     </header>
+

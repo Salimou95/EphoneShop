@@ -142,3 +142,40 @@ nav{
 .none{
     display: none;
 }
+li{
+    list-style-type: none;
+}
+
+.alert {
+    opacity: 0; /* Définir l'opacité à 0 pour la rendre invisible au départ */
+    animation: apparition 3s forwards; /* Utiliser une animation nommée 'apparition' pendant 2 secondes */
+    border: 1px solid;
+    width: 500px;
+    margin: 10px 0 10px 50px;
+    padding: 5px 0px 5px 10px;
+    background-color: #28a745;
+    color: white;
+    display: flex;
+}
+.alert>div{
+    display: flex;
+    justify-content: center;
+
+}
+
+@keyframes apparition {
+    from {
+        opacity: 0; /* Début de l'animation : opacité à 0 */
+    }
+    to {
+        opacity: 1; /* Fin de l'animation : opacité à 1 */
+    }
+}
+
+.disparition {
+display: none;
+}
+.cross{
+    cursor: pointer;
+}
+

@@ -30,3 +30,8 @@
         </table>
     </section>
 </main>
+<script>
+    function afficherAlerte() {
+        confirm("Voulez-vous vraiment supprimer cet utilisateur <?=$utilisateur->getId() ?>");
+}
+</script>
