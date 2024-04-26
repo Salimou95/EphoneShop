@@ -120,10 +120,10 @@ class BaseRepository
         $request = $request->execute();
         if ($request) {
             if ($request == 1) {
-                Sess::addMessage("success",  "La mise à jour de l'utilisateur a bien été éffectuée");
+                Sess::addMessage("success",  "La mise à jour a bien été éffectuée");
                 return true;
             }
-            Sess::addMessage("danger",  "Erreur : l'utilisateur n'a pas été mise à jour");
+            Sess::addMessage("danger",  "Erreur : la pas été mise à jour");
             return false;
         }
         Sess::addMessage("danger",  "Erreur SQL");

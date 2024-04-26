@@ -25,11 +25,11 @@ class CommentaireController extends BaseController
     public function index()
     {
         if($this->isUserConnected() && $this->getAdmin()){
-            $commentaire = $this->commentaireRepository->findAll($this->commentaire);
+            $commentaires = $this->commentaireRepository->findAll($this->commentaire);
             $this->render("Admin/Commentaire/commentaires.php", [
 
                 "h1" => "Les commentaires",
-                "commentaire" => $commentaire
+                "commentaires" => $commentaires
             ]);
         }else{
             error(403);
@@ -40,20 +40,20 @@ class CommentaireController extends BaseController
         if($this->isUserConnected() && $this->getAdmin()){
 
             if (!empty($id) && is_numeric($id)) {            
-                $commentaire = $this->commentaireRepository->findById('commentaire', $id);
-                if (empty($commentaire)) {
+                $commentaires = $this->commentaireRepository->findById('commentaire', $id);
+                if (empty($commentaires)) {
                     $this->setMessage("danger",  "Le commentaire NO $id n'existe pas");
                 }else{
-                    $this->commentaireRepository->remove($commentaire);
                     $this->render("admin/Commentaire/Commentaires.php", [
-                        "commentaire" => $commentaire,
+                        "commentaires" => $commentaires,
                         "h1" => "Commentaire",
                     ]);
+                    $this->commentaireRepository->remove($commentaires);
                     $this->setMessage("success", "le commentaire n° $id a été supprimer");
+                    return redirection(addLink("commentaire","index",null,"admin"));
                 }
             }
 
-            return redirection(addLinkAdmin("admin","commentaire","index"));
         }else{
             error(403);
             }

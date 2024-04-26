@@ -14,7 +14,10 @@ $messages = Session::getMessages();
 
         <?php foreach ($messagesType as $msg) : ?>
 
-            <div><?= $msg ?></div>
+            <div>
+                <p><?= $msg ?></p>
+                <i class="fa-regular fa-circle-xmark cross" style="color: #ffffff;"></i>
+            </div>
 
          <?php endforeach; ?>
 
@@ -25,34 +28,4 @@ $messages = Session::getMessages();
 <?php endif; ?>
 
 
-<?php $type = "error" ?>
-<div class="alert">
-
-<div>
-    <?php if($type == "success"){ ?>
-        <i class="fa-regular fa-circle-check" style="color: #ffffff;"></i>
-    <?php }else{ ?>
-        <i class="fa-regular fa-circle-xmark" style="color: #ffffff;"></i><?php }?>
-     <p>testtest</p> <p class="cross">X</p>
-
-</div>
-
-
-
-</div>
-
-<div class="alert">
-
-<div>
-    <?php if($type == "success"){ ?>
-        <i class="fa-regular fa-circle-check" style="color: #ffffff;"></i>
-    <?php }else{ ?>
-        <i class="fa-regular fa-circle-xmark" style="color: #ffffff;"></i><?php }?>
-     <p>testtest</p> <p class="cross">X</p>
-
-</div>
-
-
-
-</div>
 

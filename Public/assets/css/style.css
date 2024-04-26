@@ -119,11 +119,11 @@ h3{
 #accueilsection>div{
     width: 30%;
     height: 400px;
-    border: 2px solid #6142FE;
+    border: 2px solid rgb(97, 66, 254);
     border-radius: 10px;
     margin: 2% 0;
     padding: 1%;
-}
+}-
 nav{
     display: flex;
     justify-content: space-around;
@@ -147,19 +147,24 @@ li{
 }
 
 .alert {
-    opacity: 0; /* Définir l'opacité à 0 pour la rendre invisible au départ */
-    animation: apparition 3s forwards; /* Utiliser une animation nommée 'apparition' pendant 2 secondes */
+    /* opacity: 0; 
+    animation: apparition 3s forwards;
     border: 1px solid;
     width: 500px;
     margin: 10px 0 10px 50px;
     padding: 5px 0px 5px 10px;
     background-color: #28a745;
     color: white;
-    display: flex;
+    display: flex; */
+
+    /* opacity: 1;
+    max-height: 50px;
+    overflow: hidden;
+    transition: opacity 1s ease-in-out, max-height 1s ease-in-out;  */
 }
 .alert>div{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 
 }
 
@@ -171,11 +176,38 @@ li{
         opacity: 1; /* Fin de l'animation : opacité à 1 */
     }
 }
+.alert {
+    opacity: 1;
+    max-height: 50px; /* Ajustez selon la taille de votre message */
+    transition: opacity 1s ease-in-out, max-height 5s ease-in-out; /* Transitions pour l'opacité et la hauteur */
+    overflow: hidden;
+    border: 1px solid;
+    width: 500px;
+    margin: 10px 0 10px 50px;
+    padding: 5px 0px 5px 10px;
+    /* background-color: #28a745; */
+    color: white;
+}
+
+
+.alert-success{
+    background-color: #28a745;
+}
+@keyframes disparition {
+    from {
+        opacity: 1; /* Début de l'animation : opacité à 0 */
+    }
+    to {
+        opacity: 0; /* Fin de l'animation : opacité à 1 */
+        /* display: none; */
+    }
+}
+
 
 .disparition {
-display: none;
+    animation: disparition 3s forwards;
+    max-height: 0;
 }
 .cross{
     cursor: pointer;
 }
-

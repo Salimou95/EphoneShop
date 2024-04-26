@@ -1,9 +1,9 @@
 <main>
     <section>
-        <?php foreach($commentaire as $comment){ ?>
+        <?php foreach($commentaires as $comment){ ?>
             <article>
                 <p><?= htmlspecialchars($comment->getAvis())?></p>
-                <a href="<?= addLinkAdmin("admin","commentaire","deleteCommentaire",$comment->getId())?>">Supprimer</a>
+                <a href="<?= addLink("commentaire","delete",$comment->getId(),"admin")?>">Supprimer</a>
             </article>
         <?php } ?>
     </section>
