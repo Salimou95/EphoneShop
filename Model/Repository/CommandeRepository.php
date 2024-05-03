@@ -17,7 +17,7 @@ class CommandeRepository extends BaseRepository{
             $requete->bindValue(":fk_UtilisateurCommande", $commande->getFk_UtilisateurCommande(),  \PDO::PARAM_INT);
             $requete->execute();
         }catch(PDOException $e) {
-            die("Erreur lors de l'insertion de la commande: " . $e->getMessage());
+            exit("Erreur lors de l'insertion de la commande: " . $e->getMessage());
         }
     
     }
@@ -32,7 +32,7 @@ class CommandeRepository extends BaseRepository{
             return $resultat->fetchAll();
             
         }catch (PDOException $e) {
-            die("Erreur lors de l'affichage du commentaire: " . $e->getMessage());
+            exit("Erreur lors de l'affichage du commentaire: " . $e->getMessage());
         }
     }
 
@@ -44,7 +44,7 @@ class CommandeRepository extends BaseRepository{
             $resultat->bindValue(":id", $commentaire->getId(),  \PDO::PARAM_INT);
             $resultat->execute();
         }catch(PDOException $e) {
-            die("Erreur lors de l'enregistrement du commentaire: " . $e->getMessage());
+            exit("Erreur lors de l'enregistrement du commentaire: " . $e->getMessage());
         }
     }
 

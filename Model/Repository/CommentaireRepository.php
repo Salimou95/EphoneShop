@@ -19,7 +19,7 @@ class CommentaireRepository extends BaseRepository{
             $resultat->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);
             $resultat->execute();
         }catch(PDOException $e) {
-            die("Erreur lors de l'insertion du commentaire: " . $e->getMessage());
+            exit("Erreur lors de l'insertion du commentaire: " . $e->getMessage());
         }
     
     }
@@ -34,7 +34,7 @@ class CommentaireRepository extends BaseRepository{
             return $resultat->fetchAll();
             
         }catch (PDOException $e) {
-            die("Erreur lors de l'affichage du commentaire: " . $e->getMessage());
+            exit("Erreur lors de l'affichage du commentaire: " . $e->getMessage());
         }
     }
 
@@ -46,10 +46,21 @@ class CommentaireRepository extends BaseRepository{
             $resultat->bindValue(":id", $commentaire->getId(),  \PDO::PARAM_INT);
             $resultat->execute();
         }catch(PDOException $e) {
-            die("Erreur lors de l'enregistrement du commentaire: " . $e->getMessage());
+            exit("Erreur lors de l'enregistrement du commentaire: " . $e->getMessage());
         }
     }
 
+    public function moyenneNote($id){
+        try{
+            $resultat = $this->dbConnection->prepare("SELECT AVG(note) AS moyenne FROM `commentaire` WHERE commentaire.fk_Telephone = :fk_Telephone");
+            $resultat->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);
+            $resultat->execute();
+            $resultat->setFetchMode(\PDO::FETCH_CLASS,"Model\Entity\Commentaire");
+            return $resultat->fetch();
+        }catch(PDOException $e) {
+            exit("Erreur lors de la moyenne du telephone: " . $e->getMessage());
+        }
+    }
 
 
 }

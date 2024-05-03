@@ -18,7 +18,7 @@ class UtilisateurRepository extends BaseRepository{
             $count = $request->fetchColumn();
             return $count > 1 ? true : false;
         }catch (PDOException $e) {
-            echo "Erreur lors de la verification email de l'utilisateur existant: " . $e->getMessage();
+            exit("Erreur lors de la verification email de l'utilisateur existant: " . $e->getMessage());
         }
         
     }
@@ -43,7 +43,7 @@ class UtilisateurRepository extends BaseRepository{
             return $lastUserId;
 
         }catch (PDOException $e) {
-            echo "Erreur lors de l'enregistrement de l'utilisateur : " . $e->getMessage();
+            exit ("Erreur lors de l'enregistrement de l'utilisateur : " . $e->getMessage());
         }
         }
 
@@ -63,7 +63,7 @@ class UtilisateurRepository extends BaseRepository{
                     return null;
                 }
             }catch (PDOException $e) {
-            echo "Erreur lors de la connexion de l'utilisateur : " . $e->getMessage();
+            exit ("Erreur lors de la connexion de l'utilisateur : " . $e->getMessage());
         }
         
             
@@ -82,7 +82,7 @@ class UtilisateurRepository extends BaseRepository{
                 $resultat->bindValue(":sexeUtilisateur", $utilisateur->getSexeUtilisateur(), \PDO::PARAM_STR);
                 $resultat->execute();
             }catch (PDOException $e) {
-                echo "Erreur lors de la mise a jour de l'utilisateur : " . $e->getMessage();
+                exit ("Erreur lors de la mise a jour de l'utilisateur : " . $e->getMessage());
             }
         }
 }

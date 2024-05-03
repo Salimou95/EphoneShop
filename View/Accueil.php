@@ -1,17 +1,21 @@
-<main>
-    <h1><?= $h1?></h1>
+<main class="main">
+    <h1><?=$h1?></h1>
 
     <section id="accueilsection">
         <?php
             foreach ($telephones as $telephone){
         ?>
-        <div>
-            <h3><?= htmlspecialchars($telephone->getModele())?></h3>
-            <img class="imgTelephones" src="<?=UPLOAD_IMG_TELEPHONE . htmlspecialchars($telephone->getImage()); ?>" alt="">
-            <p><?= htmlspecialchars($telephone->getPrix())?>&euro;</p>
-            <button <?= $telephone->getQuantite() == 0 ? "disabled" : ""?> >Ajouter au panier</button>
-            <a href="<?= addLink("telephone","read",$telephone->getId())?>">Voir +</a>
-        </div>
+        <article>
+            <div>
+                <h3 ><a class="linkInH3" href="<?= addLink("telephone","read",$telephone->getId())?>"><?= htmlspecialchars($telephone->getModele())?></a></h3>
+                <img class="imgTelephones" src="<?=UPLOAD_IMG_TELEPHONE . htmlspecialchars($telephone->getImage()); ?>" alt="">
+            </div>
+            <div class="divArticle">
+                <p class="paragrapheArticle"><?= htmlspecialchars($telephone->getPrix())?>&euro;</p>
+                <button class="btnAddTelephone" <?= $telephone->getQuantite() == 0 ? "disabled" : ""?> ><i class="fa-solid fa-cart-plus" style="color: White;"></i></button>
+            </div>
+        </article>
         <?php }?>
     </section>
 </main>
+

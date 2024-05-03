@@ -18,8 +18,8 @@ class Database
 
             $this->connetion = $pdo;
 
-        } catch (\PDOException $exception) {
-            echo "Erreur de connetion : " . $exception->getMessage();
+        } catch (\PDOException $e) {
+            exit ("Erreur de connetion  a la bdd: " . $e->getMessage());
         }
 
         return $this->connetion;

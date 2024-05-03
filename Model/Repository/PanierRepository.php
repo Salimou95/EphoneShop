@@ -12,7 +12,7 @@ class PanierRepository extends BaseRepository{
             $requete->bindValue(":fk_UtilisateurPanier", $utilisateurId, \PDO::PARAM_INT);
             $requete->execute();
         }catch(PDOException $e) {
-            die("Erreur lors de l'ajout du panier: " . $e->getMessage()); 
+            exit("Erreur lors de l'ajout du panier: " . $e->getMessage()); 
         }
         
     }
@@ -25,7 +25,7 @@ class PanierRepository extends BaseRepository{
             $requete->bindParam(":fk_UtilisateurPanier", $panier->getFk_UtilisateurPanier());
             $requete->execute();
         }catch(PDOException $e) {
-            die("Erreur lors de l'ajout du panier: " . $e->getMessage()); 
+            exit("Erreur lors de l'ajout du panier: " . $e->getMessage()); 
         }
     }
 

@@ -46,9 +46,10 @@ class UtilisateurController extends BaseController
             if ($this->form->isSubmitted() && $this->form->isValid()) {
                 
                 $idutilisateur = $this->utilisateurRepository->registrationUser($utilisateur);
-                if(!empty($idutilisateur)) {
-                    $this->panierRepository->createPanier($idutilisateur);
-                }
+                // if(!empty($idutilisateur)) {
+                //     $this->panierRepository->createPanier($idutilisateur);
+                // }
+                $this->setMessage("success",  "  Féliciation, vous êtes inscrit");
 
                 return redirection(addLink("Utilisateur","connexion"));
             }
@@ -139,7 +140,7 @@ class UtilisateurController extends BaseController
                     }
 
                     $errors = $this->form->getEerrorsForm();
-                    return $this->render("utilisateur/inscription.php", [
+                    return $this->render("utilisateur/profil.php", [
                         "h1" => "Update de l'utilisateur n° $id",
                         "utilisateur" => $utilisateur,
                         "errors" => $errors,

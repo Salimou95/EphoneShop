@@ -19,7 +19,7 @@ class DetailPanierRepository extends BaseRepository{
             $resultat->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);
             $resultat->execute();
         }catch(PDOException $e) {
-            die("Erreur lors de l'insertion du commentaire: " . $e->getMessage());
+            exit("Erreur lors de l'insertion du commentaire: " . $e->getMessage());
         }
     
     }
@@ -34,7 +34,7 @@ class DetailPanierRepository extends BaseRepository{
             return $resultat->fetchAll();
             
         }catch (PDOException $e) {
-            die("Erreur lors de l'affichage du commentaire: " . $e->getMessage());
+            exit("Erreur lors de l'affichage du commentaire: " . $e->getMessage());
         }
     }
 
@@ -46,7 +46,7 @@ class DetailPanierRepository extends BaseRepository{
             $resultat->bindValue(":id", $commentaire->getId(),  \PDO::PARAM_INT);
             $resultat->execute();
         }catch(PDOException $e) {
-            die("Erreur lors de l'enregistrement du commentaire: " . $e->getMessage());
+            exit("Erreur lors de l'enregistrement du commentaire: " . $e->getMessage());
         }
     }
 

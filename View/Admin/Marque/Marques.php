@@ -14,9 +14,9 @@
                         <td><?= htmlspecialchars($marque->getNomMarque())?></td>
                         <td><img class="imgTelephones" src="<?=UPLOAD_IMG_MARQUE.htmlspecialchars($marque->getLogoMarque());?>" alt=""></td>
                         <td>
-                            <a href="<?= addLinkAdmin("admin","marque","marque",$marque->getId())?>">Voir +</a>
-                            <a href="<?= addLinkAdmin("admin","marque","udapte",$marque->getId())?>">Modifier</a>
-                            <a href="<?= addLinkAdmin("admin","marque","delete",$marque->getId())?>">Supprimer</a>
+                            <a href="<?= addLink("marque","marque",$marque->getId(),"admin")?>">Voir +</a>
+                            <a href="<?= addLink("marque","udapte",$marque->getId(),"admin")?>">Modifier</a>
+                            <a href="<?= addLink("marque","delete",$marque->getId(),"admin")?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php } ?>

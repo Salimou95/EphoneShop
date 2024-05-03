@@ -18,37 +18,40 @@ class BaseRepository
     }
     public function findAll(BaseEntity $table): ?array
     {
-        $request = $this->dbConnection->query("SELECT * FROM $table");
-        if ($request) {
-            $class = "Model\Entity\\" . ucfirst($table);  // ucfirst : majuscule au début de la chaine de caractères
-            return $request->fetchAll(\PDO::FETCH_CLASS, $class);
+        try {
+            $requete = $this->dbConnection->prepare("SELECT * FROM $table");
+            $requete->execute();
+            if ($requete) {
+                $class = "Model\Entity\\" . ucfirst($table);  // ucfirst : majuscule au début de la chaine de caractères
+                return $requete->fetchAll(\PDO::FETCH_CLASS, $class);
+            }
+        }catch(\PDOException $e) {
+            exit("Erreur lors de la recuperation des données: " . $e->getMessage());
         }
-        return null;
     }
 
     public function findById($tableName, $id)
     {
-        // Construction de la requête SELECT
-        $query = "SELECT * FROM $tableName WHERE id = :id";
-        
-        $request = $this->dbConnection->prepare($query);
-        $request->bindValue(':id', $id);
-
         try {
-            $request->execute();
+            $sql = "SELECT * FROM $tableName WHERE id = :id";
+            
+            $requete = $this->dbConnection->prepare($sql);
+            $requete->bindValue(':id', $id);
+
+            
+            $requete->execute();
             $class = "Model\Entity\\" . ucfirst($tableName);
 
-            if ($request->rowCount() == 1) {
-                $request->setFetchMode(\PDO::FETCH_CLASS, $class);
-                
-                return $request->fetch();
-            } else if ($request->rowCount() > 1) {
+            if ($requete->rowCount() == 1) {
+                $requete->setFetchMode(\PDO::FETCH_CLASS, $class);
+                return $requete->fetch();
+            } else if ($requete->rowCount() > 1) {
                 // ucfirst : majuscule au début de la chaine de caractères
-                $result = $request->fetchAll(\PDO::FETCH_CLASS, $class);
+                $result = $requete->fetchAll(\PDO::FETCH_CLASS, $class);
                 return $result;
             }
-        } catch (\PDOException $exception) {
-            echo "Erreur de connetion : " . $exception->getMessage();
+        }catch (\PDOException $e) {
+            exit("Erreur lors de la recuperation des données par l'id: " . $e->getMessage());
         }
     }
     public function findByAttributes($tableName, $attributes = [])
@@ -114,19 +117,24 @@ class BaseRepository
     }
     public function remove(BaseEntity $tableName)
     {
-        $sql = "DELETE FROM $tableName WHERE id = :id";
-        $request = $this->dbConnection->prepare($sql);
-        $request->bindValue(":id", $tableName->getId());
-        $request = $request->execute();
-        if ($request) {
-            if ($request == 1) {
-                Sess::addMessage("success",  "La mise à jour a bien été éffectuée");
-                return true;
+        try {
+            $sql = "DELETE FROM $tableName WHERE id = :id";
+            $request = $this->dbConnection->prepare($sql);
+            $request->bindValue(":id", $tableName->getId());
+            $request = $request->execute();
+            if ($request){
+                if ($request == 1) {
+                    Sess::addMessage("success",  "La supression a bien été éffectuée dans la table $tableName");
+                    return true;
+                }
+                Sess::addMessage("danger",  "Erreur : lors de la suppresion dans la table $tableName");
+                return false;
             }
-            Sess::addMessage("danger",  "Erreur : la pas été mise à jour");
-            return false;
+            Sess::addMessage("danger",  "Erreur SQL");
+            return null;
+        }catch(\PDOException $e) {
+            exit("Erreur lors de la supression des données: " . $e->getMessage());
         }
-        Sess::addMessage("danger",  "Erreur SQL");
-        return null;
     }
+
 }

@@ -1,8 +1,12 @@
 <?php require "View/errors_form.html.php";?>
+<?php var_dump($moyenne)
+?>
+
 
 <main>
     <section>
         <h1><?= htmlspecialchars($telephone->getModele())?></h1>
+        <p>Lavande</p>
     </section>
     <section id="sectionTelephoneUnique">
         <div>
@@ -67,7 +71,7 @@
 
                     <?php if(!empty($userConnecte)){
                             if($userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
-                            <a href="<?= addLink("commentaire","udapteCommentaire",$comment->getId())?>">Modifier</a>
+                            <a href="<?= addLink("commentaire","udapte",$comment->getId())?>">Modifier</a>
                             <a href="<?= addLink("commentaire","delete",$comment->getId())?>">Supprimer</a><br>
                         <?php } 
                     }?>

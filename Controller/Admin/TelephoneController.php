@@ -143,12 +143,12 @@ class TelephoneController extends BaseController
                 }else{
                     $this->telephoneRepository->remove($telephones);
                     $this->setMessage("success", "le téléphone a été supprimé");
-                    return redirection(addLinkAdmin("admin","telephone","index"));
                 }
                 $this->render("admin/telephone/FormTelephone.php", [
                     "telephone" => $telephones,
                     "h1" => "Fiche product",
                 ]);
+                return redirection(addLinkAdmin("admin","telephone","index"));
             }
         }else{
             error(403);

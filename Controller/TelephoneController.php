@@ -68,16 +68,24 @@ class TelephoneController extends BaseController
             }else{
                 $commentaire = new Commentaire;
                 $commentaires = $this->commentaireRepository->getCommentaire($commentaire, $id);
+                $moyenne = $this->commentaireRepository->moyenneNote($id);
                 foreach($commentaires as $comm){
                     $comm->setUtilisateur($comm);
                 }
                 $this->commentaireHandleRequest->handleInsertForm($commentaire);
-                if ($this->commentaireHandleRequest->isSubmitted() && $this->commentaireHandleRequest->isValid()) {
-                    
-                    $this->commentaireRepository->addCommentaire($commentaire, $id);
-                    $this->setMessage("success",  "Commentaire ajouté avec succcess");
-                    // return redirection(addLink("Utilisateur","connexion"));
-                }
+                    if ($this->commentaireHandleRequest->isSubmitted() && $this->commentaireHandleRequest->isValid()) {
+                        if ($this->isUserConnected()) {            
+                            $this->commentaireRepository->addCommentaire($commentaire, $id);
+                            $this->setMessage("success",  "Commentaire ajouté avec succcess");
+                            return redirection(addLink("telephone","read",$id));
+                        }else{
+                            $this->setMessage("danger","Vous devez etre connecté pour ajouter un commentaire");
+                            return redirection(addLink("Utilisateur","connexion"));
+                        }
+                        
+                    }
+
+        
                 $errors = $this->commentaireHandleRequest->getEerrorsForm();
       
                 $this->render("telephone/Telephone.php", [
@@ -85,6 +93,7 @@ class TelephoneController extends BaseController
                 "h1" => "Fiche product",
                 "commentaires" => $commentaires,
                 "errors" => $errors,
+                "moyenne" => $moyenne
                 ]);
 
                 }

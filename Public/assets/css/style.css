@@ -2,8 +2,28 @@
     margin: 0%;
     padding: 0%;
 }
+main{
+    margin-top: 200px;
+}
+body{
+    background-color: hsla(230, 75%, 32%, .1);
 
 
+}
+header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+a{   
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    
+}
+.linkincon{
+ color: #6142FE;
+}
 h1{
     color: #6142FE;
     text-align: center;
@@ -15,6 +35,12 @@ h3{
     text-align: center;
     margin: 2% 0%;
 }
+.linkInH3{
+    color: #6142FE;
+    font-size: 25px;
+
+}
+
 .sousligner{
     background-color: #6142FE;
     width: 10%;
@@ -101,11 +127,12 @@ h3{
     font-size: 110%;
 }
 #accueilsection,#sectionTelephoneUnique{
-    width: 75%;
+    width: 1250px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-top: 30px;
 
 }
 #sectionTelephoneUnique{
@@ -116,19 +143,48 @@ h3{
     margin: 2% 0 0 0;
     
 }
-#accueilsection>div{
-    width: 30%;
-    height: 400px;
-    border: 2px solid rgb(97, 66, 254);
-    border-radius: 10px;
+#accueilsection>article{
+    width: 310px;
+    height: 420px;
+    border: 1px solid rgb(97, 66, 254);
+    border-radius: 20px;
     margin: 2% 0;
     padding: 1%;
-}-
-nav{
+    /* text-align: center; */
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 23px 19px 30px 19px rgb(181, 181, 181);
+    background-color: white;
+}
+.btnAddTelephone{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border-color: #6142FE;
+    background-color: #6142FE;
+}
+.btnAddTelephone>i{
+    font-size: 25px;
+    margin: auto;
+    color: white;
+}
+
+.paragrapheArticle{
+    color: #6142FE;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0 10px 0;
+}
+.divArticle{
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0 10px;
+    align-items: center;
 
 }
+
 #logo{
     /* width: 100%; */
     height: 100px;
@@ -146,22 +202,7 @@ li{
     list-style-type: none;
 }
 
-.alert {
-    /* opacity: 0; 
-    animation: apparition 3s forwards;
-    border: 1px solid;
-    width: 500px;
-    margin: 10px 0 10px 50px;
-    padding: 5px 0px 5px 10px;
-    background-color: #28a745;
-    color: white;
-    display: flex; */
 
-    /* opacity: 1;
-    max-height: 50px;
-    overflow: hidden;
-    transition: opacity 1s ease-in-out, max-height 1s ease-in-out;  */
-}
 .alert>div{
     display: flex;
     justify-content: space-between;
@@ -176,8 +217,7 @@ li{
         opacity: 1; /* Fin de l'animation : opacité à 1 */
     }
 }
-.alert {
-    opacity: 1;
+.alert,.text-danger {
     max-height: 50px; /* Ajustez selon la taille de votre message */
     transition: opacity 1s ease-in-out, max-height 5s ease-in-out; /* Transitions pour l'opacité et la hauteur */
     overflow: hidden;
@@ -187,27 +227,212 @@ li{
     padding: 5px 0px 5px 10px;
     /* background-color: #28a745; */
     color: white;
+    margin-bottom: 2%;
+    
+
 }
 
 
 .alert-success{
     background-color: #28a745;
 }
+.error-formulaire{
+    background-color: #DC3545;
+}
 @keyframes disparition {
     from {
-        opacity: 1; /* Début de l'animation : opacité à 0 */
+        opacity: 1; 
     }
     to {
-        opacity: 0; /* Fin de l'animation : opacité à 1 */
+        opacity: 0; 
         /* display: none; */
     }
 }
 
 
 .disparition {
-    animation: disparition 3s forwards;
-    max-height: 0;
+    /* animation: disparition 3s forwards; */
+    /* max-height: 0; */
+    display: none;
 }
 .cross{
     cursor: pointer;
+}
+
+/* NAVBAR */
+
+
+ul{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+li{
+    list-style: none;
+    
+}
+.nav__buttons{
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.btn:hover{
+    background-color: #409AFE;
+}
+.btn{
+    padding: 10px 10px;
+    width: 100%;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: #6142FE;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 20px;
+}
+.icon{
+    color: #6142FE;
+    border-radius: 50%;
+    display: flex;
+    cursor: pointer;
+    transition: all 0.3s ease;  
+    justify-content: space-between;
+    padding: 5px;
+    margin: 5px 50px;
+    position: relative;
+    top: 1rem;
+}
+.fa-basket-shopping,
+.fa-circle-user{
+ font-size: 3rem;
+ cursor: pointer;
+ transition: color .4s;
+ padding: 0.5rem;
+}
+.containe{
+    display: flex;
+    justify-content: space-around;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+.search{
+    padding-top: 1rem;
+    /* backdrop-filter: blur(1px); */
+    margin-left: 155px;
+    position: relative;
+    display: inline-block;
+}
+.search i{
+    position: absolute;
+    right: 600px;
+    top: 35px;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+.search__form{
+    padding-top: 1.5rem;
+}
+.search input{
+    box-shadow: 0 8px 32px hsla(230, 75%, 32%, .4);
+    border: 1px solid #6142FE ;
+    outline: none;
+    font-size: 14px;
+    border-radius: 15px;
+    height: 2.3rem;
+    width: 25rem;
+    background-color: hsla(230, 75%, 32%, .1);
+    padding: 15px;
+
+
+}
+.search__input{
+    padding-left: 30px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc ;
+    height: 2rem;
+    outline: none;
+    font-size: 14px;
+    box-shadow: 0 8px 32px hsla(230, 75%, 32%, .4);
+    border: 1px solid #6142FE ;
+    background-color: hsla(230,75%,32%,.1);
+}
+i{
+    font-size: 20px;
+    color: #6142FE;
+    outline: none;
+}
+:is(.fa-basket-shopping,
+.fa-circle-user):hover{
+    color: #409AFE;
+}
+
+.Logo{
+    width: 4rem;
+    border-radius: 20%;
+}
+
+.search__input::placeholder{
+    color: grey;
+    text-align: center;
+}
+
+/* Cible les boutons d'annulation de la recherche dans les navigateurs WebKit */
+#search-input {
+    position: relative;
+    left: 4.5rem;
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 5px;
+}
+
+#telephone-list {
+    list-style-type: none; /* Supprimer les puces */
+    padding: 0; /* Supprimer les marges internes */
+    max-height: 300px; /* Limiter la hauteur pour permettre le défilement */
+    overflow-y: auto; /* Permettre le défilement vertical */
+    border: 1px solid #ccc; /* Bordure pour délimiter la liste */
+    border-radius: 4px; /* Coins légèrement arrondis */
+    margin-top: 10px; /* Espacement par rapport à la barre de recherche */
+}
+/* Styles pour chaque élément de la liste */
+#telephone-list li {
+    padding: 10px; /* Espacement interne pour chaque élément */
+    border-bottom: 1px solid #eee; /* Ligne de séparation entre les éléments */
+    cursor: pointer; /* Changer le curseur pour indiquer qu'ils sont interactifs */
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur de fond */
+    visibility: hidden; /* Masquer initialement */
+}
+
+ /* Affiche uniquement les éléments visibles */
+#telephone-list li[data-visible="true"] {
+    visibility: visible;
+}
+
+/* Couleur de fond lors du survol */
+#telephone-list li:hover {
+    background-color:#409AFE; /* Couleur de fond claire lors du survol */
+}
+
+/* Ajoutez des styles pour masquer et afficher l'icône */
+.search-icon {
+    position: absolute;
+    left: 10px; /* Ajustez la position de l'icône */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa; /* Ajustez la couleur de l'icône */
+    transition: opacity 0.3s; /* Transition douce pour masquer l'icône */
+}
+
+.search__input {
+    width: 100%;
+    padding-left: 30px; /* Laisser de l'espace pour l'icône */
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    height: 2rem;
+    font-size: 14px;
+}
+
+.search__input:focus + .search-icon, /* Quand le champ de recherche est focus */
+.search__input:not(:placeholder-shown) + .search-icon { /* Quand le placeholder n'est pas visible */
+    opacity: 0; /* Masquer l'icône */
 }
