@@ -1,3 +1,4 @@
+
 <main class="main">
     <h1><?=$h1?></h1>
 
@@ -12,10 +13,17 @@
             </div>
             <div class="divArticle">
                 <p class="paragrapheArticle"><?= htmlspecialchars($telephone->getPrix())?>&euro;</p>
-                <button class="btnAddTelephone" <?= $telephone->getQuantite() == 0 ? "disabled" : ""?> ><i class="fa-solid fa-cart-plus" style="color: White;"></i></button>
+                <button id="<?=$telephone->getId()?>" class="btnAddTelephone" <?= $telephone->getQuantite() == 0 ? "disabled" : ""?> ><i class="fa-solid fa-cart-plus" style="color: White;"></i></button>
             </div>
         </article>
         <?php }?>
     </section>
 </main>
+<?php var_dump($_SESSION);
+?>
+<script>
+$(document).ready(function() {
 
+    addToPanierAjax();
+});
+</script>

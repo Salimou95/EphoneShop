@@ -9,8 +9,12 @@ class Commande extends BaseEntity{
     private $statut;
     private $dateLivraison;
     private $prix;
-    private $fk_UtilisateurCommande;
+    private $fkUtilisateurCommande;
 
+    public function __construct()
+    {
+        $this->statut = EN_ATTENTE;
+    }
 
     /**
      * Get the value of statut
@@ -25,9 +29,9 @@ class Commande extends BaseEntity{
      *
      * @return  self
      */ 
-    public function setStatut($statut)
+    public function setStatut($statut = null)
     {
-        $this->statut = $statut;
+        $this->statut = $statut !== null ? $statut : EN_ATTENTE;
 
         return $this;
     }

@@ -6,8 +6,6 @@ use Service\Session;
 
 class UtilisateurRepository extends BaseRepository{
 
-
-
     public function checkUserExist($emailUtilisateur)
     {
         try{
@@ -23,11 +21,8 @@ class UtilisateurRepository extends BaseRepository{
         
     }
 
-
     public function registrationUser(Utilisateur $utilisateur) {
         try {
-            // $role = 2;
-            // $mdpUtilisateur = password_hash($utilisateur->getMdpUtilisateur(), PASSWORD_DEFAULT);
             $resultat = $this->dbConnection->prepare("INSERT INTO `utilisateur` (`nomUtilisateur`, `prenomUtilisateur`, `emailUtilisateur`, `mdpUtilisateur`, `dateNaissanceUtilisateur`, `telephoneUtilisateur`, `sexeUtilisateur`,roleUtilisateur) VALUES (:nomUtilisateur, :prenomUtilisateur, :emailUtilisateur, :mdpUtilisateur, :dateNaissanceUtilisateur, :telephoneUtilisateur, :sexeUtilisateur,:roleUtilisateur)");
             $resultat->bindValue(":nomUtilisateur", $utilisateur->getNomUtilisateur(), \PDO::PARAM_STR);
             $resultat->bindValue(":prenomUtilisateur", $utilisateur->getPrenomUtilisateur(), \PDO::PARAM_STR);
@@ -38,10 +33,6 @@ class UtilisateurRepository extends BaseRepository{
             $resultat->bindValue(":sexeUtilisateur", $utilisateur->getSexeUtilisateur(), \PDO::PARAM_STR);
             $resultat->bindValue(":roleUtilisateur", $utilisateur->getRoleUtilisateur(), \PDO::PARAM_STR);
             $resultat->execute();
-
-            $lastUserId = $this->dbConnection->lastInsertId();
-            return $lastUserId;
-
         }catch (PDOException $e) {
             exit ("Erreur lors de l'enregistrement de l'utilisateur : " . $e->getMessage());
         }

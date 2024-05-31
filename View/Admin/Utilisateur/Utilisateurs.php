@@ -22,7 +22,7 @@
                         <td>
                             <a href="<?= addLink("utilisateur","ReadOnly",$utilisateur->getId(),"admin")?>">Voir +</a>
                             <a href="<?= addLink("udapteMarque",$utilisateur->getId(),"admin")?>">Modifier</a>
-                            <a href="<?= addLink("utilisateur","delete",$utilisateur->getId(),"admin")?>" onclick='afficherAlerte()'>Supprimer</a>
+                            <a href="<?= addLink("utilisateur","delete",$utilisateur->getId(),"admin")?>" class="lien">Supprimer</a>
                         </td>
                     </tr>
                 <?php } ?>

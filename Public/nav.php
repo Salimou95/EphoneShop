@@ -23,26 +23,32 @@
 
     <div class="icon">
         <i class="fa-solid fa-basket-shopping"></i>
-        <?php if( $userConnecte = Service\Session::getUserConnected() ): ?>
-        <a class="nav-link" href="<?= addLink("utilisateur", "profil",$userConnecte->getId())?>"><i class="fa-solid fa-circle-user" id="user-btn"></i> 
-</a>
-        <?php endif; ?>
+        <a class="nav-link" href="<?= addLink("utilisateur", "connexion")?>"><i class="fa-solid fa-circle-user" id="user-btn"></i> 
+
         
 
 
 
     </div>
 </section>
+<?php if( $userConnecte = Service\Session::getUserConnected() ): ?>
+<?php if( Service\Session::isadmin() ): ?>
  <nav class="nav__buttons">
          
     <ul>
-        <div class="btn">
-            <li><a href="">Nos Téléphone</a></li>
-        </div>
-        <?php if( $userConnecte = Service\Session::getUserConnected() ): ?>
-        <?php if( Service\Session::isadmin() ): ?>
             <div class="btn">
-                <li><a class="nav-link" href="<?= addLink("telephone","index",null,"admin")?>">Gestion des Téléphones</a></li>
+                <div class="dropdown">
+                    <a class="nav-link " href="<?= addLink("telephone","index",null,"admin")?>">Gestion des Téléphones</a>
+                    
+    <!-- <button class="dropbtn">Gestion des Utilisateurs</button> -->
+    <div class="dropdown-content">
+        <a href="<?= addLink("utilisateur", "index", null, "admin") ?>">Voir Utilisateurs</a>
+        <a href="<?= addLink("utilisateur", "create", null, "admin") ?>">Créer Utilisateur</a>
+        <a href="<?= addLink("utilisateur", "reports", null, "admin") ?>">Rapports Utilisateur</a>
+    </div>
+</div>
+
+                </li>
             </div>
             <div class="btn">
                 <li><a class="nav-link" href="<?= addLink("marque","index",null,"admin")?>">Gestion des Marques</a></li>
@@ -53,6 +59,9 @@
             <div class="btn">
                 <li><a class="nav-link" href="<?= addLink("commentaire","index",null,"admin")?>">Gestion des Commentaire</a></li>
             </div>
+            <div class="btn">
+                <li><a class="nav-link" href="<?= addLink("commentaire","index",null,"admin")?>">Gestion des Commandes</a></li>
+            </div>
         <?php endif; ?>
 
 
@@ -62,9 +71,25 @@
             <a class="nav-link" href="<?= addLink("utilisateur", "connexion")?>">connexion</a>
             <a class="nav-link" href="<?= addLink("utilisateur", "created")?>">inscription</a>
             </div>
-        <?php endif;?>
+            
+        </ul>
+    </nav>
+    <?php endif;?>
+    <div id="nombre"><?= $_SESSION["nombre"] ?? ''; ?></div>
 
-                    </ul>
-</nav>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var dropdown = document.querySelector('.dropdown');
+    var dropdownContent = document.querySelector('.dropdown-content');
 
+    dropdown.addEventListener('mouseover', function () {
+        dropdownContent.style.display = 'block';
+    });
+
+    dropdown.addEventListener('mouseout', function () {
+        dropdownContent.style.display = 'none';
+    });
+});
+
+</script>

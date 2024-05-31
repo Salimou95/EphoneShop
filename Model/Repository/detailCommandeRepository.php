@@ -1,29 +1,25 @@
 <?php
 namespace Model\Repository;
 
-use Model\Entity\Commande;
-use Model\Entity\Utilisateur;
+use Model\Entity\DetailCommande;
 
-class CommandeRepository extends BaseRepository{
 
-    public function createCommande(Commande $commande){
+class DetailCommandeRepository extends BaseRepository{
+
+    public function createDetailCommande($idCommande,$idTelephone,$quantite){
         try{
+            $detailCommande = new DetailCommande;
+            $detailCommande->setFkCommande($idCommande)
+                ->setFkTelephone($idTelephone)
+                ->setQuantite($quantite);
 
-
-            $commande->setFk_UtilisateurCommande($_SESSION["user"]->getId());
-            $this->dbConnection->beginTransaction();
-            $requete = $this->dbConnection->prepare("INSERT INTO `commande` (`statut`, `dateLivraison`, `prix`, `fkUtilisateurCommande`,`created_at`) VALUES (:statut, :dateLivraison, :prix, :fk_UtilisateurCommande, NOW())");
-            $requete->bindValue(":statut", $commande->getStatut(), \PDO::PARAM_STR);
-            $requete->bindValue(":dateLivraison", $commande->getDateLivraison());
-            $requete->bindValue(":prix",$commande->getPrix(),  \PDO::PARAM_INT);
-            $requete->bindValue(":fk_UtilisateurCommande", $commande->getFk_UtilisateurCommande(),  \PDO::PARAM_INT);
+            $requete = $this->dbConnection->prepare("INSERT INTO `detailCommande` (`fkCommande`, `fkTelephone`, `quantite`, `created_at`) VALUES (:fkCommande, :fkTelephone, :quantite, NOW());");
+            $requete->bindParam(':fkCommande', $idCommande);
+            $requete->bindParam(':fkTelephone', $idTelephone);
+            $requete->bindParam(':quantite', $quantite);
             $requete->execute();
-            $idCommande = $this->dbConnection->lastInsertId();
-            $this->dbConnection->commit();
-            return $idCommande;
-
         }catch(PDOException $e) {
-            exit("Erreur lors de la creation de la commande: " . $e->getMessage());
+            exit("Erreur lors de la creation du détail la commande: " . $e->getMessage());
         }
     
     }

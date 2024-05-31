@@ -1,4 +1,6 @@
-<?php require "View/errors_form.html.php";?>
+<?php 
+require "View/errors_form.html.php";
+?>
 <main id="mainInscriptionConnexion">
     <section>
         <div>
@@ -39,7 +41,7 @@
                     <input type="submit" value="<?= $mode == "suppression" ? "Supprimer" : ($mode == "modification" ? "Modifier" : "S'incrire") ?>">
                     <a href="<?= addLink("utilisateur", "connexion")?>" 
                     <?= $mode !== "insertion" ? "class='none'" : "" ?> >Se connecter</a>
-                    <a href="<?= addLink("utilisateur", "deleteUtilisateur",$utilisateur->getid())?>" 
+                    <a href="<?= addLink("utilisateur", "delete",$utilisateur->getid())?>" 
                     <?= $mode !== "modification" ? "class='none'" : "" ?> >X SUPPRIMER SON COMPTE</a>
                 </article>
             </form>

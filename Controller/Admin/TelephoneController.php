@@ -80,7 +80,7 @@ class TelephoneController extends BaseController
                     ImageHandler::handelPhoto($telephone);
                     $this->telephoneRepository->addTelephone($telephone);
                     $this->setMessage("success", "le téléphone a été ajouté");
-                    redirection(addLinkAdmin("admin","telephone","index"));
+                    redirection(addLink("telephone","index",null,'admin'));
                 }
             $errors = $this->form->getEerrorsForm();
     
@@ -115,7 +115,7 @@ class TelephoneController extends BaseController
                 if ($this->form->isSubmitted() && $this->form->isValid()) {
                     $this->telephoneRepository->udapteTelephone($telephone);
                     $this->setMessage("success", "le téléphone a été modifié");
-                    redirection(addLinkAdmin("admin","telephone","index"));
+                    redirection(addLink("telephone","index",null,'admin'));
                 }
 
                 $errors = $this->form->getEerrorsForm();
@@ -143,12 +143,14 @@ class TelephoneController extends BaseController
                 }else{
                     $this->telephoneRepository->remove($telephones);
                     $this->setMessage("success", "le téléphone a été supprimé");
+                    redirection(addLink("telephone","index",null,'admin'));
+
                 }
                 $this->render("admin/telephone/FormTelephone.php", [
                     "telephone" => $telephones,
                     "h1" => "Fiche product",
+                    "mode" => "suppression"
                 ]);
-                return redirection(addLinkAdmin("admin","telephone","index"));
             }
         }else{
             error(403);

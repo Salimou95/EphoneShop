@@ -35,7 +35,7 @@ class Panier
             }
         }
         
-        if (!$telephoneexistantDansLePanier) {
+        if (!isset($telephoneexistantDansLePanier)) {
             $panier[] = ["quantite" => $quantite, "telephone" => $telephone];  // on ajoute une value au panier => $panier est un array d'array
         }
         

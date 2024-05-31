@@ -10,11 +10,11 @@
             <form method="post">
             <article>
                 <label for="emailUtilisateur" class="labeform">Email :</label>
-                <input type="email" name="email" class="inputform" placeholder="Inscrivez votre email">
+                <input type="email" name="email" class="inputform" placeholder="Inscrivez votre email" required>
             </article>
                 <article>
                     <label for="mdpUtilisateur" class="labeform">Mot de passe :</label>
-                    <input type="password" name="mdpUtilisateur" class="inputform" placeholder="Inscrivez votre mot de passe">
+                    <input type="password" name="mdpUtilisateur" class="inputform" placeholder="Inscrivez votre mot de passe" required>
                 </article>
                 <article class="subconlinkbtn">
                     <input type="submit" name="connexion" value="Connexion">

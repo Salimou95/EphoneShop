@@ -60,9 +60,7 @@ abstract class BaseController
      * @return void
      */
 
-     public function getPanier(){
-         $panier = Sess::getPanier();
-     }
+  
     
     public function setMessage($type, $message)
     {

@@ -42,9 +42,11 @@
             </article> 
             <article>
                 <form method="post">
-                    <button type="submit" class="btnsubmit">Ajouter au panier</button>
+                    <button  class="btnsubmit" id="form<?= $telephone->getId() ?>">Ajouter au panier</button>
                 </form>
             </article>
+            <input name="qte" type="number" value="1" id="field<?= $telephone->getId() ?>">
+
         </div>
     </section>
 
@@ -61,6 +63,7 @@
                     <label for="note" class="labeform">Note :</label>
                     <input type="number" name="note" class="inputform">
                 </article>
+                
                 <input type="submit" name="envoiecommentaire" value="Ajouter un commentaire">
 
             </form>
@@ -72,7 +75,7 @@
                     <?php if(!empty($userConnecte)){
                             if($userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
                             <a href="<?= addLink("commentaire","udapte",$comment->getId())?>">Modifier</a>
-                            <a href="<?= addLink("commentaire","delete",$comment->getId())?>">Supprimer</a><br>
+                            <a href="<?= addLink("commentaire","delete",$comment->getId())?>" class="lien">Supprimer</a><br>
                         <?php } 
                     }?>
 
@@ -92,9 +95,16 @@
                 <p><?= htmlspecialchars($comment->getNote())?></p><br>
                 <p><?= htmlspecialchars($comment->getCreated_at())?></p><br> 
         </article>
+                    <input name="qte" type="number" value="1" id="field<?= $product->getId() ?>">
+
                 <?php } ?>
 
     </section>
 </main>
 
-
+<script>
+window.addEventListener("load", () => {
+    var idProduct = "<?= $telephone->getId() ?>";
+    addTelephoneToPanierAjax(idProduct)
+});
+</script>

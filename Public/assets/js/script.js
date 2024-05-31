@@ -1,6 +1,5 @@
 document.querySelectorAll(".cross").forEach((crossElement) => {
     crossElement.addEventListener("click", () => {
-        console.log("ok");
         var change = crossElement.closest(".alert");
         if (change) {
             change.classList.toggle("disparition");
@@ -8,10 +7,9 @@ document.querySelectorAll(".cross").forEach((crossElement) => {
     });
 });
 
-document.querySelectorAll(".error-formulaire").forEach((crossElement) => {
+document.querySelectorAll(".text-danger").forEach((crossElement) => {
     crossElement.addEventListener("click", () => {
-        console.log("ok");
-        var change = crossElement.closest(".error-formulaire");
+        var change = crossElement.closest(".text-danger");
         if (change) {
             change.classList.toggle("disparition");
         }
@@ -64,3 +62,23 @@ document.addEventListener('DOMContentLoaded', () => {
 //         message.classList.add('disparition'); 
 //     }, 5000);
 // });
+// Sélectionner tous les éléments avec la classe "lien"
+// Sélectionner le premier élément avec la classe "lien"
+// Sélectionner tous les éléments avec la classe "lien"
+var liens = document.querySelectorAll(".lien");
+
+liens.forEach(function(lien) {
+    lien.addEventListener("click", function(event){
+        event.preventDefault();
+
+        var confirmation = confirm("Êtes-vous sûr de vouloir supprimmer ?");
+        
+        if (confirmation) {
+            window.location.href = lien.href;
+        } else {
+            console.log("L'utilisateur a annulé.");
+        }
+    });
+});
+
+

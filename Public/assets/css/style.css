@@ -6,7 +6,7 @@ main{
     margin-top: 200px;
 }
 body{
-    background-color: hsla(230, 75%, 32%, .1);
+    background-color: #14298f1a;
 
 
 }
@@ -223,21 +223,24 @@ li{
     overflow: hidden;
     border: 1px solid;
     width: 500px;
-    margin: 10px 0 10px 50px;
+    margin: 200px 0 10px 50px;
     padding: 5px 0px 5px 10px;
     /* background-color: #28a745; */
     color: white;
-    margin-bottom: 2%;
     
 
 }
 
 
 .alert-success{
-    background-color: #28a745;
+    background-color: #28a745 !important;
+}
+.text-danger{
+    background-color: #DC3545;
 }
 .error-formulaire{
-    background-color: #DC3545;
+    margin-top: 150px;
+    margin-bottom: -150px;
 }
 @keyframes disparition {
     from {
@@ -281,7 +284,9 @@ li{
     background-color: #409AFE;
 }
 .btn{
-    padding: 10px 10px;
+    display: block; /* Rend le lien comme un bloc pour envelopper le contenu */
+    padding: 20px; /* Ajoute un espacement interne */
+
     width: 100%;
     border: 1px solid rgb(255, 255, 255);
     background-color: #6142FE;
@@ -435,4 +440,98 @@ i{
 .search__input:focus + .search-icon, /* Quand le champ de recherche est focus */
 .search__input:not(:placeholder-shown) + .search-icon { /* Quand le placeholder n'est pas visible */
     opacity: 0; /* Masquer l'icône */
+}
+
+li a{
+    display: block;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+
+/* Le contenu du dropdown, caché par défaut */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 10px;
+    background-color: #6142FE;
+    width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Liens à l'intérieur du dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Changement de couleur lors du survol des items du dropdown */
+.dropdown-content a:hover{
+    background-color: #f1f1f1
+}
+
+/* Affichage du dropdown au survol */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Changement de couleur du bouton lors du survol */
+/* .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+} */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.panier-container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.panier-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.panier-item:last-child {
+    border-bottom: none;
+}
+
+.modele {
+    font-size: 1.2em;
+    color: #6142FE;
+}
+
+.prix, .quantite, .total {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.total {
+    font-weight: bold;
+    color: #6142FE;
 }
