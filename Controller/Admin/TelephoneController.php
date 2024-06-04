@@ -56,10 +56,13 @@ class TelephoneController extends BaseController
     public function index(){
 
         if($this->isUserConnected() && $this->getAdmin()){
+            $marques = $this->marqueRepository->findAll($this->marque);
+
             $telephone = new Telephone;
             $telephones = $this->telephoneRepository->findAll($telephone);
             $this->render("Admin/Telephone/Telephones.php", [
                 "h1" => "Nos téléphones",
+                "marques" => $marques,
                 "telephones" => $telephones
             ]);
         }else{

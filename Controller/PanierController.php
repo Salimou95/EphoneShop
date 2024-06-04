@@ -31,7 +31,7 @@ class PanierController extends BaseController
      * Summary of show
      * @return void
      */
-    public function read()
+    public function index()
     {        
 
     

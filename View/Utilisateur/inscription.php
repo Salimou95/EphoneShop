@@ -1,7 +1,7 @@
 <?php 
 require "View/errors_form.html.php";
 ?>
-<main id="mainInscriptionConnexion">
+<main class="mainInscriptionConnexion">
     <section>
         <div>
             <h1><?= $h1?></h1>

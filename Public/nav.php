@@ -22,8 +22,10 @@
         
 
     <div class="icon">
-        <i class="fa-solid fa-basket-shopping"></i>
-        <a class="nav-link" href="<?= addLink("utilisateur", "connexion")?>"><i class="fa-solid fa-circle-user" id="user-btn"></i> 
+    
+        <a class="nav-link" href="<?= addLink("Panier", "index")?>"><i class="fa-solid fa-basket-shopping"></i></a> 
+        
+        <a class="nav-link" href="<?= addLink("utilisateur", "connexion")?>"><i class="fa-solid fa-circle-user" id="user-btn"></i></a>
 
         
 

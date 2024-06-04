@@ -3,7 +3,7 @@
     padding: 0%;
 }
 main{
-    margin-top: 200px;
+    margin-top: 13rem;
 }
 body{
     background-color: #14298f1a;
@@ -47,7 +47,7 @@ h3{
     margin: 2% auto;
     border: 1px solid #6142FE;
 }
-#mainInscription{
+.mainInscriptionConnexion{
     width:85%;
     margin: auto;
 }
@@ -505,7 +505,7 @@ body {
 
 .panier-container {
     width: 80%;
-    margin: 50px auto;
+    margin: auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -534,4 +534,32 @@ body {
 .total {
     font-weight: bold;
     color: #6142FE;
+}
+
+
+/* TABLEAU */
+
+table{
+    width: 70rem;
+    margin: auto;
+    border: 1px solid #6142FE;
+    border-collapse: collapse;
+    text-align: center;
+
+    
+}
+thead{
+    background-color: #6142FE;
+    color: white;
+    height: 3rem;
+}
+td{
+    height: 3rem;
+}
+td>a{
+    color: #6142FE;
+    text-decoration: none;
+}
+td>img{
+    width: 20rem;
 }

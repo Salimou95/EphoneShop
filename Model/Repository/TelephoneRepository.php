@@ -70,8 +70,8 @@ class TelephoneRepository extends BaseRepository{
         
     }
 
-    public function getTelephoneById($idTelephone){
-        
+    public function udapteQuantiteTelephone(){
+
     }
 
 

@@ -1,5 +1,6 @@
-<main>
+<main class="main">
     <section>
+        <h1><?= $h1?></h1>
         <table>
             <thead>
                 <tr>
@@ -17,12 +18,12 @@
                         <td><?= htmlspecialchars($utilisateur->getNomUtilisateur())?></td>
                         <td><?= htmlspecialchars($utilisateur->getPrenomUtilisateur())?></td>
                         <td><?= htmlspecialchars($utilisateur->getEmailUtilisateur())?></td>
-                        <td><?= htmlspecialchars($utilisateur->getTelephoneUtilisateur())?></td>
+                        <td>0<?= htmlspecialchars($utilisateur->getTelephoneUtilisateur())?></td>
                         <td><?= htmlspecialchars($utilisateur->getRoleUtilisateur())?></td>
                         <td>
-                            <a href="<?= addLink("utilisateur","ReadOnly",$utilisateur->getId(),"admin")?>">Voir +</a>
-                            <a href="<?= addLink("udapteMarque",$utilisateur->getId(),"admin")?>">Modifier</a>
-                            <a href="<?= addLink("utilisateur","delete",$utilisateur->getId(),"admin")?>" class="lien">Supprimer</a>
+                            <a href="<?= addLink("utilisateur","ReadOnly",$utilisateur->getId(),"admin")?>"><i class="fa-solid fa-eye" style="color: #6142fe;"></i></a>
+                            <a href="<?= addLink("udapteMarque",$utilisateur->getId(),"admin")?>"><i class="fa-solid fa-pen" style="color: #6142fe;"></i></a>
+                            <a href="<?= addLink("utilisateur","delete",$utilisateur->getId(),"admin")?>" class="lien"><i class="fa-solid fa-trash" style="color: #6142fe;"></i></a>
                         </td>
                     </tr>
                 <?php } ?>

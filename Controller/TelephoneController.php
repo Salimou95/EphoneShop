@@ -45,7 +45,8 @@ class TelephoneController extends BaseController
 
     public function index()
     {
-        $telephones = $this->telephoneRepository->findAll($this->telephone);
+        $telephone = new telephone;
+        $telephones = $this->telephoneRepository->findAll($telephone);
 
         $this->render("Accueil.php", [
 
