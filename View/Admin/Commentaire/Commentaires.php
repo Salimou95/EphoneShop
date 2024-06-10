@@ -1,5 +1,5 @@
 <main>
-<h1><?= $h1?></h1>
+    <h1><?= $h1?></h1>
     <section>
         <?php foreach($commentaires as $comment){ ?>
             <article>
@@ -9,7 +9,9 @@
         <?php } ?>
     </section>
 </main>
-
+<script>
+cofirmDelete()
+</script>
 
 
 

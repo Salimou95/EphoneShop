@@ -95,7 +95,6 @@
                 <p><?= htmlspecialchars($comment->getNote())?></p><br>
                 <p><?= htmlspecialchars($comment->getCreated_at())?></p><br> 
         </article>
-                    <input name="qte" type="number" value="1" id="field<?= $product->getId() ?>">
 
                 <?php } ?>
 

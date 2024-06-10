@@ -5,11 +5,7 @@
 main{
     margin-top: 13rem;
 }
-body{
-    background-color: #14298f1a;
 
-
-}
 header{
     position: fixed;
     top: 0;
@@ -27,7 +23,7 @@ a{
 h1{
     color: #6142FE;
     text-align: center;
-    font-size: 200%;
+    font-size: 2.5rem;
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -43,17 +39,18 @@ h3{
 
 .sousligner{
     background-color: #6142FE;
-    width: 10%;
-    margin: 2% auto;
+    width: 10rem;
+    margin: 1rem auto;
     border: 1px solid #6142FE;
 }
 .mainInscriptionConnexion{
     width:85%;
-    margin: auto;
+    margin: 13rem auto 0 auto;
 }
 .sectionForm{
     display: flex;
-    margin: 5% auto 2% auto;
+    margin: auto;
+    width: 90rem;
 
 }
 .sectionFormComment{
@@ -490,7 +487,6 @@ li a{
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
     color: #333;
     margin: 0;
     padding: 0;
@@ -562,4 +558,173 @@ td>a{
 }
 td>img{
     width: 20rem;
+}
+
+
+/* Responsive */
+
+/* Responsive design */
+
+/* Pour les écrans de 768px et moins */
+@media screen and (max-width: 768px) {
+    main {
+        margin-top: 8rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .mainInscriptionConnexion {
+        width: 95%;
+        margin: 10rem auto 0 auto;
+    }
+
+    .sectionForm {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sectionForm > article {
+        width: 80%;
+    }
+
+    .sousligner {
+        width: 7rem;
+    }
+}
+
+/* Pour les écrans de 480px et moins */
+@media screen and (max-width: 480px) {
+    main {
+        margin-top: 6rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .mainInscriptionConnexion {
+        width: 100%;
+        margin: 8rem auto 0 auto;
+    }
+
+    .sectionForm > article {
+        width: 100%;
+    }
+
+    .sousligner {
+        width: 5rem;
+    }
+}
+
+
+
+article:hover {
+    transform: scale(1.05);
+}
+
+/* Styles responsifs */
+
+/* Pour les écrans de 48rem (768px) et moins */
+@media screen and (max-width: 48rem) {
+    main {
+        margin-top: 25rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .sousligner {
+        width: 1rem;
+    }
+
+    #accueilsection {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #accueilsection > article {
+        width: 90%;
+        height: auto;
+    }
+
+    .imgTelephones {
+        height: auto;
+        width: 100%;
+    }
+
+    .divArticle {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .paragrapheArticle {
+        font-size: 1.8rem;
+    }
+
+    .btnAddTelephone {
+        width: 4rem;
+        height: 4rem;
+        margin-top: 1rem;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    th, td {
+        padding: 1rem 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    th:first-child, td:first-child {
+        padding-left: 1rem;
+    }
+
+    th:last-child, td:last-child {
+        padding-right: 1rem;
+    }
+}
+
+/* Pour les écrans de 30rem (480px) et moins */
+@media screen and (max-width: 30rem) {
+    main {
+        margin-top: 8rem;
+    }
+    .search__form{
+        display: none;
+    }
+    nav{
+        display: none;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .sousligner {
+        width: 10rem;
+    }
+
+    #accueilsection > article {
+        width: 20rem;
+        margin-bottom: 5rem;
+    }
+
+    .paragrapheArticle {
+        font-size: 1.6rem;
+    }
+
+    .btnAddTelephone {
+        width: 3.5rem;
+        height: 3.5rem;
+        margin-top: 1rem;
+    }
+    th, td {
+        font-size: 1rem;
+    }
+    
 }

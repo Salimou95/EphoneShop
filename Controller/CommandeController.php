@@ -5,6 +5,8 @@ use Model\Entity\Commande;
 use Model\Repository\CommandeRepository;
 use Model\Entity\DetailCommande;
 use Model\Repository\DetailCommandeRepository;
+use Model\Entity\Telephone;
+use Model\Repository\TelephoneRepository;
 use Service\Panier;
 
 use Controller\BaseController;
@@ -16,6 +18,8 @@ class CommandeController extends BaseController
     private CommandeRepository $commandeRepository;
     private DetailCommande $detailCommande;
     private DetailCommandeRepository $detailCommandeRepository;
+    private Telephone $telephone;
+    private TelephoneRepository $telephoneRepository;
     
 
     public function __construct()
@@ -24,6 +28,8 @@ class CommandeController extends BaseController
         $this->commandeRepository = new CommandeRepository;
         $this->detailCommande = new DetailCommande;
         $this->detailCommandeRepository = new DetailCommandeRepository;
+        $this->telephone = new Telephone;
+        $this->telephoneRepository = new TelephoneRepository;
     }
 
     public function created()
@@ -43,7 +49,7 @@ class CommandeController extends BaseController
             foreach ($panier as $value) {   
 
                 $this->detailCommandeRepository->createDetailCommande($idCommande, $value["telephone"]->getId(), $value["quantite"]);
-                
+                $this->telephoneRepository->updateQuantityTelephone($value["telephone"]->getId(), $value["quantite"]);
                 
             }
             $this->remove("panier");

@@ -13,7 +13,7 @@ abstract class BaseController
 
         include "Public/header.php";
         include "View/$fichier";
-        // include "public/footer.html.php";
+        include "public/footer.php";
     }
 
     public function getUser()

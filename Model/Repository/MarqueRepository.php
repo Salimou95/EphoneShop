@@ -22,10 +22,10 @@ class MarqueRepository extends BaseRepository{
 
 public function addMarque(Marque $marque){
     try{
-        $requete = $this->dbConnection->prepare("INSERT INTO marque (nomMarque, image, created_at) VALUES (:nomMarque, :image, NOW())");
-        $requete->bindValue(':nomMarque', $marque->getNomMarque(), \PDO::PARAM_STR);
-        $requete->bindValue(':image', $marque->getImage(), \PDO::PARAM_STR);
-        $requete->execute();
+        $request = $this->dbConnection->prepare("INSERT INTO marque (nomMarque, image, created_at) VALUES (:nomMarque, :image, NOW())");
+        $request->bindValue(':nomMarque', $marque->getNomMarque(), \PDO::PARAM_STR);
+        $request->bindValue(':image', $marque->getImage(), \PDO::PARAM_STR);
+        $request->execute();
         return true;
     }catch (PDOException $e) {
         exit("Erreur lors de l'insertion de la marque: ". $e->getMessage());
@@ -34,10 +34,10 @@ public function addMarque(Marque $marque){
 
 public function udapteMarque(Marque $marque){
     try{
-        $requete = $this->dbConnection->prepare("UPDATE marque SET nomMarque = :nomMarque WHERE id = :id");
-        $requete->bindValue(':nomMarque', $marque->getNomMarque(), \PDO::PARAM_STR);
-        $requete->bindValue(':id', $marque->getId(), \PDO::PARAM_INT);
-        $requete->execute();
+        $request = $this->dbConnection->prepare("UPDATE marque SET nomMarque = :nomMarque WHERE id = :id");
+        $request->bindValue(':nomMarque', $marque->getNomMarque(), \PDO::PARAM_STR);
+        $request->bindValue(':id', $marque->getId(), \PDO::PARAM_INT);
+        $request->execute();
         return true;
     }catch (PDOException $e) {
         exit("Erreur lors de la modification de la marque: ". $e->getMessage());

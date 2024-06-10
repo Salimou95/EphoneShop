@@ -39,3 +39,30 @@ function addTelephoneToPanierAjax(productId) {
     });
   });
 }
+
+function cofirmDelete() {
+  $(document).ready(function() {
+      $(".lien").on("click", function(event) {
+          event.preventDefault();
+
+          var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ?");
+
+          if (confirmation) {
+              window.location.href = $(this).attr("href");
+          } else {
+              console.log("suppresion annulé.");
+          }
+      });
+  });
+}
+
+function deleteMesage() {
+  $(document).ready(function() {
+      $(".cross").on("click", function() {
+          var change = $(this).closest(".alert");
+          if (change.length) {
+              change.toggleClass("disparition");
+          }
+      });
+  });
+}

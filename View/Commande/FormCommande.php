@@ -1,11 +1,11 @@
 <?php require "View/errors_form.html.php";?>
 <main>
-    <h1>Ajouter un Téléphone</h1>
+    <h1>Gerer Commande</h1>
     <section class="sectionForm">
         <article>
-            <form method="post" enctype="multipart/form-data" class="form">
+            <form method="post"class="form">
 
-                <label for="fk_marque" class="labeform">Marque:</label>
+                <label for="statut" class="labeform">statut:</label>
                 <select name="fk_marque" id="fk_marque" class="inputform" required>
                 <?php foreach($marques as $marque){?>
                     <option value="<?=$marque->getId()?>" <?=  $telephone->getFk_marque() == $marque->getId() ? "selected" : "" ?>><?= $marque->getNomMarque()?></option>

@@ -11,13 +11,13 @@ class CommentaireRepository extends BaseRepository{
     public function addCommentaire(Commentaire $commentaire, $id){
         try{
             $commentaire->setFk_utilisateur($_SESSION["user"]->getId());
-            $resultat = $this->dbConnection->prepare("INSERT INTO `commentaire` (`avis`, `note`, `fk_Utilisateur`, `fk_Telephone`,`created_at`) VALUES (:avis, :note, :fk_Utilisateur, :fk_Telephone, NOW())");
+            $request = $this->dbConnection->prepare("INSERT INTO `commentaire` (`avis`, `note`, `fk_Utilisateur`, `fk_Telephone`,`created_at`) VALUES (:avis, :note, :fk_Utilisateur, :fk_Telephone, NOW())");
         
-            $resultat->bindValue(":avis", $commentaire->getAvis(), \PDO::PARAM_STR);
-            $resultat->bindValue(":note", $commentaire->getNote(),  \PDO::PARAM_INT);
-            $resultat->bindValue(":fk_Utilisateur",$commentaire->getFk_utilisateur(),  \PDO::PARAM_INT);
-            $resultat->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);
-            $resultat->execute();
+            $request->bindValue(":avis", $commentaire->getAvis(), \PDO::PARAM_STR);
+            $request->bindValue(":note", $commentaire->getNote(),  \PDO::PARAM_INT);
+            $request->bindValue(":fk_Utilisateur",$commentaire->getFk_utilisateur(),  \PDO::PARAM_INT);
+            $request->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);
+            $request->execute();
         }catch(PDOException $e) {
             exit("Erreur lors de l'insertion du commentaire: " . $e->getMessage());
         }
@@ -27,11 +27,11 @@ class CommentaireRepository extends BaseRepository{
     public function getCommentaire(Commentaire $commentaire, $id){
         try{
 
-            $resultat = $this->dbConnection->prepare("SELECT commentaire.*, utilisateur.nomUtilisateur, utilisateur.prenomUtilisateur, utilisateur.id as utilisateur_id FROM commentaire INNER JOIN utilisateur ON commentaire.fk_Utilisateur = utilisateur.id WHERE fk_Telephone = :id ORDER BY created_at DESC");
-            $resultat->bindValue(":id", $id);
-            $resultat->execute();
-            $resultat->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\Commentaire");
-            return $resultat->fetchAll();
+            $request = $this->dbConnection->prepare("SELECT commentaire.*, utilisateur.nomUtilisateur, utilisateur.prenomUtilisateur, utilisateur.id as utilisateur_id FROM commentaire INNER JOIN utilisateur ON commentaire.fk_Utilisateur = utilisateur.id WHERE fk_Telephone = :id ORDER BY created_at DESC");
+            $request->bindValue(":id", $id);
+            $request->execute();
+            $request->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\Commentaire");
+            return $request->fetchAll();
             
         }catch (PDOException $e) {
             exit("Erreur lors de l'affichage du commentaire: " . $e->getMessage());
@@ -40,23 +40,25 @@ class CommentaireRepository extends BaseRepository{
 
     public function udapteCommentaire(Commentaire $commentaire){
         try{
-            $resultat = $this->dbConnection->prepare("UPDATE commentaire SET avis = :avis, note = :note WHERE id = :id");
-            $resultat->bindValue(":avis", $commentaire->getAvis(), \PDO::PARAM_STR);
-            $resultat->bindValue(":note", $commentaire->getNote(),  \PDO::PARAM_INT);
-            $resultat->bindValue(":id", $commentaire->getId(),  \PDO::PARAM_INT);
-            $resultat->execute();
+            $request = $this->dbConnection->prepare("UPDATE commentaire SET avis = :avis, note = :note WHERE id = :id");
+            $request->bindValue(":avis", $commentaire->getAvis(), \PDO::PARAM_STR);
+            $request->bindValue(":note", $commentaire->getNote(),  \PDO::PARAM_INT);
+            $request->bindValue(":id", $commentaire->getId(),  \PDO::PARAM_INT);
+            $request->execute();
         }catch(PDOException $e) {
             exit("Erreur lors de l'enregistrement du commentaire: " . $e->getMessage());
         }
     }
 
+
+
     public function moyenneNote($id){
         try{
-            $resultat = $this->dbConnection->prepare("SELECT AVG(note) AS moyenne FROM `commentaire` WHERE commentaire.fk_Telephone = :fk_Telephone");
-            $resultat->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);
-            $resultat->execute();
-            $resultat->setFetchMode(\PDO::FETCH_CLASS,"Model\Entity\Commentaire");
-            return $resultat->fetch();
+            $request = $this->dbConnection->prepare("SELECT AVG(note) AS moyenne FROM `commentaire` WHERE commentaire.fk_Telephone = :fk_Telephone");
+            $request->bindValue(":fk_Telephone", $id,  \PDO::PARAM_INT);
+            $request->execute();
+            $request->setFetchMode(\PDO::FETCH_CLASS,"Model\Entity\Commentaire");
+            return $request->fetch();
         }catch(PDOException $e) {
             exit("Erreur lors de la moyenne du telephone: " . $e->getMessage());
         }

@@ -8,9 +8,9 @@ class PanierRepository extends BaseRepository{
 
     public function createPanier($utilisateurId) {
         try{
-            $requete = $this->dbConnection->prepare("INSERT INTO `panier` (`fk_UtilisateurPanier`) VALUES (:fk_UtilisateurPanier)");
-            $requete->bindValue(":fk_UtilisateurPanier", $utilisateurId, \PDO::PARAM_INT);
-            $requete->execute();
+            $request = $this->dbConnection->prepare("INSERT INTO `panier` (`fk_UtilisateurPanier`) VALUES (:fk_UtilisateurPanier)");
+            $request->bindValue(":fk_UtilisateurPanier", $utilisateurId, \PDO::PARAM_INT);
+            $request->execute();
         }catch(PDOException $e) {
             exit("Erreur lors de l'ajout du panier: " . $e->getMessage()); 
         }
@@ -20,10 +20,10 @@ class PanierRepository extends BaseRepository{
     public function udaptePanier(Panier $panier, $qtpanier) {
         try{
             $panier->setFk_UtilisateurPanier($_SESSION["user"]->getId());
-            $requete = $this->bdd->prepare("UPDATE `panier` SET `quantitePanier` = :qtpanier WHERE `panier`.`fk_UtilisateurPanier` = :fk_UtilisateurPanier;");
-            $requete->bindParam(":qtpanier", $qtpanier);
-            $requete->bindParam(":fk_UtilisateurPanier", $panier->getFk_UtilisateurPanier());
-            $requete->execute();
+            $request = $this->bdd->prepare("UPDATE `panier` SET `quantitePanier` = :qtpanier WHERE `panier`.`fk_UtilisateurPanier` = :fk_UtilisateurPanier;");
+            $request->bindParam(":qtpanier", $qtpanier);
+            $request->bindParam(":fk_UtilisateurPanier", $panier->getFk_UtilisateurPanier());
+            $request->execute();
         }catch(PDOException $e) {
             exit("Erreur lors de l'ajout du panier: " . $e->getMessage()); 
         }

@@ -23,16 +23,16 @@ class UtilisateurRepository extends BaseRepository{
 
     public function registrationUser(Utilisateur $utilisateur) {
         try {
-            $resultat = $this->dbConnection->prepare("INSERT INTO `utilisateur` (`nomUtilisateur`, `prenomUtilisateur`, `emailUtilisateur`, `mdpUtilisateur`, `dateNaissanceUtilisateur`, `telephoneUtilisateur`, `sexeUtilisateur`,roleUtilisateur) VALUES (:nomUtilisateur, :prenomUtilisateur, :emailUtilisateur, :mdpUtilisateur, :dateNaissanceUtilisateur, :telephoneUtilisateur, :sexeUtilisateur,:roleUtilisateur)");
-            $resultat->bindValue(":nomUtilisateur", $utilisateur->getNomUtilisateur(), \PDO::PARAM_STR);
-            $resultat->bindValue(":prenomUtilisateur", $utilisateur->getPrenomUtilisateur(), \PDO::PARAM_STR);
-            $resultat->bindValue(":emailUtilisateur", $utilisateur->getEmailUtilisateur(), \PDO::PARAM_STR);
-            $resultat->bindValue(":mdpUtilisateur", $utilisateur->getMdpUtilisateur(), \PDO::PARAM_STR);
-            $resultat->bindValue(":dateNaissanceUtilisateur", $utilisateur->getDateNaissanceUtilisateur());
-            $resultat->bindValue(":telephoneUtilisateur", $utilisateur->getTelephoneUtilisateur(), \PDO::PARAM_INT);
-            $resultat->bindValue(":sexeUtilisateur", $utilisateur->getSexeUtilisateur(), \PDO::PARAM_STR);
-            $resultat->bindValue(":roleUtilisateur", $utilisateur->getRoleUtilisateur(), \PDO::PARAM_STR);
-            $resultat->execute();
+            $request = $this->dbConnection->prepare("INSERT INTO `utilisateur` (`nomUtilisateur`, `prenomUtilisateur`, `emailUtilisateur`, `mdpUtilisateur`, `dateNaissanceUtilisateur`, `telephoneUtilisateur`, `sexeUtilisateur`,roleUtilisateur) VALUES (:nomUtilisateur, :prenomUtilisateur, :emailUtilisateur, :mdpUtilisateur, :dateNaissanceUtilisateur, :telephoneUtilisateur, :sexeUtilisateur,:roleUtilisateur)");
+            $request->bindValue(":nomUtilisateur", $utilisateur->getNomUtilisateur(), \PDO::PARAM_STR);
+            $request->bindValue(":prenomUtilisateur", $utilisateur->getPrenomUtilisateur(), \PDO::PARAM_STR);
+            $request->bindValue(":emailUtilisateur", $utilisateur->getEmailUtilisateur(), \PDO::PARAM_STR);
+            $request->bindValue(":mdpUtilisateur", $utilisateur->getMdpUtilisateur(), \PDO::PARAM_STR);
+            $request->bindValue(":dateNaissanceUtilisateur", $utilisateur->getDateNaissanceUtilisateur());
+            $request->bindValue(":telephoneUtilisateur", $utilisateur->getTelephoneUtilisateur(), \PDO::PARAM_INT);
+            $request->bindValue(":sexeUtilisateur", $utilisateur->getSexeUtilisateur(), \PDO::PARAM_STR);
+            $request->bindValue(":roleUtilisateur", $utilisateur->getRoleUtilisateur(), \PDO::PARAM_STR);
+            $request->execute();
         }catch (PDOException $e) {
             exit ("Erreur lors de l'enregistrement de l'utilisateur : " . $e->getMessage());
         }
@@ -63,15 +63,15 @@ class UtilisateurRepository extends BaseRepository{
 
         public function udapteUtilisateur(Utilisateur $utilisateur){
             try{
-                $resultat = $this->dbConnection->prepare("UPDATE `utilisateur` SET `nomUtilisateur` = :nomUtilisateur, `prenomUtilisateur`= :prenomUtilisateur, `emailUtilisateur` = :emailUtilisateur, `dateNaissanceUtilisateur` = :dateNaissanceUtilisateur, `telephoneUtilisateur` = :telephoneUtilisateur, `sexeUtilisateur` = :sexeUtilisateur  WHERE `utilisateur`.`id` = :id;");
-                $resultat->bindValue(":id", $utilisateur->getId(), \PDO::PARAM_INT);
-                $resultat->bindValue(":nomUtilisateur", $utilisateur->getNomUtilisateur(), \PDO::PARAM_STR);
-                $resultat->bindValue(":prenomUtilisateur", $utilisateur->getPrenomUtilisateur(), \PDO::PARAM_STR);
-                $resultat->bindValue(":emailUtilisateur", $utilisateur->getEmailUtilisateur(), \PDO::PARAM_STR);
-                $resultat->bindValue(":dateNaissanceUtilisateur", $utilisateur->getDateNaissanceUtilisateur(), \PDO::PARAM_STR);
-                $resultat->bindValue(":telephoneUtilisateur", $utilisateur->getTelephoneUtilisateur(), \PDO::PARAM_INT);
-                $resultat->bindValue(":sexeUtilisateur", $utilisateur->getSexeUtilisateur(), \PDO::PARAM_STR);
-                $resultat->execute();
+                $request = $this->dbConnection->prepare("UPDATE `utilisateur` SET `nomUtilisateur` = :nomUtilisateur, `prenomUtilisateur`= :prenomUtilisateur, `emailUtilisateur` = :emailUtilisateur, `dateNaissanceUtilisateur` = :dateNaissanceUtilisateur, `telephoneUtilisateur` = :telephoneUtilisateur, `sexeUtilisateur` = :sexeUtilisateur  WHERE `utilisateur`.`id` = :id;");
+                $request->bindValue(":id", $utilisateur->getId(), \PDO::PARAM_INT);
+                $request->bindValue(":nomUtilisateur", $utilisateur->getNomUtilisateur(), \PDO::PARAM_STR);
+                $request->bindValue(":prenomUtilisateur", $utilisateur->getPrenomUtilisateur(), \PDO::PARAM_STR);
+                $request->bindValue(":emailUtilisateur", $utilisateur->getEmailUtilisateur(), \PDO::PARAM_STR);
+                $request->bindValue(":dateNaissanceUtilisateur", $utilisateur->getDateNaissanceUtilisateur(), \PDO::PARAM_STR);
+                $request->bindValue(":telephoneUtilisateur", $utilisateur->getTelephoneUtilisateur(), \PDO::PARAM_INT);
+                $request->bindValue(":sexeUtilisateur", $utilisateur->getSexeUtilisateur(), \PDO::PARAM_STR);
+                $request->execute();
             }catch (PDOException $e) {
                 exit ("Erreur lors de la mise a jour de l'utilisateur : " . $e->getMessage());
             }

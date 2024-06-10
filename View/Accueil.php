@@ -1,6 +1,8 @@
 
 <main class="main">
     <h1><?=$h1?></h1>
+    <div class="sousligner"></div>
+
 
     <section id="accueilsection">
         <?php
@@ -19,8 +21,6 @@
         <?php }?>
     </section>
 </main>
-<?php var_dump($_SESSION);
-?>
 <script>
 $(document).ready(function() {
 

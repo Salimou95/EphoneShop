@@ -8,16 +8,14 @@ class CommandeRepository extends BaseRepository{
 
     public function createCommande(Commande $commande){
         try{
-
-
             $commande->setFk_UtilisateurCommande($_SESSION["user"]->getId());
             $this->dbConnection->beginTransaction();
-            $requete = $this->dbConnection->prepare("INSERT INTO `commande` (`statut`, `dateLivraison`, `prix`, `fkUtilisateurCommande`,`created_at`) VALUES (:statut, :dateLivraison, :prix, :fk_UtilisateurCommande, NOW())");
-            $requete->bindValue(":statut", $commande->getStatut(), \PDO::PARAM_STR);
-            $requete->bindValue(":dateLivraison", $commande->getDateLivraison());
-            $requete->bindValue(":prix",$commande->getPrix(),  \PDO::PARAM_INT);
-            $requete->bindValue(":fk_UtilisateurCommande", $commande->getFk_UtilisateurCommande(),  \PDO::PARAM_INT);
-            $requete->execute();
+            $request = $this->dbConnection->prepare("INSERT INTO `commande` (`statut`, `dateLivraison`, `prix`, `fkUtilisateurCommande`,`created_at`) VALUES (:statut, :dateLivraison, :prix, :fk_UtilisateurCommande, NOW())");
+            $request->bindValue(":statut", $commande->getStatut(), \PDO::PARAM_STR);
+            $request->bindValue(":dateLivraison", $commande->getDateLivraison());
+            $request->bindValue(":prix",$commande->getPrix(),  \PDO::PARAM_INT);
+            $request->bindValue(":fk_UtilisateurCommande", $commande->getFk_UtilisateurCommande(),  \PDO::PARAM_INT);
+            $request->execute();
             $idCommande = $this->dbConnection->lastInsertId();
             $this->dbConnection->commit();
             return $idCommande;
@@ -28,31 +26,18 @@ class CommandeRepository extends BaseRepository{
     
     }
 
-    public function getCommande(Commande $commande, $id){
-        try{
+    public function updateCommande(Commande $commande)
+    {
 
-            $resultat = $this->dbConnection->prepare("SELECT commentaire.*, utilisateur.nomUtilisateur, utilisateur.prenomUtilisateur, utilisateur.id as utilisateur_id FROM commentaire INNER JOIN utilisateur ON commentaire.fk_Utilisateur = utilisateur.id WHERE fk_Telephone = :id ORDER BY created_at DESC");
-            $resultat->bindValue(":id", $id);
-            $resultat->execute();
-            $resultat->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\Commentaire");
-            return $resultat->fetchAll();
-            
-        }catch (PDOException $e) {
-            exit("Erreur lors de l'affichage du commentaire: " . $e->getMessage());
-        }
+        $request = $this->dbConnection->prepare("UPDATE commande 
+        SET statut = :statut,
+        WHERE id = :id");
+        $request->bindValue(":id", $order->getId());
+        $request->bindValue(":state", $order->getState());
+        $request = $request->execute();
+        
     }
 
-    public function udapteCommentaire(Commentaire $commentaire){
-        try{
-            $resultat = $this->dbConnection->prepare("UPDATE commentaire SET avis = :avis, note = :note WHERE id = :id");
-            $resultat->bindValue(":avis", $commentaire->getAvis(), \PDO::PARAM_STR);
-            $resultat->bindValue(":note", $commentaire->getNote(),  \PDO::PARAM_INT);
-            $resultat->bindValue(":id", $commentaire->getId(),  \PDO::PARAM_INT);
-            $resultat->execute();
-        }catch(PDOException $e) {
-            exit("Erreur lors de l'enregistrement du commentaire: " . $e->getMessage());
-        }
-    }
 
 
 

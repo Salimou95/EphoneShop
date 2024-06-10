@@ -25,3 +25,6 @@
         </table>
     </section>
 </main>
+<script>
+cofirmDelete()
+</script>

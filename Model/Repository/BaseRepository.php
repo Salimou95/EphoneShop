@@ -19,11 +19,11 @@ class BaseRepository
     public function findAll(BaseEntity $table): ?array
     {
         try {
-            $requete = $this->dbConnection->prepare("SELECT * FROM $table");
-            $requete->execute();
-            if ($requete) {
+            $request = $this->dbConnection->prepare("SELECT * FROM $table");
+            $request->execute();
+            if ($request) {
                 $class = "Model\Entity\\" . ucfirst($table);  // ucfirst : majuscule au début de la chaine de caractères
-                return $requete->fetchAll(\PDO::FETCH_CLASS, $class);
+                return $request->fetchAll(\PDO::FETCH_CLASS, $class);
             }
         }catch(\PDOException $e) {
             exit("Erreur lors de la recuperation des données: " . $e->getMessage());
@@ -35,19 +35,19 @@ class BaseRepository
         try {
             $sql = "SELECT * FROM $tableName WHERE id = :id";
             
-            $requete = $this->dbConnection->prepare($sql);
-            $requete->bindValue(':id', $id);
+            $request = $this->dbConnection->prepare($sql);
+            $request->bindValue(':id', $id);
 
             
-            $requete->execute();
+            $request->execute();
             $class = "Model\Entity\\" . ucfirst($tableName);
 
-            if ($requete->rowCount() == 1) {
-                $requete->setFetchMode(\PDO::FETCH_CLASS, $class);
-                return $requete->fetch();
-            } else if ($requete->rowCount() > 1) {
+            if ($request->rowCount() == 1) {
+                $request->setFetchMode(\PDO::FETCH_CLASS, $class);
+                return $request->fetch();
+            } else if ($request->rowCount() > 1) {
                 // ucfirst : majuscule au début de la chaine de caractères
-                $result = $requete->fetchAll(\PDO::FETCH_CLASS, $class);
+                $result = $request->fetchAll(\PDO::FETCH_CLASS, $class);
                 return $result;
             }
         }catch (\PDOException $e) {

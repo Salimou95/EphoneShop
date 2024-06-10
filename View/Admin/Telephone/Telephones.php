@@ -35,7 +35,5 @@
     </section>
 </main>
 <script>
-    function afficherAlerte() {
-        confirm("Voulez-vous vraiment supprimer ce télephone <?=$telephone->getId() ?>");
-}
+cofirmDelete()
 </script>

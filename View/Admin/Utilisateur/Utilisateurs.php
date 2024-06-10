@@ -21,8 +21,8 @@
                         <td>0<?= htmlspecialchars($utilisateur->getTelephoneUtilisateur())?></td>
                         <td><?= htmlspecialchars($utilisateur->getRoleUtilisateur())?></td>
                         <td>
-                            <a href="<?= addLink("utilisateur","ReadOnly",$utilisateur->getId(),"admin")?>"><i class="fa-solid fa-eye" style="color: #6142fe;"></i></a>
-                            <a href="<?= addLink("udapteMarque",$utilisateur->getId(),"admin")?>"><i class="fa-solid fa-pen" style="color: #6142fe;"></i></a>
+                            <a href="<?= addLink("utilisateur","read",$utilisateur->getId(),"admin")?>"><i class="fa-solid fa-eye" style="color: #6142fe;"></i></a>
+                            <a href="<?= addLink("utilisateur","udapte",$utilisateur->getId(),"admin")?>"><i class="fa-solid fa-pen" style="color: #6142fe;"></i></a>
                             <a href="<?= addLink("utilisateur","delete",$utilisateur->getId(),"admin")?>" class="lien"><i class="fa-solid fa-trash" style="color: #6142fe;"></i></a>
                         </td>
                     </tr>
@@ -32,7 +32,5 @@
     </section>
 </main>
 <script>
-    function afficherAlerte() {
-        confirm("Voulez-vous vraiment supprimer cet utilisateur <?=$utilisateur->getId() ?>");
-}
+cofirmDelete()
 </script>

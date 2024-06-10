@@ -10,59 +10,59 @@ class TelephoneRepository extends BaseRepository{
     public function addTelephone(Telephone $telephone){
         try{
             $telephone->setFk_utilisateur($_SESSION["user"]->getId());
-            $requete = $this->dbConnection->prepare("INSERT INTO `telephone` (`fk_marque`,`fk_utilisateur`, `prix`, `modele`, `couleur`, `systemeexploitation`, `ram`,`memoire`,`paysfabrication`,`description`, `quantite`, `image`) VALUES (:fk_marque, :fk_utilisateur, :prix, :modele, :couleur, :systemeexploitation,:ram,:memoire,:paysfabrication, :description, :quantite,:image)");
+            $request = $this->dbConnection->prepare("INSERT INTO `telephone` (`fk_marque`,`fk_utilisateur`, `prix`, `modele`, `couleur`, `systemeexploitation`, `ram`,`memoire`,`paysfabrication`,`description`, `quantite`, `image`) VALUES (:fk_marque, :fk_utilisateur, :prix, :modele, :couleur, :systemeexploitation,:ram,:memoire,:paysfabrication, :description, :quantite,:image)");
             
-            $requete->bindValue(':fk_marque', $telephone->getFk_marque(),  \PDO::PARAM_INT);
-            $requete->bindValue(':fk_utilisateur', $telephone->getFk_utilisateur(),  \PDO::PARAM_INT);
-            $requete->bindValue(':prix', $telephone->getPrix(),  \PDO::PARAM_INT);
-            $requete->bindValue(':modele', $telephone->getModele(), \PDO::PARAM_STR);
-            $requete->bindValue(':couleur', $telephone->getCouleur(), \PDO::PARAM_STR);
-            $requete->bindValue(':systemeexploitation', $telephone->getSystemeexploitation(), \PDO::PARAM_STR);
-            $requete->bindValue(':ram', $telephone->getRam(),  \PDO::PARAM_INT);
-            $requete->bindValue(':memoire', $telephone->getMemoire(),  \PDO::PARAM_INT);
-            $requete->bindValue(':paysfabrication', $telephone->getPaysfabrication(), \PDO::PARAM_STR);
-            $requete->bindValue(':description', $telephone->getDescription(), \PDO::PARAM_STR);
-            $requete->bindValue(':quantite', $telephone->getQuantite(),  \PDO::PARAM_INT);
-            $requete->bindValue(':image', $telephone->getImage(), \PDO::PARAM_STR);
+            $request->bindValue(':fk_marque', $telephone->getFk_marque(),  \PDO::PARAM_INT);
+            $request->bindValue(':fk_utilisateur', $telephone->getFk_utilisateur(),  \PDO::PARAM_INT);
+            $request->bindValue(':prix', $telephone->getPrix(),  \PDO::PARAM_INT);
+            $request->bindValue(':modele', $telephone->getModele(), \PDO::PARAM_STR);
+            $request->bindValue(':couleur', $telephone->getCouleur(), \PDO::PARAM_STR);
+            $request->bindValue(':systemeexploitation', $telephone->getSystemeexploitation(), \PDO::PARAM_STR);
+            $request->bindValue(':ram', $telephone->getRam(),  \PDO::PARAM_INT);
+            $request->bindValue(':memoire', $telephone->getMemoire(),  \PDO::PARAM_INT);
+            $request->bindValue(':paysfabrication', $telephone->getPaysfabrication(), \PDO::PARAM_STR);
+            $request->bindValue(':description', $telephone->getDescription(), \PDO::PARAM_STR);
+            $request->bindValue(':quantite', $telephone->getQuantite(),  \PDO::PARAM_INT);
+            $request->bindValue(':image', $telephone->getImage(), \PDO::PARAM_STR);
 
-            $requete->execute();
+            $request->execute();
             
         }catch (PDOException $e) {
-            echo "Erreur lors de l'enregistrement du telephone : " . $e->getMessage();
+            exit("Erreur lors de la creation du telephone : " . $e->getMessage());
         }
     }
 
     public function udapteTelephone(Telephone $telephone){
         try {
-            $requete = $this->dbConnection->prepare("UPDATE `telephone` SET `fk_marque` = :fk_marque, `prix` = :prix, `modele` = :modele, `couleur` = :couleur, `systemeexploitation` = :systemeexploitation, `ram` = :ram, `memoire` = :memoire, `paysfabrication` = :paysfabrication, `description` = :description, `quantite` = :quantite, `image` = :image WHERE `telephone`.`id` = :idTelephone");
+            $request = $this->dbConnection->prepare("UPDATE `telephone` SET `fk_marque` = :fk_marque, `prix` = :prix, `modele` = :modele, `couleur` = :couleur, `systemeexploitation` = :systemeexploitation, `ram` = :ram, `memoire` = :memoire, `paysfabrication` = :paysfabrication, `description` = :description, `quantite` = :quantite, `image` = :image WHERE `telephone`.`id` = :idTelephone");
     
-            $requete->bindValue(':fk_marque', $telephone->getFk_marque(), \PDO::PARAM_INT);
-            $requete->bindValue(':prix', $telephone->getPrix(), \PDO::PARAM_INT);
-            $requete->bindValue(':modele', $telephone->getModele(), \PDO::PARAM_STR);
-            $requete->bindValue(':couleur', $telephone->getCouleur(), \PDO::PARAM_STR);
-            $requete->bindValue(':systemeexploitation', $telephone->getSystemeexploitation(), \PDO::PARAM_STR);
-            $requete->bindValue(':ram', $telephone->getRam(), \PDO::PARAM_INT);
-            $requete->bindValue(':memoire', $telephone->getMemoire(), \PDO::PARAM_INT);
-            $requete->bindValue(':paysfabrication', $telephone->getPaysfabrication(), \PDO::PARAM_STR);
-            $requete->bindValue(':description', $telephone->getDescription(), \PDO::PARAM_STR);
-            $requete->bindValue(':quantite', $telephone->getQuantite(), \PDO::PARAM_STR);
-            $requete->bindValue(':image', $telephone->getImage(), \PDO::PARAM_STR);
-            $requete->bindValue(':idTelephone', $telephone->getId(), \PDO::PARAM_INT);
+            $request->bindValue(':fk_marque', $telephone->getFk_marque(), \PDO::PARAM_INT);
+            $request->bindValue(':prix', $telephone->getPrix(), \PDO::PARAM_INT);
+            $request->bindValue(':modele', $telephone->getModele(), \PDO::PARAM_STR);
+            $request->bindValue(':couleur', $telephone->getCouleur(), \PDO::PARAM_STR);
+            $request->bindValue(':systemeexploitation', $telephone->getSystemeexploitation(), \PDO::PARAM_STR);
+            $request->bindValue(':ram', $telephone->getRam(), \PDO::PARAM_INT);
+            $request->bindValue(':memoire', $telephone->getMemoire(), \PDO::PARAM_INT);
+            $request->bindValue(':paysfabrication', $telephone->getPaysfabrication(), \PDO::PARAM_STR);
+            $request->bindValue(':description', $telephone->getDescription(), \PDO::PARAM_STR);
+            $request->bindValue(':quantite', $telephone->getQuantite(), \PDO::PARAM_STR);
+            $request->bindValue(':image', $telephone->getImage(), \PDO::PARAM_STR);
+            $request->bindValue(':idTelephone', $telephone->getId(), \PDO::PARAM_INT);
     
-            $requete->execute();
+            $request->execute();
 
         }catch (PDOException $e) {
-            echo "Erreur lors de la modification du telephone : " . $e->getMessage();
+            exit("Erreur lors de la modification du telephone : " . $e->getMessage());
         }
     }
 
     public function checkTelephoneExist($modele)
     {
         try{
-            $requete = $this->dbConnection->prepare("SELECT COUNT(*) FROM telephone WHERE modele = :modele");
-            $requete->bindParam(":modele", $modele);
-            $requete->execute(); 
-            $count = $requete->fetchColumn();
+            $request = $this->dbConnection->prepare("SELECT COUNT(*) FROM telephone WHERE modele = :modele");
+            $request->bindParam(":modele", $modele);
+            $request->execute(); 
+            $count = $request->fetchColumn();
             return $count > 0 ? true : false;
         }catch (PDOException $e) {
             echo "Erreur lors de la verification email de l'utilisateur existant: " . $e->getMessage();
@@ -70,10 +70,26 @@ class TelephoneRepository extends BaseRepository{
         
     }
 
-    public function udapteQuantiteTelephone(){
+    public function updateQuantityTelephone($telephoneId, $quantite)
+    {
+        try{
+            $request = $this->dbConnection->prepare("UPDATE telephone 
+            SET quantite = quantite - :quantite
+            WHERE id = :id");
+    
+            $request->bindValue(":id", $telephoneId);
+            $request->bindValue(":quantite", $quantite);
+    
+            $request->execute();
 
+        }catch (PDOException $e) {
+
+            exit("Erreur lors de la modification des stocks: " . $e->getMessage());
+
+        }
+
+        
     }
-
 
 
 }
