@@ -7,7 +7,7 @@
     </section>
     <section class="sectionForm">
         <article>
-            <form method="post">
+            <form method="post" >
             <article>
                 <label for="emailUtilisateur" class="labeform">Email :</label>
                 <input type="email" name="email" class="inputform" placeholder="Inscrivez votre email" required>
@@ -23,7 +23,7 @@
             </form>
         </article>
         <article>
-            <img style="height: 500px;" src="<?= UPLOAD_IMG. "formimg.png"?>" alt="">
+            <img  src="<?= UPLOAD_IMG. "formimg.png"?>" alt="">
         </article>
     </section>
 </main>

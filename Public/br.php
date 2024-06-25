@@ -34,3 +34,18 @@
         </div>
     <?php endif;?>
 </nav>
+
+
+<form action="" class="search__form">
+                <div class="search" id="search">
+                    <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
+                    <input type="search" id="search-input" placeholder="Search Phone..." class="search__input">
+            <ul id="telephone-list">
+
+            <?php  if(isset($telephones))
+            foreach ($telephones as $telephone): ?>
+                <li><a href="<?= addLink("telephone","read",$telephone->getId())?>"><?= htmlspecialchars($telephone->getModele())?></a></li>
+            <?php endforeach; ?>
+        </ul>
+        </div>
+    </form>

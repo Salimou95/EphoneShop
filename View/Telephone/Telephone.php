@@ -1,6 +1,4 @@
 <?php require "View/errors_form.html.php";?>
-<?php var_dump($moyenne)
-?>
 
 
 <main>

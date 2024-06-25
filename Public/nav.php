@@ -3,19 +3,7 @@
             <img id="logo" src="<?php echo UPLOAD_IMG; ?>Logo.png" alt="" class="Logo">
         </a>
         
-        <form action="" class="search__form">
-                <div class="search" id="search">
-                    <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
-                    <input type="search" id="search-input" placeholder="Search Phone..." class="search__input">
-            <ul id="telephone-list">
-
-            <?php  if(isset($telephones))
-            foreach ($telephones as $telephone): ?>
-                <li><a href="<?= addLink("telephone","read",$telephone->getId())?>"><?= htmlspecialchars($telephone->getModele())?></a></li>
-            <?php endforeach; ?>
-        </ul>
-        </div>
-    </form>
+        
           
        
 
@@ -24,12 +12,13 @@
     <div class="icon">
     
         <a class="nav-link" href="<?= addLink("Panier", "index")?>"><i class="fa-solid fa-basket-shopping"></i></a> 
-        
-        <a class="nav-link" href="<?= addLink("utilisateur", "connexion")?>"><i class="fa-solid fa-circle-user" id="user-btn"></i></a>
+        <a class="nav-link circle" href="<?= addLink("utilisateur", "connexion")?>"><i class="fa-solid fa-circle-user" id="user-btn"></i></a>
 
-        
-
-
+        <div id="menu">
+          <div class="menuburger"></div>
+          <div class="menuburger"></div>
+          <div class="menuburger"></div>
+        </div>
 
     </div>
 </section>
