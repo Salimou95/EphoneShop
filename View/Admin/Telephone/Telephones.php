@@ -1,6 +1,11 @@
 <main>
-<h1><?= $h1?></h1>
-
+    <section>
+        <h1><?= $h1?></h1>
+        <div class="sousligner"></div>
+    </section>
+    <section>
+        <a href="<?= addLink("telephone","created",null,"admin")?>">Ajouter un telephone</a>
+    </section>
     <section>
         <table>
             <thead>

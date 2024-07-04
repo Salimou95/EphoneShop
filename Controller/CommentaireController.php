@@ -40,13 +40,13 @@ class CommentaireController extends BaseController
                 $this->setMessage("danger",  "Le commentaire NO $id n'existe pas");
             }else{
                 $this->commentaireRepository->remove($commentaire);
-                $this->render("Commentaire/commentaire.php", [
-                    "commentaire" => $commentaire,
-                    "h1" => "Commentaire",
-                ]);
                 $this->setMessage("success",  "Le commentaire a été supprimer");
                 return redirection(addLink("Accueil"));
             }
+            $this->render("Commentaire/commentaire.php", [
+                "commentaire" => $commentaire,
+                "h1" => "Commentaire",
+            ]);
         }else{
             error("404.php");
         }

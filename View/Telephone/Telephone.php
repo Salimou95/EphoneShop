@@ -4,7 +4,6 @@
 <main>
     <section>
         <h1><?= htmlspecialchars($telephone->getModele())?></h1>
-        <p>Lavande</p>
     </section>
     <section id="sectionTelephoneUnique">
         <div>
@@ -38,18 +37,25 @@
                 <label for="paragrapheDescription" class="labelTelephoneUniqueTitle" >Description :</label>
                 <p id="paragrapheDescription" class="labelTelephoneUniqueData"><?= htmlspecialchars($telephone->getDescription())?></p>
             </article> 
-            <article>
-                <form method="post">
-                    <button  class="btnsubmit" id="form<?= $telephone->getId() ?>">Ajouter au panier</button>
-                </form>
-            </article>
             <input name="qte" type="number" value="1" id="field<?= $telephone->getId() ?>">
+            <article>
+            <?php if ($telephone->getQuantite() == 0): ?>
+
+<p>Rupture de Stock</p>
+
+<?php else:?>
+
+    <button  class="btnsubmit" id="form<?= $telephone->getId() ?>">Ajouter au panier</button>
+
+<?php endif?>
+
+            </article>
 
         </div>
     </section>
 
 
-    <section class="sectionForm">
+    <section class="sectionForm commentaireForm">
         <article>
             <form method="post">
                 <!-- <input type="button" value="Ajouter au panier"> -->
@@ -62,39 +68,44 @@
                     <input type="number" name="note" class="inputform">
                 </article>
                 
-                <input type="submit" name="envoiecommentaire" value="Ajouter un commentaire">
+                <input type="submit" name="envoiecommentaire" class="btnsubmit btncommentaire" value="Ajouter un commentaire">
 
             </form>
         </article>
 
         <article>
                 <?php foreach($commentaires as $comment){ ?>
-
-                    <?php if(!empty($userConnecte)){
+                    <div class="listecommentaire">
+                        <?php if(!empty($userConnecte)){
                             if($userConnecte->getId() === $comment->getFk_Utilisateur()){ ?>
-                            <a href="<?= addLink("commentaire","udapte",$comment->getId())?>">Modifier</a>
-                            <a href="<?= addLink("commentaire","delete",$comment->getId())?>" class="lien">Supprimer</a><br>
-                        <?php } 
-                    }?>
+                                <a href="<?= addLink("commentaire","udapte",$comment->getId())?>">Modifier</a>
+                            <?php } ?>
+                            <?php if(($userConnecte->getId() === $comment->getFk_Utilisateur()) || ($userConnecte->getRoleUtilisateur() === ROLE_ADMIN) ){ ?>
+                                <a href="<?= addLink("commentaire","delete",$comment->getId())?>" class="lien">Supprimer</a><br>
+                            <?php } ?>
+                        <?php }?>
 
 
-                    
-                <?php for($i=0; $i<$comment->getNote(); $i++){ ?>
-                    <i class="fa-solid fa-star" style="color: #6142fe;"></i><?php } 
-                if($i<5){
-                    for($i=$i; $i<5; $i++){?>
-                    <i class="fa-regular fa-star" style="color: #6142fe;"></i>                    
-                <?php 
-                    }
-                }
-                ?><br>
-                <p><?= htmlspecialchars($comment->getUtilisateur()->getPrenomUtilisateur())." ". htmlspecialchars($comment->getUtilisateur()->getNomUtilisateur())?></p><br>
-                <p><?= htmlspecialchars($comment->getAvis())?></p><br>
-                <p><?= htmlspecialchars($comment->getNote())?></p><br>
-                <p><?= htmlspecialchars($comment->getCreated_at())?></p><br> 
+
+                        <?php for($i=0; $i<$comment->getNote(); $i++){ ?>
+                        <i class="fa-solid fa-star" style="color: #6142fe;"></i><?php } 
+                        if($i<5){
+                        for($i=$i; $i<5; $i++){?>
+                        <i class="fa-regular fa-star" style="color: #6142fe;"></i>                    
+                        <?php 
+                        }
+                        }
+                        ?><br>
+                        <p><?= htmlspecialchars($comment->getUtilisateur()->getPrenomUtilisateur())." ". htmlspecialchars($comment->getUtilisateur()->getNomUtilisateur())?></p><br>
+                        <p><?= htmlspecialchars($comment->getAvis())?></p><br>
+                        <p><?= htmlspecialchars($comment->getCreated_at())?></p><br>
+                        </div>
+                <?php } ?>
+            
+                
         </article>
 
-                <?php } ?>
+                
 
     </section>
 </main>
@@ -104,4 +115,5 @@ window.addEventListener("load", () => {
     var idProduct = "<?= $telephone->getId() ?>";
     addTelephoneToPanierAjax(idProduct)
 });
+cofirmDelete()
 </script>

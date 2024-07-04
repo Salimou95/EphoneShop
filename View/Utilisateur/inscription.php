@@ -46,7 +46,7 @@ require "View/errors_form.html.php";
                 </article>
             </form>
         </article>
-        <article>
+        <article class="imgforminscrpitionconnexion">
             <img style="height: 500px;" src="<?= UPLOAD_IMG . "formimg.png" ?>" alt="">
         </article>
     </section>

@@ -66,3 +66,13 @@ function deleteMesage() {
       });
   });
 }
+function menu(){
+  $("#menu").on("click", function() {
+    console.log("ok");
+    var change = $(".nav__buttons");
+    var menuburger = $(".menuburger");
+  
+    change.toggleClass("change");
+    menuburger.toggleClass("menuburgerchange");
+  });
+}

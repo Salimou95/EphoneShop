@@ -1,9 +1,13 @@
 <?php require "View/errors_form.html.php";?>
 <main>
-    <h1>Ajouter un Téléphone</h1>
+<section>
+        <h1><?=$h1?></h1>
+        <div class="sousligner"></div>
+    </section>
+
     <section class="sectionForm">
         <article>
-            <form method="post" enctype="multipart/form-data" class="form">
+            <form method="post" enctype="multipart/form-data" class="formAdmin">
 
                 <label for="fk_marque" class="labeform">Marque:</label>
                 <select name="fk_marque" id="fk_marque" class="inputform" required>
@@ -45,13 +49,13 @@
                 <label for="image" class="labeform">Image:</label>
                 <input type="file" id="image" name="image" required><br>
 
-                <input type="submit" value="<?= $mode == "suppression" ? "disabled" : "Ajouter" ?>">
+                <input type="submit" value="<?= $mode == "suppression" ? "disabled" : "Ajouter" ?>" class="btnsubmit btncommentaire">
                 
 
             </form>
         </article>
         <article>
-            <img style="height: 500px;" src="<?= UPLOAD_IMG . "formimg.png" ?>" alt="">
+            <img  src="<?= UPLOAD_IMG . "formimg.png" ?>" alt="">
         </article>       
     </section>
 </main>

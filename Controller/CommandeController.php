@@ -3,6 +3,7 @@
 namespace Controller;
 use Model\Entity\Commande;
 use Model\Repository\CommandeRepository;
+use Form\CommandeHandleRequest;
 use Model\Entity\DetailCommande;
 use Model\Repository\DetailCommandeRepository;
 use Model\Entity\Telephone;
@@ -16,16 +17,19 @@ class CommandeController extends BaseController
 {
     private Commande $commande;
     private CommandeRepository $commandeRepository;
+    private CommandeHandleRequest $commandeHandleRequest;
     private DetailCommande $detailCommande;
     private DetailCommandeRepository $detailCommandeRepository;
     private Telephone $telephone;
     private TelephoneRepository $telephoneRepository;
+    
     
 
     public function __construct()
     {
         $this->commande = new Commande;
         $this->commandeRepository = new CommandeRepository;
+        $this->commandeHandleRequest = new CommandeHandleRequest;
         $this->detailCommande = new DetailCommande;
         $this->detailCommandeRepository = new DetailCommandeRepository;
         $this->telephone = new Telephone;
@@ -34,35 +38,40 @@ class CommandeController extends BaseController
 
     public function created()
     {
+        $panier = $_SESSION["panier"];
         if(!$this->isUserConnected()){
-            redirection(addLink("utilisateur", "connexion"));
+            return redirection(addLink("utilisateur", "connexion"));
         }
-        if(!$_SESSION["panier"]){
-            
-            $this->setMessage("info",  "Votre panier est vide");
-            // $this->redirectToRoute(["cart", "show"]);
-        }else{
+        if(empty($_SESSION["panier"]) || !isset($_SESSION["panier"])){
+            $this->setMessage("danger",  "Votre panier est vide");
+            return redirection(addLink("Accueil"));
 
-            $panier = $_SESSION["panier"];
-            $idCommande = $this->commandeRepository->createCommande($this->commande);
 
-            foreach ($panier as $value) {   
+        }
+        else{
+            $this->commandeHandleRequest->handleInsertForm($this->commande);
+            if ($this->commandeHandleRequest->isSubmitted() && $this->commandeHandleRequest->isValid()) {
+                $idCommande = $this->commandeRepository->createCommande($this->commande);
 
-                $this->detailCommandeRepository->createDetailCommande($idCommande, $value["telephone"]->getId(), $value["quantite"]);
-                $this->telephoneRepository->updateQuantityTelephone($value["telephone"]->getId(), $value["quantite"]);
-                
+                foreach ($panier as $value) {   
+                    $this->detailCommandeRepository->createDetailCommande($idCommande, $value["telephone"]->getId(), $value["quantite"]);
+                    $this->telephoneRepository->updateQuantityTelephone($value["telephone"]->getId(), $value["quantite"]);  
+                }
+                $this->remove("panier");
+                $this->remove("nombre");
+                $this->setMessage("success", "Votre commande a été enregistrée");
+                redirection(addLink("Accueil"));
             }
-            $this->remove("panier");
-            $this->remove("nombre");
-            $this->setMessage("success", "Votre commande a été enregistrée");
 
-            redirection(addLink("Accueil"));
-            $this->render("Accueil.php", [
+            
 
-                "h1" => "Commande",
-                "panier" => $panier
-            ]);
         }
+        $this->render("Commande/FormCommande.php", [
+
+            "h1" => "Commande",
+            "panier" => $panier,
+            "mode" => "insertion",
+        ]);
 
         
     }

@@ -3,7 +3,7 @@
     padding: 0%;
 }
 main{
-    margin-top: 8rem;
+    margin-top: 12rem;
 }
 
 header{
@@ -42,7 +42,24 @@ h3{
     font-size: 25px;
 
 }
-
+.nbcircle{
+    border-radius: 1rem;
+    /* border:  1px solid #6142FE; */
+    height: 1.5rem;
+    width: 1.5rem;
+    display: flex;
+    background-color: #409AFE;
+    color: white;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    top: 0.8rem;
+    right: 1.8rem;
+    
+}
+.nbcircle div {
+    margin-top: 0.2rem;
+}
 .sousligner{
     background-color: #6142FE;
     width: 10rem;
@@ -51,9 +68,12 @@ h3{
 }
 .mainInscriptionConnexion{
     width:85%;
-    margin: 13rem auto 0 auto;
+    margin: 8rem auto 0 auto;
 }
 
+.formAdmin{
+    width: 30rem;
+}
 .sectionForm{
     display: flex;
     margin: auto;
@@ -88,6 +108,19 @@ h3{
 }
 .sectionForm>article>img{
     margin: 0 0 0 10rem;
+}
+.commentaireForm{
+    display: flex;
+    justify-content: space-around;
+}
+.listecommentaire{
+    border:  1px solid #6142FE;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.listecommentaire a{
+    color: #6142FE;
 }
 .subconlinkbtn{
     display: flex;
@@ -135,7 +168,7 @@ h3{
     font-size: 110%;
 }
 #accueilsection,#sectionTelephoneUnique{
-    width: 1250px;
+    width: 78.125rem;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -197,11 +230,14 @@ h3{
     /* width: 100%; */
     height: 100px;
 }
+.imgTelephoneIndex{
+    width: 20rem;
+}
 .imgTelephones{
-    height: 320px;
+    width: 10rem;
 }
 #telephoneunique{
-    width: 150%
+    width: 30rem
 }
 .none{
     display: none;
@@ -301,6 +337,9 @@ li{
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 20px;
+}
+.btncommentaire{
+    width: 15rem;
 }
 .icon{
     color: #6142FE;
@@ -496,10 +535,7 @@ li a{
 
 
 .main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    
 }
 
 .panier-container {
@@ -563,19 +599,148 @@ td>img{
     width: 20rem;
 }
 
+#sectionTelephoneUnique {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem; /* 32px */
+}
 
 
-/* Pour les écrans de 48rem (768px) et moins */
-@media screen and (max-width: 48rem) {
+.telephoneUniqueDescription {
+    flex: 1;
+    min-width: 20rem; /* 320px */
+}
+
+.telephoneUniqueDescription article {
+    margin-bottom: 1.5rem; /* 24px */
+}
+
+.labelTelephoneUniqueTitle {
+    font-size: 1.25rem; /* 20px */
+    font-weight: bold;
+    color: #333;
+}
+
+.labelTelephoneUniqueData {
+    font-size: 1rem; /* 16px */
+    color: #555;
+}
+
+.btnsubmit {
+    background-color: #6142FE;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    font-size: 1rem; /* 16px */
+    cursor: pointer;
+    border-radius: 0.5rem; /* 8px */
+}
+
+.btnsubmit:hover {
+    background-color: #5036cc;
+}
+
+input[name="qte"] {
+    width: 4rem; /* 64px */
+    padding: 0.5rem; /* 8px */
+    font-size: 1rem; /* 16px */
+    margin: 1rem 0; /* 16px */
+}
+
+
+.sectionForm article {
+    margin-bottom: 1.5rem;
+}
+
+.fa-star {
+    font-size: 1.25rem; /* 20px */
+}
+
+a.lien {
+    color: #6142FE;
+    text-decoration: none;
+    margin-right: 1rem; /* 16px */
+}
+
+a.lien:hover {
+    text-decoration: underline;
+}
+
+.footer-container{
+    margin-top: 3rem;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: gainsboro;
+}
+.footer-container article ul{
+    flex-direction: column;
+
+}
+.footer-container article ul li a{
+    color: #6142FE;
+    padding: 0.5rem 0;
+
+}
+/* Style pour les conteneurs div à l'intérieur de la section */
+section > article {
+    margin-bottom: 1.5rem; /* Espace entre les éléments du formulaire */
+}
+
+/* Style pour les labels */
+section label:first-child {
+    display: block;
+    font-weight: bold;
+    font-size: 1rem; /* Taille de police pour les titres des labels */
+    margin-bottom: 0.5rem; /* Espace sous les titres des labels */
+}
+
+section label:last-child {
+    display: block;
+    font-size: 1rem; /* Taille de police pour les valeurs des labels */
+    margin-top: 0.25rem; /* Espace au-dessus des valeurs des labels */
+}
+.logoutlink{
+    width: 20rem;
+    background-color: #DC3545;
+}
+.btnCommande{
+    width: 10rem;
+    margin: auto;
+    padding: 1rem;
+}
+.change{
+    display: block;
+}
+/* Pour les écrans de 56.25rem (900px) et moins pour tablette */ 
+@media screen and (max-width: 56.25rem) {
    
     main {
-        margin-top: 10rem;
+        margin: 10rem auto 0 auto;
+        width: 95%;
     }
+    .mainInscriptionConnexion, .sectionForm{
+        width: 50rem;
+        margin-top: 1rem;
+
+    }
+    #logo{
+        width: 3.5rem;
+    }
+    .imgTelephones{
+        width: 0rem;
+    }
+
     .sectionForm article img{
-        display: none;
+        margin: 0 0 0 0rem;
+
+        width: 24rem;
     }
-    .sectionForm{
-        width: 20rem;
+    
+    
+    .sectionForm, #sectionTelephoneUnique, .sectionForm>article, #telephoneunique{
+        width: 100%;
     
     }
     .mainInscriptionConnexion .sectionForm article form{
@@ -597,25 +762,30 @@ td>img{
     .sousligner {
         width: 1rem;
     }
-
-    #accueilsection {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-    }
+    
 
     #accueilsection > article {
-        width: 90%;
+        width: 20rem;
         height: auto;
     }
 
+
+    #accueilsection,#sectionTelephoneUnique{
+        width: 50rem;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 30px;
+    
+    }
     .imgTelephones {
         height: auto;
         width: 100%;
     }
 
     .divArticle {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
     }
 
@@ -663,7 +833,7 @@ td>img{
         background-color: gray;
     }
     .menuburger{
-        width: 25px;
+        width: 2rem;
         height: 2px;
         background-color: #6142FE;
         margin: 2px 0;
@@ -671,12 +841,38 @@ td>img{
     .menuburgerchange{
         background-color: #6142FE;
     }
+    
+    /* .mainInscriptionConnexion .sectionForm form{
+        width: 200rem;
+    } */
+    .imgforminscrpitionconnexion{
+   }
+
+   .listecommentaire{
+    width: 20rem;
+    margin-left: 2rem;
+   }
+   .btncommentaire{
+    width: 17.5rem;
+}
+.formAdmin{
+    width: 20rem;
+}
+.footer-container{
+    flex-direction: column;
+}
+.nav__buttons ul{
+    display: flex;
+    flex-direction: column;
+
+}
 
 }
 
 /* Pour les écrans de 30rem (480px) et moins */
 @media screen and (max-width: 30rem) {
     main {
+        margin: 9rem auto 0 auto;
     }
     h1 {
         font-size: 1.5rem;
@@ -685,16 +881,24 @@ td>img{
     .sousligner {
         width: 10rem;
     }
+    #accueilsection {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
 
     #accueilsection > article {
         width: 20rem;
         margin-bottom: 5rem;
+
     }
 
     .paragrapheArticle {
         font-size: 1.6rem;
     }
-
+    .divArticle {
+        flex-direction: row;
+    }
     .btnAddTelephone {
         width: 3.5rem;
         height: 3.5rem;
@@ -704,78 +908,125 @@ td>img{
         font-size: 1rem;
     }
     
+    .sectionForm, #sectionTelephoneUnique, .sectionForm>article, #telephoneunique{
+        width: 20rem;
+    
+    }
+    .mainInscriptionConnexion .sectionForm article form{
+        width: 18rem;
+    }
+    .search__form,nav,.circle, .circle i{
+        display: none;
+    }
+    .containe{
+        justify-content: space-around;
+    }
+    .containe a img{
+        margin: 1rem 0;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+
+    .sousligner {
+        width: 1rem;
+    }
+
+    
+
+    #accueilsection > article {
+        width: 90%;
+        height: auto;
+    }
+
+    .imgTelephones {
+        height: auto;
+        width: 100%;
+    }
+    .imgTelephoneIndex {
+        width: 20.5rem;
+    }
+    .divArticle {
+        /* flex-direction: column;
+        align-items: center; */
+    }
+
+    .paragrapheArticle {
+        font-size: 1.8rem;
+    }
+
+    .btnAddTelephone {
+        width: 4rem;
+        height: 4rem;
+        margin-top: 1rem;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    th, td {
+        padding: 1rem 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    th:first-child, td:first-child {
+        padding-left: 1rem;
+    }
+
+    th:last-child, td:last-child {
+        padding-right: 1rem;
+    }
+    #menu{
+        margin: 0.5rem;
+        border: 1px solid #6142FE;
+        width: 3rem;
+        height: 2rem;
+        background-color: transparent;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0.5rem 0;
+        border-radius: 5px;
+    }
+    .menuchange{
+        border: 1px solid #6142FE;
+        background-color: gray;
+    }
+    .menuburger{
+        width: 2rem;
+        height: 2px;
+        background-color: #6142FE;
+        margin: 2px 0;
+    }
+    .menuburgerchange{
+        background-color: #6142FE;
+    }
+    .commentaireForm{
+        flex-direction: column;
+    }
+    .listecommentaire{
+        margin: 1rem 5rem 0 0;
+        width: 18rem;
+       }
+    .btnsubmit{
+        width: 20rem;
+    }
+    .btncommentaire{
+        width: 17.3rem;
+    }
+    .btn{
+        
+    }
+    .sectionForm{
+        margin-top: 1rem;
+
+    }
+    .icon{
+        margin: 2rem 0;
+        position: initial;
+    }
 }
 
 
-#sectionTelephoneUnique {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 2rem; /* 32px */
-}
-
-#sectionTelephoneUnique img#telephoneunique {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.5rem; /* 8px */
-}
-
-.telephoneUniqueDescription {
-    flex: 1;
-    min-width: 20rem; /* 320px */
-}
-
-.telephoneUniqueDescription article {
-    margin-bottom: 1.5rem; /* 24px */
-}
-
-.labelTelephoneUniqueTitle {
-    font-size: 1.25rem; /* 20px */
-    font-weight: bold;
-    color: #333;
-}
-
-.labelTelephoneUniqueData {
-    font-size: 1rem; /* 16px */
-    color: #555;
-}
-
-.btnsubmit {
-    background-color: #6142FE;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem; /* 12px 24px */
-    font-size: 1rem; /* 16px */
-    cursor: pointer;
-    border-radius: 0.5rem; /* 8px */
-}
-
-.btnsubmit:hover {
-    background-color: #5036cc;
-}
-
-input[name="qte"] {
-    width: 4rem; /* 64px */
-    padding: 0.5rem; /* 8px */
-    font-size: 1rem; /* 16px */
-    margin-top: 1rem; /* 16px */
-}
-
-
-.sectionForm article {
-    margin-bottom: 1.5rem;
-}
-
-.fa-star {
-    font-size: 1.25rem; /* 20px */
-}
-
-a.lien {
-    color: #6142FE;
-    text-decoration: none;
-    margin-right: 1rem; /* 16px */
-}
-
-a.lien:hover {
-    text-decoration: underline;
-}

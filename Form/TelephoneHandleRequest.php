@@ -57,7 +57,6 @@ class TelephoneHandleRequest extends BaseHandleRequest
                     $telephone->setPaysfabrication($paysfabrication);
                     $telephone->setDescription($description);
                     $telephone->setQuantite($quantite);
-                    $telephone->setImage($image);
                     
 
                     return $this;

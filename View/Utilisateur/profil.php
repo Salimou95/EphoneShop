@@ -1,24 +1,24 @@
 <main>
 
     <section>
-            <div>
-                <label for="">Nom</label>
-                <input type="text" value="<?= htmlspecialchars($utilisateur->getNomUtilisateur())?>">
-            </div>
-            <div>
-                <label for="">Prenom</label>
-                <input type="text" value="<?= htmlspecialchars($utilisateur->getPrenomUtilisateur())?>">
-            </div>
-            <div>
-                <label for="">Email</label>
-                <input type="text" value="<?= htmlspecialchars($utilisateur->getEmailUtilisateur())?>">
-            </div>
-            <div>
-                <label for="">Adresse Mail</label>
-                <input type="text" value="<?= htmlspecialchars($utilisateur->getEmailUtilisateur())?>">
-            </div>
+        <article>
+            <label for="">Nom:</label>
+            <label><?= htmlspecialchars($utilisateur->getNomUtilisateur()) ?></label>
+        </article>
+        <article>
+            <label for="">Prenom:</label>
+            <label><?= htmlspecialchars($utilisateur->getPrenomUtilisateur()) ?></label>
+        </article>
+        <article>
+            <label for="">Email:</label>
+            <label><?= htmlspecialchars($utilisateur->getEmailUtilisateur()) ?></label>
+        </article>
+        <article>
+            <label for="">Adresse Mail:</label>
+            <label><?= htmlspecialchars($utilisateur->getEmailUtilisateur()) ?></label>
+        </article>
     </section>
 
-    <a class="nav-link" href="<?= addLink("utilisateur", "deconnexion") ?>">deconnexion</a>
+    <a class="btn logoutlink" href="<?= addLink("utilisateur", "deconnexion") ?>">deconnexion</a>
 
 </main>

@@ -28,13 +28,6 @@
         </ul>
       </article>
     </section>
-    <div class="payment-methods">
-      <img src="visa.png" alt="Visa">
-      <img src="mastercard.png" alt="Mastercard">
-      <img src="paypal.png" alt="Paypal">
-      <img src="amex.png" alt="American Express">
-      <img src="others.png" alt="Others">
-    </div>
   </footer>
 </body>
 

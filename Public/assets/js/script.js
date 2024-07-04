@@ -1,3 +1,12 @@
+
+document.querySelector("#menu").addEventListener("click", () => {
+    console.log("ok");
+    var change = document.querySelector(".font");
+    var menuburger = document.querySelector(".menuburger");
+  
+    change.classList.toggle("change");
+    menuburger.classList.toggle("menuburgerchange");
+  });
 document.querySelectorAll(".cross").forEach((crossElement) => {
     crossElement.addEventListener("click", () => {
         var change = crossElement.closest(".alert");

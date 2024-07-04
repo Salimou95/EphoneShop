@@ -1,6 +1,11 @@
 <main class="main">
     <section>
+        <div>
+
+        </div>
         <h1><?= $h1?></h1>
+        <div class="sousligner"></div>
+
         <table>
             <thead>
                 <tr>

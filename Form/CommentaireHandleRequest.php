@@ -8,12 +8,12 @@ use Model\Repository\CommentaireRepository;
 
 class CommentaireHandleRequest extends BaseHandleRequest
 {
-    private $commentaireRepository;
+    // private $commentaireRepository;
 
-    public function __construct()
-    {
-        $this->commentaireRepository  = new CommentaireRepository;
-    }
+    // public function __construct()
+    // {
+    //     $this->commentaireRepository  = new CommentaireRepository;
+    // }
 
     public function handleInsertForm(Commentaire $commentaire)
     {   

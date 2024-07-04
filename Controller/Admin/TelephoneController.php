@@ -61,7 +61,7 @@ class TelephoneController extends BaseController
             $telephone = new Telephone;
             $telephones = $this->telephoneRepository->findAll($telephone);
             $this->render("Admin/Telephone/Telephones.php", [
-                "h1" => "Nos téléphones",
+                "h1" => "Liste des téléphones",
                 "marques" => $marques,
                 "telephones" => $telephones
             ]);

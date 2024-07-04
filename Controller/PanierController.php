@@ -38,7 +38,7 @@ class PanierController extends BaseController
             $panier = $_SESSION["panier"];
         
             $this->render("panier/panier.php", [            
-            "h1" => "Fiche cart",
+            "h1" => "Mon Panier",
             "panier" => $panier
             ]);
         

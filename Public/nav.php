@@ -2,17 +2,13 @@
         <a class="nav-link" href="<?= addLink("Accueil")?>">
             <img id="logo" src="<?php echo UPLOAD_IMG; ?>Logo.png" alt="" class="Logo">
         </a>
-        
-        
-          
-       
-
-        
-
-    <div class="icon">
+    <article class="icon">
     
-        <a class="nav-link" href="<?= addLink("Panier", "index")?>"><i class="fa-solid fa-basket-shopping"></i></a> 
-        <a class="nav-link circle" href="<?= addLink("utilisateur", "connexion")?>"><i class="fa-solid fa-circle-user" id="user-btn"></i></a>
+        <a class="nav-link" href="<?= addLink("Panier", "index")?>"><i class="fa-solid fa-basket-shopping"></i></a>
+        <div class="nbcircle">
+            <div id="nombre"><?= $_SESSION["nombre"] ?? 0; ?></div>
+        </div>
+        <a class="nav-link circle" href="<?= addLink("utilisateur", $userConnecte = Service\Session::getUserConnected() ? 'profil' :'connexion')?>"><i class="fa-solid fa-circle-user" id="user-btn"></i></a>
 
         <div id="menu">
           <div class="menuburger"></div>
@@ -20,7 +16,7 @@
           <div class="menuburger"></div>
         </div>
 
-    </div>
+    </article>
 </section>
 <?php if( $userConnecte = Service\Session::getUserConnected() ): ?>
 <?php if( Service\Session::isadmin() ): ?>
@@ -28,18 +24,7 @@
          
     <ul>
             <div class="btn">
-                <div class="dropdown">
-                    <a class="nav-link " href="<?= addLink("telephone","index",null,"admin")?>">Gestion des Téléphones</a>
-                    
-    <!-- <button class="dropbtn">Gestion des Utilisateurs</button> -->
-    <div class="dropdown-content">
-        <a href="<?= addLink("utilisateur", "index", null, "admin") ?>">Voir Utilisateurs</a>
-        <a href="<?= addLink("utilisateur", "create", null, "admin") ?>">Créer Utilisateur</a>
-        <a href="<?= addLink("utilisateur", "reports", null, "admin") ?>">Rapports Utilisateur</a>
-    </div>
-</div>
-
-                </li>
+                    <li><a class="nav-link " href="<?= addLink("telephone","index",null,"admin")?>">Gestion des Téléphones</a></li>               
             </div>
             <div class="btn">
                 <li><a class="nav-link" href="<?= addLink("marque","index",null,"admin")?>">Gestion des Marques</a></li>
@@ -59,28 +44,18 @@
         </div>
         <?php else:?>
             <div>
-            <a class="nav-link" href="<?= addLink("utilisateur", "connexion")?>">connexion</a>
+            <a class="nav-link" href="<?= addLink("utilisateur", $userConnecte !== null ? 'profil' :'connexion')?>">connexion</a>
             <a class="nav-link" href="<?= addLink("utilisateur", "created")?>">inscription</a>
             </div>
             
         </ul>
     </nav>
     <?php endif;?>
-    <div id="nombre"><?= $_SESSION["nombre"] ?? ''; ?></div>
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    var dropdown = document.querySelector('.dropdown');
-    var dropdownContent = document.querySelector('.dropdown-content');
+    $(document).ready(function() {
 
-    dropdown.addEventListener('mouseover', function () {
-        dropdownContent.style.display = 'block';
+    menu();
     });
-
-    dropdown.addEventListener('mouseout', function () {
-        dropdownContent.style.display = 'none';
-    });
-});
-
 </script>

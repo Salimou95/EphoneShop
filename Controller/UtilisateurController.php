@@ -115,15 +115,12 @@ class UtilisateurController extends BaseController
         ]);
     }
     
-    public function profil($id)
+    public function profil()
     {
 
         if ($this->isUserConnected()) {  
-            $utilisateur = $this->getUser();
-            if (!empty($id) && is_numeric($id)) {
-            if ($id === $this->getidUser()) {
-                    
-                    $utilisateur = $this->utilisateurRepository->findById("utilisateur", $id);
+            $utilisateur = $this->getUser();                    
+                    $utilisateur = $this->utilisateurRepository->findById("utilisateur", $this->getidUser());
                     $this->form->handleEditForm($utilisateur);
 
                     if ($this->form->isSubmitted() && $this->form->isValid()) {
@@ -133,17 +130,12 @@ class UtilisateurController extends BaseController
 
                     $errors = $this->form->getEerrorsForm();
                     return $this->render("utilisateur/profil.php", [
-                        "h1" => "Update de l'utilisateur n° $id",
+                        "h1" => "Mon profil",
                         "utilisateur" => $utilisateur,
                         "errors" => $errors,
                         "mode" => "modification"
-                    ]);
-                }else{
-                    error(403);
-                }        
-            }else{
-                error(403);
-            }
+                    ]);   
+            
         }else{
             error(403);
         }

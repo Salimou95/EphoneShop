@@ -42,10 +42,14 @@ class Panier
         $_SESSION["panier"] = $panier;  // je remets $panier dans la session, à l'indice 'panier'
         
         $nb = 0;
+        $totalPrice = 0;
         foreach ($panier as $value){
             $nb += $value["quantite"];
+            $totalPrice += $value["quantite"] * $value["telephone"]->getPrix();
+            
         }
         $_SESSION["nombre"] = $nb;
+        $_SESSION["prixTotal"] = $totalPrice;
         return $nb;
     }
 }

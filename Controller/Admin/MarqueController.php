@@ -49,7 +49,7 @@ class MarqueController extends BaseController
                 ImageHandler::handelPhoto($marque);
                 $this->marqueRepository->addMarque($marque);
                 $this->setMessage("sucess", "la marque a été crée");
-                return redirection(addLinkAdmin("admin","marque","index"));
+                return redirection(addLink("marque","index", null, "admin"));
                 }
             $errors = $this->form->getEerrorsForm();
     
@@ -92,7 +92,7 @@ class MarqueController extends BaseController
                     if ($this->form->isSubmitted() && $this->form->isValid()) {
                         $this->marqueRepository->udapteMarque($marque);
                         $this->setMessage("sucess", "la marque n° $id a été modifier");
-                        redirection(addLinkAdmin("admin","marque","index"));
+                        return redirection(addLink("marque","index", null, "admin"));
                     }
                 }
             $errors = $this->form->getEerrorsForm();
@@ -115,14 +115,15 @@ class MarqueController extends BaseController
                     $this->setMessage("danger",  "La marque n° $id n'existe pas");
                 }else{
                     $this->marqueRepository->remove($marque);
-                    $this->render("Admin/Marque/FormMarques.php", [
-                            "h1" => "Supression de l'utilisateur n° $id",
-                            "marque" => $marque,
-                            "mode" => "suppression"
-                        ]);
+                  
                     $this->setMessage("sucess", "la marque n° $id a été supprimer");
+                    return redirection(addLink("marque","index", null, "admin"));
                 }
-                redirection(addLinkAdmin("admin","marque","index"));
+                $this->render("Admin/Marque/FormMarques.php", [
+                    "h1" => "Supression de l'utilisateur n° $id",
+                    "marque" => $marque,
+                    "mode" => "suppression"
+                ]);
             }
         }else{
             error(403);

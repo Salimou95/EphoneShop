@@ -1,5 +1,8 @@
 <main>
-    <h1><?= $h1?></h1>
+    <section>
+        <h1><?=$h1?></h1>
+        <div class="sousligner"></div>
+    </section>
     <section>
         <table>
             <thead>

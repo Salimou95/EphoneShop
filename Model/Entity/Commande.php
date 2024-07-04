@@ -9,6 +9,7 @@ class Commande extends BaseEntity{
     private $statut;
     private $dateLivraison;
     private $prix;
+    private $adresse;
     private $fkUtilisateurCommande;
 
     public function __construct()
@@ -93,6 +94,26 @@ class Commande extends BaseEntity{
     public function setFk_UtilisateurCommande($fk_UtilisateurCommande)
     {
         $this->fk_UtilisateurCommande = $fk_UtilisateurCommande;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of adresse
+     */ 
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set the value of adresse
+     *
+     * @return  self
+     */ 
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
 
         return $this;
     }
