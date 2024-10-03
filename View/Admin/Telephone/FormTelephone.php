@@ -46,15 +46,15 @@
                 <label for="quantite" class="labeform">Quantité:</label>
                 <input type="number" id="quantite" name="quantite"  class="inputform" value="<?= $telephone->getQuantite()?>" required><br>
                         
-                <label for="image" class="labeform">Image:</label>
-                <input type="file" id="image" name="image" required><br>
+                <label for="image" class="labeform <?= $mode == "modification" ? "none" : "" ?>">Image:</label>
+                <input type="file" id="image" name="image" required class="<?= $mode == "modification" ? "none" : "" ?>" ><br>
 
                 <input type="submit" value="<?= $mode == "suppression" ? "disabled" : "Ajouter" ?>" class="btnsubmit btncommentaire">
                 
 
             </form>
         </article>
-        <article>
+        <article class="articleimg">
             <img  src="<?= UPLOAD_IMG . "formimg.png" ?>" alt="">
         </article>       
     </section>

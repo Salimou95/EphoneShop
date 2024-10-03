@@ -20,8 +20,8 @@
 
             </form>
         </article>
-        <article>
-            <img src="<?= UPLOAD_IMG . "formimg.png" ?>" alt="">
+        <article class="articleimg">
+            <img src="<?= UPLOAD_IMG . "formimg.png" ?>" class alt="">
         </article>       
     </section>
 </main>

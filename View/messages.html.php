@@ -26,9 +26,7 @@ $messages = Session::getMessages();
         <?php endforeach; ?>
 
 <?php endif; ?>
-<script>
-    deleteMesage()
-</script>
+
 
 
 

@@ -22,7 +22,7 @@
                 </article>
             </form>
         </article>
-        <article class="imgforminscrpitionconnexion">
+        <article class="articleimg">
             <img  src="<?= UPLOAD_IMG. "formimg.png"?>" alt="">
         </article>
     </section>

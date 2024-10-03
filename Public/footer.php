@@ -29,5 +29,12 @@
       </article>
     </section>
   </footer>
+  <script>  
+      menu();
+    
+
+      deleteMesage()
+
+  </script>
 </body>
 

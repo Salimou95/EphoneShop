@@ -276,7 +276,7 @@ li{
 }
 
 
-.alert-success{
+.alert-success,.alert-succes{
     background-color: #28a745 !important;
 }
 .text-danger{
@@ -640,6 +640,11 @@ td>img{
 .btnsubmit:hover {
     background-color: #5036cc;
 }
+.btnToForm{
+    width: 15rem;
+    margin: 0 auto 1rem auto;
+
+}
 
 input[name="qte"] {
     width: 4rem; /* 64px */
@@ -713,6 +718,9 @@ section label:last-child {
 .change{
     display: block;
 }
+.none{
+    display: none;
+}
 /* Pour les écrans de 56.25rem (900px) et moins pour tablette */ 
 @media screen and (max-width: 56.25rem) {
    
@@ -721,9 +729,11 @@ section label:last-child {
         width: 95%;
     }
     .mainInscriptionConnexion, .sectionForm{
-        width: 50rem;
         margin-top: 1rem;
 
+    }
+    .mainInscriptionConnexion{
+        margin-top: 11rem;
     }
     #logo{
         width: 3.5rem;
@@ -771,7 +781,7 @@ section label:last-child {
 
 
     #accueilsection,#sectionTelephoneUnique{
-        width: 50rem;
+        width: 48rem;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
@@ -861,10 +871,14 @@ section label:last-child {
 .footer-container{
     flex-direction: column;
 }
+
 .nav__buttons ul{
     display: flex;
     flex-direction: column;
 
+}
+.change{
+    display: block;
 }
 
 }
@@ -898,6 +912,10 @@ section label:last-child {
     }
     .divArticle {
         flex-direction: row;
+        padding: 1rem;
+    }
+    .divArticle button{
+                margin-top: 1rem;
     }
     .btnAddTelephone {
         width: 3.5rem;
@@ -907,7 +925,9 @@ section label:last-child {
     th, td {
         font-size: 1rem;
     }
-    
+    .articleimg{
+        display: none;
+    }
     .sectionForm, #sectionTelephoneUnique, .sectionForm>article, #telephoneunique{
         width: 20rem;
     
@@ -915,9 +935,7 @@ section label:last-child {
     .mainInscriptionConnexion .sectionForm article form{
         width: 18rem;
     }
-    .search__form,nav,.circle, .circle i{
-        display: none;
-    }
+    
     .containe{
         justify-content: space-around;
     }
@@ -1017,7 +1035,8 @@ section label:last-child {
         width: 17.3rem;
     }
     .btn{
-        
+        padding: 0.5rem;
+
     }
     .sectionForm{
         margin-top: 1rem;
@@ -1026,6 +1045,12 @@ section label:last-child {
     .icon{
         margin: 2rem 0;
         position: initial;
+    }
+    .formAdmin{
+        width: 17rem;
+    }
+    .noneLineTable{
+        display: none;
     }
 }
 

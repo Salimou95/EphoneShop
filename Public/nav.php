@@ -32,30 +32,17 @@
             <div class="btn">
                 <li><a class="nav-link" href="<?= addLink("utilisateur","index",null,"admin")?>">Gestion des Utilisateurs</a></li>
             </div>
+        
             <div class="btn">
-                <li><a class="nav-link" href="<?= addLink("commentaire","index",null,"admin")?>">Gestion des Commentaire</a></li>
-            </div>
-            <div class="btn">
-                <li><a class="nav-link" href="<?= addLink("commentaire","index",null,"admin")?>">Gestion des Commandes</a></li>
+                <li><a class="nav-link" href="<?= addLink("commande","index",null,"admin")?>">Gestion des Commandes</a></li>
             </div>
         <?php endif; ?>
 
 
         </div>
         <?php else:?>
-            <div>
-            <a class="nav-link" href="<?= addLink("utilisateur", $userConnecte !== null ? 'profil' :'connexion')?>">connexion</a>
-            <a class="nav-link" href="<?= addLink("utilisateur", "created")?>">inscription</a>
-            </div>
+        
             
         </ul>
     </nav>
     <?php endif;?>
-
-
-<script>
-    $(document).ready(function() {
-
-    menu();
-    });
-</script>

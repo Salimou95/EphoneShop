@@ -35,7 +35,6 @@ function previousPage(){
     exit;
 }
 
-// ⚠ test 
 function error($num = 404)
 {
     include "errors/$num.php";

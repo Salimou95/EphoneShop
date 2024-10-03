@@ -14,7 +14,7 @@ class UtilisateurRepository extends BaseRepository{
     
             $request->execute(); 
             $count = $request->fetchColumn();
-            return $count > 1 ? true : false;
+            return $count >= 1 ? true : false;
         }catch (PDOException $e) {
             exit("Erreur lors de la verification email de l'utilisateur existant: " . $e->getMessage());
         }

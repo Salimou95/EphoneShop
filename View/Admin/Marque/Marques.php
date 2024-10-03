@@ -4,6 +4,9 @@
         <div class="sousligner"></div>
     </section>
     <section>
+        <a href="<?= addLink("marque","created",null,"admin")?>" class="btn btnToForm">+ Ajouter une marque</a>
+    </section>
+    <section>
         <table>
             <thead>
                 <tr>

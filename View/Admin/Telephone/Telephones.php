@@ -4,7 +4,7 @@
         <div class="sousligner"></div>
     </section>
     <section>
-        <a href="<?= addLink("telephone","created",null,"admin")?>">Ajouter un telephone</a>
+        <a href="<?= addLink("telephone","created",null,"admin")?>" class="btn btnToForm">+ Ajouter un telephone</a>
     </section>
     <section>
         <table>
@@ -13,7 +13,7 @@
                     <th>Modele</th>
                     <th>Marque</th>
                     <th>Photo</th>
-                    <th>Quantite</th>
+                    <th class="noneLineTable">Quantite</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -27,7 +27,7 @@
                             <?php }?>
                         <?php }?>     
                         <td><img class="imgTelephones" src="<?=UPLOAD_IMG_TELEPHONE. htmlspecialchars($telephone->getImage())?>" alt=""></td>
-                        <td><?= htmlspecialchars($telephone->getQuantite())?></td>
+                        <td class="noneLineTable"><?= htmlspecialchars($telephone->getQuantite())?></td>
                         <td>
                             <a href="<?= addLink("telephone","read",$telephone->getId())?>"><i class="fa-solid fa-eye" style="color: #6142fe;"></i></a>
                             <a href="<?= addLink("telephone","udapte",$telephone->getId(),"admin")?>"><i class="fa-solid fa-pen" style="color: #6142fe;"></i></a>
